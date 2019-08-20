@@ -49,4 +49,14 @@ public interface ZtxService {
     void updateuser(User user);
 
     void adduser(User user);
+
+    void updateproduct(Integer id,Integer state);
+
+    List querydsh(ParameUtil param);
+
+    Long querydshcount(ParameUtil param);
+
+    List queryytg(ParameUtil param);
+
+    Long queryytgcount(ParameUtil param);
 }

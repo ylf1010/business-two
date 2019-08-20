@@ -33,4 +33,21 @@
     from y_tree t,y_role_tree rt
     where t.id= rt.treeid and rt.roleid=#{id} and t.pid=#{pid}
   </select>
+
+  <select id="querydsh" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and sp.productsxj=2
+      limit #{papa},#{pageSize}
+  </select>
+
+  <select id="querydshcount" resultType="long">
+    select count(*) from ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and productsxj=2
+  </select>
+
+  <select id="queryytg" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and sp.productsxj=5
+      limit #{papa},#{pageSize}
+  </select>
+  <select id="queryytgcount" resultType="long">
+    select count(*) from ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and productsxj=5
+  </select>
 </mapper>

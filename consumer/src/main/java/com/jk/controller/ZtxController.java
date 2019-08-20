@@ -51,9 +51,12 @@ public class ZtxController {
     }
     @RequestMapping("todsh")
     public String todsh(){
-        return "ztx/product";
+        return "ztx/showpro";
     }
-
+    @RequestMapping("toytg")
+    public String toytg(){
+        return "ztx/showytg";
+    }
     //注销
     @RequestMapping("zx")
     public String zx(HttpServletRequest request){
@@ -194,6 +197,17 @@ public class ZtxController {
     public   Map  querydsh(@RequestBody ParameUtil param ){
         List list=zs.querydsh(param);
         Long l=zs.querydshcount(param);
+        Map map=new HashMap();
+        map.put("rows", list);
+        map.put("total", l);
+        return map;
+    }
+    //查待审核
+    @RequestMapping("queryytg")
+    @ResponseBody
+    public   Map  queryytg(@RequestBody ParameUtil param ){
+        List list=zs.queryytg(param);
+        Long l=zs.queryytgcount(param);
         Map map=new HashMap();
         map.put("rows", list);
         map.put("total", l);

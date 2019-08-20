@@ -209,12 +209,22 @@ public class ZtxServiceImpl implements ZtxService{
     @Override
     public List querydsh(ParameUtil param) {
         int papa=(param.getPageNumber()-1)*param.getPageSize();
-        return rm.querydsh(param,papa,param.getPageSize());
+        return tm.querydsh(param,papa,param.getPageSize());
+    }
+    @Override
+    public Long querydshcount(ParameUtil param) {
+        return tm.querydshcount(param);
     }
 
     @Override
-    public Long querydshcount(ParameUtil param) {
-        return rm.querydshcount(param);
+    public List queryytg(ParameUtil param) {
+        int papa=(param.getPageNumber()-1)*param.getPageSize();
+        return tm.queryytg(param,papa,param.getPageSize());
+    }
+
+    @Override
+    public Long queryytgcount(ParameUtil param) {
+        return tm.queryytgcount(param);
     }
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {

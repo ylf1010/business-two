@@ -44,7 +44,5 @@ public interface ZtxRoleMapper {
     @Update("update ly_product set productsxj=#{state} where productid=#{id}")
     void updateproduct(@Param("id") Integer id,@Param("state") Integer state);
 
-    List querydsh(@Param("p") ParameUtil param, @Param("papa")int papa, @Param("pageSize")Integer pageSize);
 
-    Long querydshcount(@Param("p")ParameUtil param);
 }
