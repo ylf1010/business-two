@@ -47,22 +47,7 @@
 
 </head>
 <body>
-<form id="pro_from" class="form-inline">
-    <div class="form-group">
-        <label>商品(名称):</label>
-        <input type="text" class="form-control" name = "productname" id="productname" placeholder="商品(名称)">
-    </div>
-    <div class="form-group">
-        <label>分类:</label>
-            <select class="form-control" id="selectaid" name="flname"></select>
 
-    </div>
-    <br>
-    <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
-</form>
-<button type="button" class="btn btn-Warning btn-lg" onclick="addSP()">新增</button>
-<!--<button type="button"  class="btn btn-info btn-lg" onclick="deleteproductById()">批量删除</button>-->
-<button type="button" class="btn btn-Warning btn-lg" onclick="updproductId()">修改</button>
 <!--  表格 -->
 <table id="product-table"></table>
 <button type="button"  class="btn btn-info btn-lg" onclick="deleteproductById()">批量删除</button>
@@ -77,7 +62,7 @@
 
 
         $("#product-table").bootstrapTable({
-            url: "../ztx/querydsh",
+            url: "../lyproduct/querylyProduct",
             method: 'post',
             striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
@@ -114,11 +99,6 @@
                 var param = {
                     pageNumber: params.pageNumber,
                     pageSize: params.pageSize,
-                    sortName: params.sortName,
-                    sortOrder: params.sortOrder,
-                    flid:params.flid,
-                    productname: $("#productname").val()
-
                 };
                 return param;
             },
@@ -180,8 +160,9 @@
                 },
                 {field:'act',title:'操作',width:300,
                     formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
-                        if(row.productsxj==1){
-                            return "<input type='button' value='提交审核' bgcolor='red' onclick='edituser("+row.productid+","+2+")'></input>";
+                        if(row.productsxj==2){
+                            return "<input type='button' value='通过' bgcolor='green' onclick='edituser("+row.productid+","+3+")'></input>" +
+                                "<input type='button' value='拒绝' bgcolor='red' onclick='edituser("+row.productid+","+4+")'></input>";
                         }else {
                             return "已提交";
                         }
