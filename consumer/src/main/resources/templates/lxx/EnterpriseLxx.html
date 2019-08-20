@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+<div  style="height: 30px;background: #8c8c8c" >店铺认证</div>
+<form id="EnterpriseMessage">
+ <div>
+     <div>
+   <div style="margin-left: 20px">
+       <h2>认证方式：企业认证</h2><br/>
+       <h4> 组织资料</h4><br/>
+        <p></p>
+       <!--<div>-->
+           <div style="width: 150px;float: left;margin-left: 70px">
+               <div>组织/企业全称 </div>
+               <p></p>
+               <div>机构/社会信用代码</div>
+               <p></p>
+               <div >企业证书</div>
+               <p></p>
+               <div style="height: 160px;width: 30px"><center>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示</center></div>
+               <p></p>
+               <div>联系方式 </div>
+               <p></p>
+               <div>验证码</div>
+               <p></p>
+           </div>
+
+           <div >
+               <div><input type="text" value="请输入企业名称" onfocus="javascript:if(this.value=='请输入企业名称')this.value='';" name="qyname"></div>
+               <p></p>
+               <div><input type="text" value="机构/社会信用代码" onfocus="javascript:if(this.value=='机构/社会信用代码')this.value='';" name="qyxydm" ></div>
+               <p></p>
+               <div ><input type="file" src="" name="qyzs"></div>
+               <div style="width: 500px">
+                   <span>社会团体上传登记证书，企业上传营业执照</span><br/>
+                   <span>若办理过三证合一的企业，请上传最新的营业执照</span><br/>
+                   <span>格式要求：原件照片、扫描件或复印件加盖企业公章后的扫描件支持jpg .jpeg .bmp .gif .png格式照片，大小不超过2M。</span>
+               </div>
+               <p></p>
+
+               <div><input type="text" value="联系方式" onfocus="javascript:if(this.value=='联系方式')this.value='';" name="qyphone"></div><p></p>
+               <p></p>
+
+               <div><input type="text" value="验证码" onfocus="javascript:if(this.value=='验证码')this.value='';" ></div>
+               <p></p>
+
+           </div>
+   </div>
+
+       <div style="margin-left: 20px;margin-top: 30px">
+           <h4>提现信息</h4>
+           <div>
+               <div style="width: 150px;float: left;margin-left: 70px">
+                        <div>提现方式</div>
+                   <p></p>
+                        <div style="height:50px">提示</div>
+                   <p></p>
+                       <div>选择银行</div>
+                   <p></p>
+                        <div>开户城市</div>
+                   <p></p>
+                        <div>开户支行名称</div>
+                   <p></p>
+                        <div>银行卡号</div>
+                   <p></p>
+               </div>
+
+               <div >
+                  <!-- 提现方式-->
+                        <div><input type="radio" value="1" name="txfs">银行卡 <input type="radio" value="2" name="txfs">微信</div><br/>
+                       <div style="width: 800px"> 1、6~8工作日到账，适合较大金额提现<br/>2、手续费0.6%，微信商户收取，平台不收取任何费用</div>
+                   <p></p>
+                        <div> <select name="yhid">
+                            <option value="1">中国工商银行</option>
+                            <option value="2">中国建设银行</option>
+                            <option value="3">中国银行</option>
+                            <option value="4">交通银行</option>
+                            <option value="5">中国农业银行</option>
+                            <option value="6">招商银行</option>
+                            <option value="7">中国邮政储蓄银行</option>
+                            <option value="8">中国光大银行</option>
+                            <option value="9">中国民生银行</option>
+                            <option value="10">平安银行</option>
+                            <option value="11">浦发银行</option>
+                            <option value="12">中信银行</option>
+                            <option value="13">兴业银行</option>
+                            <option value="14">华夏银行</option>
+                            <option value="15">广发银行</option>
+                   </select></div>
+                   <p></p>
+                        <div>
+                       <!--开户省-->
+                       <select name="khsheng">
+                        <option value="3">省</option>
+                       </select>
+                       <!--开户市-->
+                       <select name="khshi">
+                           <option value="3">市</option>
+                       </select>
+                       <!--开户县-->
+                       <select name="khxian">
+                           <option value="3">县</option>
+                       </select>
+                       </div>
+                   <p></p>
+                   <!--开户支行名称-->
+                        <div><input type="text" name="khyhxm"></div>
+                   <p></p>
+                   <!--银行账号-->
+                        <div><input type="text" name="khzh"></div>
+                   <p></p>
+                   <br/>
+                   <p></p>
+                   <div style="float: left;margin-left: 180px"><input type="button" value="认证" onclick="addEnterprise()"></div>
+
+               </div>
+           </div>
+
+       </div>
+   </div>
+ </div>
+</form>
+</body>
+<script>
+
+
+    //新增企业认证
+    function addEnterprise(){
+        $.ajax(
+            {
+            url: '/lxx/addEnterprise',
+            type: 'post',
+            cache:false,
+            data: $("#EnterpriseMessage").serialize(),
+            success: function () {
+
+                alert("企业认证成功");
+
+            }, error: function () {
+                alert("企业认证失败");
+            }
+        }
+        );
+    }
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div style="height:30px" >
+    店铺认证
+</div>
+<div style="height: 500px;margin-left: 5px">
+    <form id="ShopMessage">
+        <div style="height:250px;" >
+            <div style="height:30px;margin-top: 20px" >
+                选择认证的类型并点击下一步：（认证通过后类型不可更改）
+            </div>
+
+
+            <div style="height:200px;width:200px;margin-top: 20px;float:left" value="1" id="focus">
+                <center><input type="checkbox" id="qy" value="1" >企业认证<br/>
+                    对公银行卡号<br/>
+                    <p></p>
+                    针对已具备登记证书的社群/营业执照的企业，可提现至公司银行账户，审核周期为1个工作日
+                </center>
+
+            </div>
+
+            <div style="height:200px;width:200px;margin-left: 5px;margin-top: 20px;float:left" value="1" id="focus">
+                <center><input type="checkbox" id="gt" value="2" name="dptype">个人认证<br/>
+                    个人银行卡号<br/>
+                    <p></p>
+                    针对以人名义用大陆身份证认证，可提现至个人银行账户，审核周期为1个工作日
+                </center>
+            </div>
+        </div>
+
+
+
+        <div style="height: 300px;width: 400px;margin-left: 70px;margin-top:20px">
+            <input type="button" onclick="tiao()" value="下一步">
+        </div>
+    </form>
+</div>
+</body>
+<script>
+   var gta = document.getElementById("#gt");
+   var qya = document.getElementById("#qy");
+   var gt = gta.value();
+   var qy = qya.value();
+   function tiao(){
+
+       if (qy==1){
+   location.href="/lxx/Enterprise";
+       }else if(gt==2){
+           location.href="/lxx/Individual";
+       }
+
+   }
+</script>
+</html>
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.LxxMapper">
+
+    <!-- 新增 店铺-->
+    <insert id="addShop"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(dpname,dplogo,dpphone,shengid,shiid,xianid,dpxxdz,dpdesc,status)
+VALUES(#{dpname},#{dplogo},#{dpphone},#{shengid},#{shiid},#{xianid},#{dpxxdz},#{dpdesc},1)
+</insert>
+
+    <!-- 新增 企业认证-->
+    <!--<insert id="addEnterprise"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(qyname,qyxydm,qyzs,qyphone,txfs,yhid,khsheng,khshi,khxian,khyhxm,khzh)
+VALUES(#{qyname},#{qyxydm},#{qyzs},#{qyphone},#{txfs},#{yhid},#{khsheng},#{khshi},#{khxian},#{khyhxm},#{khzh})
+</insert>-->
+
+    <update id="addEnterprise" parameterType="com.jk.model.RenZhengBean">
+
+ update dianpu_lxx set qyname = #{qyname},qyxydm=#{qyxydm},qyzs=#{qyzs},qyphone=#{qyphone},txfs=#{txfs},yhid=#{yhid},khsheng=#{khsheng},khshi=#{khshi},
+ khxian=#{khxian},khyhxm=#{khyhxm},khzh=#{khzh},status = 2 where id = #{id}
+
+    </update>
+
+    <!-- 新增 个人认证
+    <insert id="addIndividual"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(gtname,gtsfzh,gtsfzqian,gtsfzbei,gtphone,txfs,yhid,khsheng,khshi,khxian,khyhxm,khzh)
+VALUES(#{gtname},#{gtsfzh},#{gtsfzqian},#{gtsfzbei},#{gtphone},#{txfs},#{yhid},#{khsheng},#{khshi},#{khxian},#{khyhxm},#{khzh})
+</insert>-->
+    <update id="addIndividual" parameterType="com.jk.model.RenZhengBean">
+
+ update dianpu_lxx set gtname = #{gtname},gtsfzh=#{gtsfzh},gtsfzqian=#{gtsfzqian},gtsfzbei=#{gtsfzbei},gtphone=#{gtphone},txfs=#{txfs},yhid=#{yhid},khsheng=#{khsheng},khshi=#{khshi},
+ khxian=#{khxian},khyhxm=#{khyhxm},khzh=#{khzh},status = 2 where id = #{id}
+
+    </update>
+
+
+</mapper>
