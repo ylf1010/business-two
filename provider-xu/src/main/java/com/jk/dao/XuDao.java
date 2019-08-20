@@ -16,6 +16,10 @@ public interface XuDao {
 
     List<Zu_xu> xxiala1();
 
+    List<BiaoQian_xu> xXiaLaBiaoQian();
+
+    void xupdateBiaoQian(User_xu userke);
+
     void xdelete1jifen(String[] ids);
 
     void xaddfenzu(Zu_xu zu);
@@ -53,11 +57,15 @@ public interface XuDao {
 
     Integer uJiFencount(Map map);
 
+
     List<Jifen_xu> uJiFenCha(Map map);
 
     List<Member_xu> uXiaLaHiuYuan();
 
-    void uZengHiuYuan(Um_xu um);
+    Integer uZengHiuYuan(Um_xu um);
+
+    void uupdateKeHu(Um_xu um);
+
 
     List<BiaoQian_xu> uBiaoQianCha();
 
@@ -68,5 +76,6 @@ public interface XuDao {
     void uaddBiaoQian(BiaoQian_xu bq);
 
     void uupdateKeHuBiaoQian(Integer bqid);
+
 
 }

@@ -25,6 +25,14 @@
     <link rel="stylesheet" href="/js2/kindeditor-4.1.10/themes/default/default.css" >
 
 
+    <!--  引入上传图片的js -->
+    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
+
+
+
 </head>
 
 <body>
@@ -37,9 +45,13 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
     <p></p>
-    店铺Logo&nbsp;<img src="" id="testimg" width="50px" height="50px">
-    <input type="hidden" id="hideImg" name="dplogo" >
-    <input type="file" id="uploadify"><br/>
+    店铺Logo&nbsp;<input type="hidden" id="burl" name="dplogo">
+    <input type="file" id="imgFileBTN" >
+    <!--  图片回显的位置 -->
+    <div id="showImgDiv" style="width: 150px;height: 200px;border‐style:solid;border‐width:1px; border‐color:black;">
+    </div>
+    <!--  进度条位置 -->
+    <div id="showBarDiv" ></div><br/>
     <p></p>
     联系方式&nbsp;&nbsp;<input type="text" name="dpphone" size="28"  value="请输入客户可查看的联系方式" onfocus="javascript:if(this.value=='请输入客户可查看的联系方式')this.value='';" ><br/>
     <p></p>
@@ -73,108 +85,97 @@
 </body>
 <script>
 
-    $(function(){
 
-            initAddProvinceSelect();
-
-        }
-    );
 
     //新增
 
     function addShop(){
-        $.ajax(
-            {
-                url: '/lxx/addShop',
-                type: 'post',
-                cache:false,
-                data: $("#ShopMessage").serialize(),
-                success: function (data) {
+                        $.ajax(
+                            {
+                            url: '/lxx/addShop',
+                            type: 'post',
+                            cache:false,
+                            data: $("#ShopMessage").serialize(),
+                            success: function (data) {
 
-                    alert("新增店铺成功");
-                    /*window.location.href="/lxx/ShopMessage";*/
-                    location.href="../lxx/DianPu";
-                }, error: function () {
-                    alert("新增店铺失败");
-                }
-            }
-        );
+                                alert("新增店铺成功");
+                                /*window.location.href="/lxx/ShopMessage";*/
+                                location.href="../lxx/DianPu";
+                            }, error: function () {
+                                alert("新增店铺失败");
+                            }
+                        }
+                        );
     }
 
     //地区三级
     function initAddProvinceSelect(){
         $("#sheng").combobox({
-                url:'/lxx/findArea?id=0',
-                textField:'areaname',
-                valueField:'id',
-                onChange:function(newValue,oldValue){
-                    $("#shi").combobox({
-                            url:'/lxx/findArea?id='+newValue,
-                            textField:'areaname',
-                            valueField:'id',
-                            onChange:function(newValue,oldValue){
-                                $("#xian").combobox({
-                                        url:'/lxx/findArea?id='+newValue,
-                                        textField:'areaname',
-                                        valueField:'id'
-                                    }
-                                )
-                            }
+            url:'/lxx/findArea?id=0',
+            textField:'areaname',
+            valueField:'id',
+            onChange:function(newValue,oldValue){
+                $("#shi").combobox({
+                    url:'/lxx/findArea?id='+newValue,
+                    textField:'areaname',
+                    valueField:'id',
+                        onChange:function(newValue,oldValue){
+                            $("#xian").combobox({
+                                    url:'/lxx/findArea?id='+newValue,
+                                    textField:'areaname',
+                                    valueField:'id'
+                                }
+                            )
                         }
-                    )
                 }
+                )
             }
+        }
         )
 
     }
-    //上传插件
-    $("#uploadify").uploadify(
-        {
-            //插件自带  不可忽略的参数
-            'swf': '<%=request.getContextPath()%>/js/uploadify/uploadify.swf',
+    $(function(){
+        initAddProvinceSelect();
+        //文件域的id
+        uploadObj = $("#imgFileBTN").uploadify({
             //前台请求后台的url 不可忽略的参数
-            'uploader': '<%=request.getContextPath()%>/music/upload.do',
-            //给div的进度条加背景 不可忽略
-            'queueID': 'fileQueue',
-            //上传文件文件名
-            'fileObjName' : 'img',
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
             //给上传按钮设置文字
-            'buttonText': '上传图片',
-            //设置文件是否自动上传
-            'auto': true,
-            //可以同时选择多个文件 默认为true  不可忽略
-            'multi': false,
-            //上传后队列是否消失
-            'removeCompleted': true,
-            //允许上传的文件后缀
-            'fileExt': '*.jpg;*.gif;*.png',
-            //
-            'cancelImg': '<%=request.getContextPath()%>/js/uploadify/uploadify-cancel.png',
-            //队列消失时间
+            'buttonText' : '上传照片',
             'removeTimeout' : 1,
-            //上传文件的个数，项目中一共可以上传文件的个数
-            'uploadLimit':  -1,
-            'fileTypeExts': '*.jpg;*.png',
-            //开始执行上传
-            'onUploadStart':function(files){
-                //$.messager.progress({ title:'提示',msg:'上传中...' });
-            },
-            //上传失败
-            'onUploadError':function(){
-                //$.messager.progress('close');
-                //$.messager.alert('提示','上传失败');
-                alert("上传失败");
-            },
-            //成功回调函数 file：文件对象。data后台输出数据
-            'onUploadSuccess':function(file,data,response){
-                //$.messager.progress('close');
-                //  alert(data+file.name)
-                var imgurl = "http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data
-                $("#testimg").attr("src",imgurl);
-                $('#hideImg').val(imgurl);
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarDiv',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:180px;height:200px;border‐style:solid;border‐width:1px; border‐color:black;"src="..'+data+'">';
+                $("#showImgDiv").html(str);
+                $("#burl").val(data);
+                // append
             }
-        }
-    );
+        });
+    })
+
 
 
 </script>

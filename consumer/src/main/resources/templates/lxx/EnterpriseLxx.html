@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js2/easyui1.5/jquery.easyui.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/icon.css" >
+    <!-- 主题 -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/default/easyui.css" >
+    <!-- 方言 -->
+    <script type="text/javascript" src="/js2/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <!-- 图片  -->
+    <script src="/js2/uploadify/jquery.uploadify.js"></script>
+    <link rel="stylesheet" href="/js2/uploadify/uploadify.css" >
+    <!-- 富文本 -->
+    <script src="/js2/kindeditor-4.1.10/kindeditor-all.js"></script>
+    <link rel="stylesheet" href="/js2/kindeditor-4.1.10/themes/default/default.css" >
+
+    <!--  引入上传图片的js -->
+    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
+
 </head>
 <body>
-<div  style="height: 30px;background: #8c8c8c" >店铺认证</div>
 <form id="EnterpriseMessage">
+<div  style="height: 30px;background: #8c8c8c" >店铺认证</div>
+
  <div>
      <div>
    <div style="margin-left: 20px">
@@ -22,7 +43,7 @@
                <p></p>
                <div >企业证书</div>
                <p></p>
-               <div style="height: 160px;width: 30px"><center>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示</center></div>
+               <div style="height: 180px;width: 30px;margin-top: 20px"><center>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示</center></div>
                <p></p>
                <div>联系方式 </div>
                <p></p>
@@ -35,7 +56,11 @@
                <p></p>
                <div><input type="text" value="机构/社会信用代码" onfocus="javascript:if(this.value=='机构/社会信用代码')this.value='';" name="qyxydm" ></div>
                <p></p>
-               <div ><input type="file" src="" name="qyzs"></div>
+               <div id="showImgDiv"  ><input type="hidden" id="burl" name="qyzs">
+                   <input type="file" id="imgFileBTN"  >
+
+               </div>
+               <p></p>
                <div style="width: 500px">
                    <span>社会团体上传登记证书，企业上传营业执照</span><br/>
                    <span>若办理过三证合一的企业，请上传最新的营业执照</span><br/>
@@ -94,18 +119,11 @@
                    </select></div>
                    <p></p>
                         <div>
-                       <!--开户省-->
-                       <select name="khsheng">
-                        <option value="3">省</option>
-                       </select>
-                       <!--开户市-->
-                       <select name="khshi">
-                           <option value="3">市</option>
-                       </select>
-                       <!--开户县-->
-                       <select name="khxian">
-                           <option value="3">县</option>
-                       </select>
+                            <input type="text" id="sheng" class="easyui-combobox" value="省" name="khsheng" />
+                            -
+                            <input type="text" id="shi" class="easyui-combobox" value="市" name="khshi"/>
+                            -
+                            <input type="text" id="xian" class="easyui-combobox" value="县" name="khxian"/>
                        </div>
                    <p></p>
                    <!--开户支行名称-->
@@ -128,24 +146,104 @@
 </body>
 <script>
 
+    $(function(){
+
+            initAddProvinceSelect();
+
+        }
+    );
+
+
 
     //新增企业认证
-    function addEnterprise(){
+    function addEnterprise(id){
+
         $.ajax(
             {
             url: '/lxx/addEnterprise',
             type: 'post',
             cache:false,
             data: $("#EnterpriseMessage").serialize(),
-            success: function () {
+            success: function (data) {
 
                 alert("企业认证成功");
-
+                location.href="../lxx/DianPu";
             }, error: function () {
                 alert("企业认证失败");
             }
         }
         );
     }
+
+    //地区三级
+    function initAddProvinceSelect(){
+        $("#sheng").combobox({
+                url:'/lxx/findArea?id=0',
+                textField:'areaname',
+                valueField:'id',
+                onChange:function(newValue,oldValue){
+                    $("#shi").combobox({
+                            url:'/lxx/findArea?id='+newValue,
+                            textField:'areaname',
+                            valueField:'id',
+                            onChange:function(newValue,oldValue){
+                                $("#xian").combobox({
+                                        url:'/lxx/findArea?id='+newValue,
+                                        textField:'areaname',
+                                        valueField:'id'
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+        )
+
+    }
+
+    $(function(){
+        initAddProvinceSelect();
+        //文件域的id
+        uploadObj = $("#imgFileBTN").uploadify({
+            //前台请求后台的url 不可忽略的参数
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
+            //给上传按钮设置文字
+            'buttonText' : '上传照片',
+            'removeTimeout' : 1,
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarDiv',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:40px;height:40px" src="..'+data+'">';
+                $("#showImgDiv").html(str);
+                $("#burl").val(data);
+                // append
+            }
+        });
+    })
+
+
 </script>
 </html>
