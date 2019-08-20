@@ -47,4 +47,6 @@ public interface ZtxService {
     User upduser(Integer id);
 
     void updateuser(User user);
+
+    void adduser(User user);
 }
