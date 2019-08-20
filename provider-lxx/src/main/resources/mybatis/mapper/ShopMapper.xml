@@ -4,8 +4,8 @@
 
     <!-- 新增 店铺-->
     <insert id="addShop"   parameterType="com.jk.model.RenZhengBean">
-INSERT INTO dianpu_lxx(dpname,dplogo,dpphone,shengid,shiid,xianid,dpxxdz,dpdesc,status)
-VALUES(#{dpname},#{dplogo},#{dpphone},#{shengid},#{shiid},#{xianid},#{dpxxdz},#{dpdesc},1)
+INSERT INTO dianpu_lxx(dpname,dplogo,dpphone,shengid,shiid,xianid,dpxxdz,dpdesc,status,shzt)
+VALUES(#{dpname},#{dplogo},#{dpphone},#{shengid},#{shiid},#{xianid},#{dpxxdz},#{dpdesc},1,1)
 </insert>
 
     <!-- 新增 企业认证-->
