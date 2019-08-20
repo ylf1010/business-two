@@ -198,8 +198,23 @@ public class ZtxServiceImpl implements ZtxService{
     public void adduser(User user) {
         rm.adduser(user);
         int a=urm.queryidbyname(user.getUsername());
-        System.out.println(user.getRoleid()+"===================="+a);
         urm.adduserrole(a,user.getRoleid());
+    }
+
+    @Override
+    public void updateproduct(Integer id,Integer state) {
+        rm.updateproduct(id,state);
+    }
+
+    @Override
+    public List querydsh(ParameUtil param) {
+        int papa=(param.getPageNumber()-1)*param.getPageSize();
+        return rm.querydsh(param,papa,param.getPageSize());
+    }
+
+    @Override
+    public Long querydshcount(ParameUtil param) {
+        return rm.querydshcount(param);
     }
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {

@@ -40,4 +40,11 @@ public interface ZtxRoleMapper {
     void updateuser(User user);
     @Insert("insert into user(username,password,baccount,phone,email,balanceid,usercraetetime) values(#{username},#{password},#{baccount},#{phone},#{email},0,sysdate())")
     void adduser(User user);
+
+    @Update("update ly_product set productsxj=#{state} where productid=#{id}")
+    void updateproduct(@Param("id") Integer id,@Param("state") Integer state);
+
+    List querydsh(@Param("p") ParameUtil param, @Param("papa")int papa, @Param("pageSize")Integer pageSize);
+
+    Long querydshcount(@Param("p")ParameUtil param);
 }
