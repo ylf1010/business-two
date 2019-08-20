@@ -194,6 +194,14 @@ public class ZtxServiceImpl implements ZtxService{
         rm.updateuser(user);
     }
 
+    @Override
+    public void adduser(User user) {
+        rm.adduser(user);
+        int a=urm.queryidbyname(user.getUsername());
+        System.out.println(user.getRoleid()+"===================="+a);
+        urm.adduserrole(a,user.getRoleid());
+    }
+
     public List<ZtxTree> queryOrgAll2(int id, int pid) {
         // 根据pid查询子节点
         List<ZtxTree> orgs = tm.queryOrgAll2(id,pid);
