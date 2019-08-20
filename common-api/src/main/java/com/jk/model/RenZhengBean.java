@@ -31,7 +31,7 @@ public class RenZhengBean implements Serializable {
 
     private String gtsfzbei;
 
-    private String gtphone;
+    private Integer gtphone;
 
     private String txfs;
 
@@ -58,6 +58,16 @@ public class RenZhengBean implements Serializable {
     private String wxsmrz;
 
     private Integer status;
+
+    private Integer shzt;
+
+    public Integer getShzt() {
+        return shzt;
+    }
+
+    public void setShzt(Integer shzt) {
+        this.shzt = shzt;
+    }
 
     public Integer getStatus() {
         return status;
@@ -187,12 +197,12 @@ public class RenZhengBean implements Serializable {
         this.gtsfzbei = gtsfzbei == null ? null : gtsfzbei.trim();
     }
 
-    public String getGtphone() {
+    public Integer getGtphone() {
         return gtphone;
     }
 
-    public void setGtphone(String gtphone) {
-        this.gtphone = gtphone == null ? null : gtphone.trim();
+    public void setGtphone(Integer gtphone) {
+        this.gtphone = gtphone;
     }
 
     public String getTxfs() {
