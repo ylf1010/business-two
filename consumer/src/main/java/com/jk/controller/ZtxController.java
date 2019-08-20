@@ -41,6 +41,10 @@ public class ZtxController {
     public String toshowuser(){
         return "ztx/showuser";
     }
+    @RequestMapping("toadduser")
+    public String toadduser(){
+        return "ztx/adduser";
+    }
 
     //注销
     @RequestMapping("zx")
@@ -184,4 +188,9 @@ public class ZtxController {
         zs.updateuser(user);
     }
 
+    @RequestMapping("adduser")
+    @ResponseBody
+    public void adduser(User user){
+        zs.adduser(user);
+    }
 }
