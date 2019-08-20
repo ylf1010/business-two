@@ -14,7 +14,7 @@
 
     <!-- 客户列表查询  -->
     <select id="xkehulist"  parameterType="map"  resultType="com.jk.model.User_xu">
-        select a.keid,a.nickname,a.img,a.phone,a.endtime,c.rank,c.hystatus,b.jfsum,d.bqname
+        select a.keid,a.nickname,a.img,a.phone,a.endtime,c.rank,c.hystatus,b.jfsum,d.bqname,d.bqid
         from  xu_user  a,  xu_jifen b, xu_member c ,xu_biaoqian d
         where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
         <include refid="sql1"></include>
@@ -39,6 +39,7 @@
              #{id}
          </foreach>
     </delete>
+
     <!--对应客户积分 批删-->
     <delete id="xdelete1jifen"  parameterType="String" >
         delete  from xu_jifen where uid in
@@ -46,6 +47,16 @@
             #{id}
         </foreach>
     </delete>
+
+    <!--标签下拉查-->
+    <select id="xXiaLaBiaoQian"  resultType="com.jk.model.BiaoQian_xu">
+        select * from  xu_biaoqian
+    </select>
+
+    <!--客户标签更改-->
+   <update id="xupdateBiaoQian"  parameterType="com.jk.model.User_xu">
+       update  xu_user  set  bqid=#{bqid}  where keid=#{keid}
+   </update>
 
     <!--下拉 分组-->
       <select id="xxiala1"  resultType="com.jk.model.Zu_xu">
@@ -131,6 +142,12 @@
     <update id="uZengHiuYuan" parameterType="com.jk.model.Um_xu" >
         update xu_um  set mid=#{mid} , bddate=#{bddate}  where uid=#{uid}
     </update>
+
+    <!--赠送会员改  同时改客户表-->
+    <update id="uupdateKeHu" parameterType="com.jk.model.Um_xu">
+            update  xu_user set member =#{mid}  where keid=#{uid}
+    </update>
+
 
     <!--会员设置查询-->
      <select id="uHiuYuanShezhi" resultType="com.jk.model.Member_xu">

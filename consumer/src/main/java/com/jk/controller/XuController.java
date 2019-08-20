@@ -66,7 +66,21 @@ public class XuController {
         xu.xaddfenzu(zu);
     }
 
+    //标签下拉查
+    @RequestMapping("xXiaLaBiaoQian")
+    @ResponseBody
+    public List<BiaoQian_xu> xXiaLaBiaoQian()
+    {
+        List<BiaoQian_xu> list=  xu.xXiaLaBiaoQian();
+        return  list;
+    }
 
+    //客户改标签
+    @RequestMapping("xupdateBiaoQian")
+    @ResponseBody
+    public void xupdateBiaoQian(User_xu userke) {
+          xu.xupdateBiaoQian(userke);
+    }
 
     //跳客户详情页 把id带去
     @RequestMapping("xkehuxiangqing1")

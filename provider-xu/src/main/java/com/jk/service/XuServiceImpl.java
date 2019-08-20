@@ -58,6 +58,18 @@ public class XuServiceImpl  implements  XuService{
         return xu.xxiala1();
     }
 
+    //标签下拉查
+    @Override
+    public List<BiaoQian_xu> xXiaLaBiaoQian() {
+        return xu.xXiaLaBiaoQian();
+    }
+
+    //客户改标签
+    @Override
+    public void xupdateBiaoQian(User_xu userke) {
+        xu.xupdateBiaoQian(userke);
+    }
+
     //移动移出分组
     @Override
     public void xupdate1(Integer[] ids, Integer a) {
@@ -125,13 +137,17 @@ public class XuServiceImpl  implements  XuService{
     //赠送会员  下拉查
     @Override
     public List<Member_xu> uXiaLaHiuYuan() {
+
         return xu.uXiaLaHiuYuan();
     }
 
     //赠送会员 修改
     @Override
     public void uZengHiuYuan(Um_xu um) {
-        xu.uZengHiuYuan(um);
+       Integer a= xu.uZengHiuYuan(um);
+        if (a > 0) {
+            xu.uupdateKeHu(um);  //更改客户同时删除对应会员中间表信息
+        }
     }
 
     //会员设置 查询
