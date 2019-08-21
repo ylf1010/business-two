@@ -2,6 +2,9 @@ package com.jk.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class YsqEvaluate implements Serializable {
     private Integer id;
@@ -10,13 +13,41 @@ public class YsqEvaluate implements Serializable {
 
     private String evaluate;
 
-    private String content;
+    private String text;
 
     private Date time;
 
+    private Integer pid;
     private String name;
+    private Map<String, Object> attributes = new HashMap<String, Object>(); // 添加到节点的自定义属性
+
+    private List<YsqEvaluate> nodes;
 
     private Integer jiaoyiid;
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
+
+    public List<YsqEvaluate> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<YsqEvaluate> nodes) {
+        this.nodes = nodes;
+    }
 
     public Integer getId() {
         return id;
@@ -34,12 +65,12 @@ public class YsqEvaluate implements Serializable {
         this.evaluate = evaluate == null ? null : evaluate.trim();
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getTime() {
@@ -50,12 +81,12 @@ public class YsqEvaluate implements Serializable {
         this.time = time;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Integer getJiaoyiid() {

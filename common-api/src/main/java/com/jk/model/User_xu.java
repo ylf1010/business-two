@@ -36,7 +36,16 @@ public class User_xu implements Serializable {
    private  Integer jfsum;
    //标签
     private  String  bqname;
+    //备注
+    private String content;
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public Integer getHystatus() {
         return hystatus;
