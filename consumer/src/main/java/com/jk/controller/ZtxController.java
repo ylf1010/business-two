@@ -1,9 +1,7 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.User;
-import com.jk.model.ZtxRole;
-import com.jk.model.ZtxTree;
+import com.jk.model.*;
 import com.jk.service.ZtxService;
 import com.jk.util.ParameUtil;
 import com.jk.util.TreeUtil;
@@ -29,10 +27,7 @@ public class ZtxController {
     public String tomain(){
         return "ztx/main";
     }
-    @RequestMapping("toztxjiuxian")
-    public String toztxjiuxian(){
-        return "ztx/ztxjiuxian";
-    }
+
     @RequestMapping("toshowrole")
     public String toshowrole(){
         return "ztx/showrole";
@@ -232,4 +227,25 @@ public class ZtxController {
     public void adduser(User user){
         zs.adduser(user);
     }
+
+    @RequestMapping("querybrand")
+    @ResponseBody
+    public List<ZtxBrand> querybrand(Integer typeid){
+        List<ZtxBrand> list=zs.querybrand(typeid);
+        return list;
+    }
+    @RequestMapping("querybrandall")
+    @ResponseBody
+    public List<ZtxBrand> querybrandall(){
+        List<ZtxBrand> list=zs.querybrandall();
+        return list;
+    }
+    @RequestMapping("queryshi")
+    @ResponseBody
+    public List<ZtxShi> queryshi(Integer orignshengid){
+        List<ZtxShi> list=zs.queryshi(orignshengid);
+        return list;
+    }
+
+
 }

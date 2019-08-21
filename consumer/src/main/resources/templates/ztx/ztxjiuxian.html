@@ -1,23 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <!-- saved from url=(0040)http://www.jiuxian.com/?ozs=1796707-1722 -->
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <title> 酒仙网-白酒、红酒、洋酒、保健酒、黄酒、酒具官方旗舰店 </title>
-    <meta name="Keywords" content="酒仙,酒仙网,酒仙网官方网站,酒仙网官方旗舰店">
-    <meta name="Description" content="【酒仙网】酒水在线销售专业品牌，提供白酒、红酒、洋酒、保健酒、黄酒、酒具、正品等多种品类，官方授权在线销售，各类酒水团购、秒杀不断。">
-    <script type="text/javascript" async="" src="../ztxjiuxian/mv.js"></script><script type="text/javascript" async="" src="../ztxjiuxian/mba.js"></script><script type="text/javascript" async="" src="../ztxjiuxian/mvl.js"></script><script src="../ztxjiuxian/jxmall-web-home-pc.js" type="text/javascript"></script>
-    <link href="../ztxjiuxian/base.min.css" rel="stylesheet" type="text/css">
-    <link href="../ztxjiuxian/header.min.css" rel="stylesheet" type="text/css">
-    <link href="../ztxjiuxian/footer.min.css" rel="stylesheet" type="text/css">
-    <link href="../ztxjiuxian/index_1000.css" rel="stylesheet" type="text/css">
-    <link href="../ztxjiuxian/index_1200.css" id="newLink" rel="stylesheet" type="text/css">
-    <script src="../ztxjiuxian/jquery-1.11.1.min.js" type="text/javascript"></script>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><base href="<%=basePath%>">
+	<title>标题</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<script src="../ztxjiuxian/jquery-1.11.1.min.js" type="text/javascript"></script>
+	<script type="text/javascript" async="" src="../ztxjiuxian/mv.js"></script><script type="text/javascript" async="" src="../ztxjiuxian/mba.js"></script><script type="text/javascript" async="" src="../ztxjiuxian/mvl.js"></script><script src="../ztxjiuxian/jxmall-web-home-pc.js" type="text/javascript"></script>
+	<link href="../ztxjiuxian/base.min.css" rel="stylesheet" type="text/css">
+	<link href="../ztxjiuxian/header.min.css" rel="stylesheet" type="text/css">
+	<link href="../ztxjiuxian/footer.min.css" rel="stylesheet" type="text/css">
+	<link href="../ztxjiuxian/index_1000.css" rel="stylesheet" type="text/css">
+	<link href="../ztxjiuxian/index_1200.css" id="newLink" rel="stylesheet" type="text/css">
     <script src="../ztxjiuxian/public.js" type="text/javascript"></script>
     <script src="../ztxjiuxian/region.js" type="text/javascript"></script>
     <script src="../ztxjiuxian/product_price.js" type="text/javascript"></script>
-    
-
-<script type="text/javascript" async="" charset="utf-8" src="../ztxjiuxian/ntkfstat.js"></script><script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/userinfo.php"></script><script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/zh_cn.js" data-requiremodule="lang"></script><script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/chat.in.js" data-requiremodule="chatManage"></script><script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/mqtt31.js" data-requiremodule="MQTT"></script><script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/mqtt.chat.js" data-requiremodule="Connection"></script></head>
+    <script type="text/javascript" async="" charset="utf-8" src="../ztxjiuxian/ntkfstat.js"></script>
+	<script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/userinfo.php"></script>
+	<script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/zh_cn.js" data-requiremodule="lang"></script>
+	<script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/chat.in.js" data-requiremodule="chatManage"></script>
+	<script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/mqtt31.js" data-requiremodule="MQTT"></script>
+	<script type="text/javascript" async="async" charset="utf-8" src="../ztxjiuxian/mqtt.chat.js" data-requiremodule="Connection"></script>
+</head>
 <body><div id="nTalk_post_hiddenElement" style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
 		
 <!-- 全站公共url变量 -->
@@ -61,7 +68,6 @@
 //获取区域ID并存储到Cookie
 var userArray=getCookie("user_province");userArray=userArray.split("_");if(userArray[0]==""||userArray[0]==undefined){var url_kc=window.jxdomain.pub+"/getOrgionByRequest.htm?t="+new Date().getTime();var proxy_url="/httpProxyAccess.htm?t="+new Date().getTime();jQuery.ajax({type:"POST",url:proxy_url,data:{target:url_kc},dataType:"json",success:function(data){var orgionId="2";if(data){orgionId=data.orgionId}if(orgionId==""){orgionId="2"}userArray[0]=orgionId;setCookie("user_province",orgionId,12);var sa1=returnArrya(1,orgionId);$(".ajax_deli_city").text(sa1[1])}})}else{try{var sa1=returnArrya(1,userArray[0]);$(".ajax_deli_city").text(sa1[1])}catch(e){setCookie("user_province","2",12);$(".ajax_deli_city").text("北京")}};	
 var header1200 = ""; var header1000 = "";
-
 </script>
 <div class="topHeader"><div class="topHeaderCon"><div class="topHeaderLeft" name="_new_login_status_panel"><div class="clearfix"><p class="greeting">欢迎来酒仙网！</p>
 <a class="headerLogin" href="https://login.jiuxian.com/login.htm" rel="nofollow">请登录</a>
@@ -160,37 +166,167 @@ var header1200 = ""; var header1000 = "";
 			<ul></ul>
 		</div>
 	</div>
-	<div class="hotWords" style="">
-				<p>
-						<a href="http://shop.jiuxian.com/brand-382/activity-3376.htm" target="_blank">茅台<s></s>
-				</a> 
-						<a href="http://list.jiuxian.com/1-2-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank">五粮液<s></s>
-				</a> 
-						<a href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=23" target="_blank">酒鬼<s></s>
-				</a> 
-						<a href="http://list.jiuxian.com/search.htm?area=2&amp;key=%E6%8B%89%E8%8F%B2" target="_blank">拉菲<s></s>
-				</a> 
-						<a href="http://shop.jiuxian.com/brand-381/activity-3106.htm" target="_blank">郎酒<s></s>
-				</a> 
-						<a href="http://list.jiuxian.com/2-254-0-0-0-0-0-0-0-0-0-0.htm" target="_blank">黄尾袋鼠<s></s>
-				</a> 
-						<a href="http://shop.jiuxian.com/brand-386/activity-3757.htm" target="_blank">水井坊<s></s>
-				</a> 
-						<a href="http://list.jiuxian.com/1-14-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank">泸州老窖<s></s>
-				</a> 
-						<a href="http://list.jiuxian.com/search.htm?area=2&amp;key=%E5%A5%94%E5%AF%8C" target="_blank">奔富<s></s>
-				</a> 
-						<a href="http://shop.jiuxian.com/index-1314.htm" target="_blank">董酒<s></s>
-				</a> 
+	<div class="hotWords" id="tiaojianid" style="">
+				    <p>
+					    <a href="http://shop.jiuxian.com/brand-382/activity-3376.htm" target="_blank">茅台<s></s></a>
+						<a href="http://list.jiuxian.com/1-2-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank">五粮液<s></s></a>
+						<a href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=23" target="_blank">酒鬼<s></s></a>
+						<a href="http://list.jiuxian.com/search.htm?area=2&amp;key=%E6%8B%89%E8%8F%B2" target="_blank">拉菲<s></s></a>
+						<a href="http://shop.jiuxian.com/brand-381/activity-3106.htm" target="_blank">郎酒<s></s></a>
+						<a href="http://list.jiuxian.com/2-254-0-0-0-0-0-0-0-0-0-0.htm" target="_blank">黄尾袋鼠<s></s></a>
+						<a href="http://shop.jiuxian.com/brand-386/activity-3757.htm" target="_blank">水井坊<s></s></a>
+						<a href="http://list.jiuxian.com/1-14-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank">泸州老窖<s></s></a>
+						<a href="http://list.jiuxian.com/search.htm?area=2&amp;key=%E5%A5%94%E5%AF%8C" target="_blank">奔富<s></s></a>
+						<a href="http://shop.jiuxian.com/index-1314.htm" target="_blank">董酒<s></s></a>
 					</p>
-			</div>
+	</div>
 	
 	<script>
 
 		var defaultKey = '';
 
-		$(function() {
+
+        function show1(){
+            $.ajax({
+                type:"post",
+                url:"../lyproduct/queryClassify",
+                success:function(data){
+                    var a1='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[0].flname+'</a></h3>\n' +
+                        '\t\t\t<div class="categoryCon" id="typeid1">\n' +
+                        '</div>\n' +
+                        '\t\t</div>\n'
+                    $("#_nowactstr1").html(a1)
+                    var a2='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[1].flname+'</a></h3>\n' +
+                        '\t\t\t<div class="categoryCon" id="typeid2">\n' +
+                        '</div>\n' +
+                        '\t\t</div>\n'
+                    $("#_nowactstr2").html(a2)
+                    var a3='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[2].flname+'</a></h3>\n' +
+                        '\t\t\t<div class="categoryCon" id="typeid3">\n' +
+                        '</div>\n' +
+                        '\t\t</div>\n'
+                    $("#_nowactstr3").html(a3)
+                    var a4='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[3].flname+'</a></h3>\n' +
+                        '\t\t\t<div class="categoryCon" id="typeid4">\n' +
+                        '</div>\n' +
+                        '\t\t</div>\n'
+                    $("#_nowactstr4").html(a4)
+                    var a5='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[4].flname+'</a></h3>\n' +
+                        '\t\t\t<div class="categoryCon" id="typeid5">\n' +
+                        '</div>\n' +
+                        '\t\t</div>\n'
+                    $("#_nowactstr5").html(a5)
+                }
+            })
+		}
+
+            function showtype() {
+                $.ajax({
+                    type: "post",
+                    url: "../ztx/querybrand?typeid=1",
+                    success: function (data) {
+                        var a1 = '';
+                        for (var i = 0; i < data.length; i++) {
+                            a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;'
+                        }
+                        $("#typeid1").html(a1)
+                    }
+                })
+            }
+        function showtype8() {
+            $.ajax({
+                type: "post",
+                url: "../ztx/querybrandall",
+                success: function (data) {
+                    var a1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        a1 += '<a href="" target="_blank">'+data[i].brandname+'<s></s></a>'
+                    }
+                    $("#tiaojianid").html(a1)
+                }
+            })
+        }
+        function showtype1() {
+            $.ajax({
+                type: "post",
+                url: "../ztx/querybrand?typeid=2",
+                success: function (data) {
+                    var a1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                    }
+                    $("#typeid2").html(a1)
+                }
+            })
+        }
+        function showtype2() {
+            $.ajax({
+                type: "post",
+                url: "../ztx/querybrand?typeid=3",
+                success: function (data) {
+                    var a1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                    }
+                    $("#typeid3").html(a1)
+                }
+            })
+        }
+        function showtype3() {
+            $.ajax({
+                type: "post",
+                url: "../ztx/querybrand?typeid=4",
+                success: function (data) {
+                    var a1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                    }
+                    $("#typeid4").html(a1)
+                }
+            })
+        }
+        function showtype4() {
+            $.ajax({
+                type: "post",
+                url: "../ztx/querybrand?typeid=5",
+                success: function (data) {
+                    var a1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                    }
+                    $("#typeid5").html(a1)
+                }
+            })
+        }
+
+        function showfrom() {
+            $.ajax({
+                type: "post",
+                url: "../ztx/queryshi?orignshengid=1",
+                success: function (data) {
+                    var a1 = '';
+                    for (var i = 0; i < data.length; i++) {
+                        a1 += '<a href="" target="_blank" class="on">' + data[i].orignshiname + '</a>&nbsp;&nbsp;'
+                    }
+                    $("#fromid1").html(a1)
+                }
+            })
+        }
+		$(function(){
 			//搜索框默认值
+            show1();
+            showtype();
+            showtype1();
+            showtype2();
+            showtype3();
+            showtype4();
+            showfrom();
+            showtype8();
 			function searchback(data) {
 				if (data == null || data == undefined) {
 					return;
@@ -207,8 +343,7 @@ var header1200 = ""; var header1000 = "";
 			}
 			
 			setTimeout(function() {
-
-				jQuery.get("http://list.jiuxian.com" + "/selectSearchDefaultKey.htm?t=" + new Date().getTime(), 
+				jQuery.get("http://list.jiuxian.com" + "/selectSearchDefaultKey.htm?t=" + new Date().getTime(),
 						{ "name" : "searchBoxDefaultKey" }, 
 						function(d) {
 							if (d == undefined){
@@ -217,8 +352,7 @@ var header1200 = ""; var header1000 = "";
 							searchback(d.defaultSearchKey);
 						}, "json");
 			}, 1000);
-
-		});
+		})
 	</script>
 </div><div class="headerProtect"><a rel="nofollow"></a><a rel="nofollow"></a><a rel="nofollow"></a></div></div></div>
 <!--页头end--><!--导航-->
@@ -226,161 +360,60 @@ var header1200 = ""; var header1000 = "";
 <div class="nav">
 <div class="navCategoryMenu">
 <h2>全部商品分类</h2>
-<ul class="categoryBox clearfix">
+<ul  id="aa" class="categoryBox clearfix" >
+	<li class="catItem" id="_nowactstr1">
+	</li>
+	<li class="catItem" id="_nowactstr2">
+	</li>
+	<li class="catItem" id="_nowactstr3">
+	</li>
+	<li class="catItem" id="_nowactstr4">
+	</li>
+	<li class="catItem" id="_nowactstr5">
+	</li>
+</ul>
 
-<li class="catItem" id="_nowactstr1">
-<div class="catItemCon" name="__home_fenleiyijian">
-<h3 name="tagH" pathname="一键选酒" url="http://www.jiuxian.com/" ishot="true" iszlm="1"><i class="publicIcon seleWine"></i><a target="_blank" href="http://www.jiuxian.com/"></a>一键选酒</h3>
-<div class="categoryCon">
-</div>
-</div>
-</li>
 
-
-<li class="catItem bg" id="_nowactstr2">
-<div class="catItemCon" name="__home_fenleibai">
-<h3 name="tagH" pathname="白酒" url="http://list.jiuxian.com/1-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="false" iszlm="1"><i class="publicIcon liquor"></i><a target="_blank" href="http://list.jiuxian.com/1-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">白酒</a></h3>
-<div class="categoryCon">
-<p><a href="http://shop.jiuxian.com/brand-382/activity-3376.htm?area=24" target="_blank">茅台</a>					
-<a href="http://list.jiuxian.com/1-2-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank" class="on">五粮液</a>
-<a href="http://shop.jiuxian.com/brand-41/activity-3399.htm?area=24&amp;source=23" target="_blank" class="on">酒鬼</a>
-<a href="http://list.jiuxian.com/1-4-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank">汾酒</a></p>												
-<p><a href="http://list.jiuxian.com/1-0-0-0-126-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank">浓香型</a>					
-<a href="http://list.jiuxian.com/1-0-0-0-97-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank" class="on">酱香型</a>
-<a href="http://list.jiuxian.com/1-0-0-9500-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank">贵州</a>
-<a href="http://list.jiuxian.com/1-0-0-9485-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank">四川</a></p>												
-</div>
-</div>
-</li>
-
-<li class="catItem" id="_nowactstr3">
-<div class="catItemCon" name="__home_fenleipu">
-<h3 name="tagH" pathname="葡萄酒" url="http://list.jiuxian.com/2-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" ishot="true" iszlm="1"><i class="publicIcon wine"></i><a target="_blank" href="http://list.jiuxian.com/2-0-0-0-0-0-0-0-0-0-0-0.htm?area=24">葡萄酒</a></h3>
-
-<div class="categoryCon">
-<p><a href="http://list.jiuxian.com/2-0-9437-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">法国</a>					
-<a href="http://list.jiuxian.com/2-0-9442-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">澳大利亚</a>
-<a href="http://list.jiuxian.com/2-0-9439-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">西班牙</a>
-<a href="http://list.jiuxian.com/2-0-9443-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">智利</a></p>												
-<p><a href="http://list.jiuxian.com/2-0-9436-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">中国</a>					
-<a href="http://list.jiuxian.com/search.htm?v=2&amp;key=%E6%8B%89%E8%8F%B2&amp;isOwn=1&amp;area=24" target="_blank" class="on">拉菲</a>
-<a href="http://list.jiuxian.com/search.htm?v=2&amp;key=%E5%A5%94%E5%AF%8C&amp;isOwn=1&amp;area=24" target="_blank">奔富</a>
-<a href="http://list.jiuxian.com/search.htm?key=%E9%BB%84%E5%B0%BE%E8%A2%8B%E9%BC%A0&amp;area=24" target="_blank">黄尾袋鼠</a></p>												
-</div>
-</div>
-</li>
-
-<li class="catItem bg" id="_nowactstr4">
-<div class="catItemCon" name="__home_fenleiyang">
-<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">洋酒</a></h3>
-<div class="categoryCon">
-<p><a href="http://list.jiuxian.com/4-110-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank" class="on">马爹利</a>					
-<a href="http://list.jiuxian.com/4-112-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank" class="on">人头马</a>
-<a href="http://list.jiuxian.com/search.htm?key=%E5%B0%8A%E5%B0%BC%E8%8E%B7%E5%8A%A0&amp;area=24" target="_blank">尊尼获加</a>
-<a href="http://list.jiuxian.com/4-109-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank">芝华士</a></p>												
-<p><a href="http://list.jiuxian.com/4-113-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank" class="on">轩尼诗</a>					
-<a href="http://list.jiuxian.com/search.htm?area=24&amp;keys=%E7%BB%9D%E5%AF%B9" target="_blank" class="on">绝对</a>
-<a href="http://list.jiuxian.com/4-219-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">百龄坛</a>
-</p></div>
-</div>
-</li>
-
-<li class="catItem" id="_nowactstr5">
-<div class="catItemCon" name="__home_fenleipi">
-<h3 name="tagH" pathname="啤酒|黄酒|养生酒" url="http://list.jiuxian.com/151-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2|http://list.jiuxian.com/95-0-0-0-0-0-0-0-0-0-0-0.htm#v2|http://list.jiuxian.com/6-0-0-0-0-0-0-0-0-0-0-0.htm#v2" ishot="false" iszlm="1"><i class="publicIcon health"></i><a target="_blank" href="http://list.jiuxian.com/151-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">啤酒</a>/<a target="_blank" href="http://list.jiuxian.com/95-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">黄酒</a>/<a target="_blank" href="http://list.jiuxian.com/6-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">养生酒</a></h3>
-<div class="categoryCon">
-<p><a href="http://list.jiuxian.com/151-2542-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank" class="on">埃丝伯爵</a>					
-<a href="http://list.jiuxian.com/151-117-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank" class="on">青岛</a>
-<a href="http://list.jiuxian.com/151-3542-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank" class="on">1664</a>
-<a href="http://list.jiuxian.com/95-144-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" target="_blank" class="on">古越龙山</a></p>												
-<p><a href="http://list.jiuxian.com/6-407-0-0-0-0-0-0-0-0-0-0.htm?area=24" target="_blank">劲牌</a>					
-<a href="http://list.jiuxian.com/search.htm?key=%E7%8C%8E%E9%B9%B0&amp;cg=151&amp;area=24#v2" target="_blank">猎鹰</a>
-<a href="http://list.jiuxian.com/search.htm?key=%E7%8B%AE%E8%99%8E%E4%BA%89%E9%9C%B8&amp;area=24" target="_blank">狮虎争霸</a>
-</p></div>
-</div>
-</li>
-
-<li class="catItem bg last" id="_nowactstr6">
-<div class="catItemCon" name="__home_fenleishi">
-<h3 name="tagH" pathname="食尚" url="http://list.jiuxian.com/68-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="false" iszlm="1"><i class="publicIcon wineTools"></i><a target="_blank" href="http://list.jiuxian.com/68-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">食尚</a></h3>
-<div class="categoryCon">
-<p><a href="http://list.jiuxian.com/search.htm?key=%E9%85%92%E5%85%B7&amp;area=24" target="_blank" class="on">酒具</a>					
-<a href="http://list.jiuxian.com/search.htm?key=%E8%8C%B6&amp;area=24" target="_blank">茶叶</a>
-<a href="http://list.jiuxian.com/search.htm?key=%E7%94%B5%E5%AD%90%E7%83%9F&amp;area=24" target="_blank" class="on">电子烟</a></p>												
-</div>
-</div>
-</li>
-			            </ul>		          
 <div class="menuBox " style=" display:none;">
 <!-- 右侧文字 start -->
-<div class="menuCon">	
+<div class="menuCon">
+
 <div class="menuItem first clearfix">
-<div class="menuItemTitle"><h4>特色会场</h4></div>      
+<div class="menuItemTitle"><h4>产地</h4></div>
 <div class="menuItemCon">
-<div class="menuCon-list">
-<p class="clearfix">
-<a href="http://shop.jiuxian.com/brand-381/activity-2740.htm?area=24" target="_blank">整箱购</a>
-<a href="http://shop.jiuxian.com/index-1171/activity-3429.htm?area=24" target="_blank">精品酒铺</a>
-<a href="http://shop.jiuxian.com/brand-371/activity-679.htm?area=24" target="_blank">家乡名酒</a>
-<a href="http://shop.jiuxian.com/brand-371/activity-1069.htm?area=24" target="_blank">老酒特卖</a>
-<a href="http://shop.jiuxian.com/brand-371/activity-440.htm?area=24" target="_blank">实惠大坛</a>
-<a href="http://shop.jiuxian.com/brand-371/activity-709.htm?area=24" target="_blank">有礼有面</a>
-<a href="http://shop.jiuxian.com/brand-400/activity-1633.htm?area=24" target="_blank">海外直采</a>
-</p>
+<div  id="fromid1" class="menuCon-list">
 </div>
 </div>
-</div>                    
-<div class="menuItem  clearfix">
-<div class="menuItemTitle"><h4>精选会场</h4></div>      
-<div class="menuItemCon">
-<div class="menuCon-list">
-<p class="clearfix">
-<a class="hot" href="http://shop.jiuxian.com/brand-382/activity-2932.htm?area=24" target="_blank">新品尝鲜</a>
-<a href="http://shop.jiuxian.com/brand-383/activity-2778.htm?area=24" target="_blank">清仓特卖</a>
-<a href="http://shop.jiuxian.com/index-1171/activity-3405.htm?area=24" target="_blank">值得买</a>
-<a class="hot" href="http://shop.jiuxian.com/index-1171/activity-3714.htm?area=24" target="_blank">名优白酒</a>
-</p>
 </div>
-</div>
-</div>                    
-<div class="menuItem  clearfix">
-<div class="menuItemTitle"><h4>企业用酒</h4></div>      
-<div class="menuItemCon">
-<div class="menuCon-list">
-<p class="clearfix">
-<a href="http://shop.jiuxian.com/brand-371/activity-807.htm?area=24" target="_blank">商务用酒</a>
-<a href="http://shop.jiuxian.com/brand-371/activity-813.htm?area=24" target="_blank">员工福利</a>
-<a href="http://shop.jiuxian.com/brand-371/activity-823.htm?area=24" target="_blank">聚餐用酒</a>
-</p>
-</div>
-</div>
-</div>                    
-<div class="menuItem  clearfix">
-<div class="menuItemTitle"><h4>红洋酒专区</h4></div>      
-<div class="menuItemCon">
-<div class="menuCon-list">
-<p class="clearfix">
-<a href="http://shop.jiuxian.com/brand-379/activity-1558.htm?area=24" target="_blank">洋酒疯抢</a>
-<a class="hot" href="http://shop.jiuxian.com/brand-400/activity-1850.htm?area=24" target="_blank">整箱特惠</a>
-<a href="http://wine.jiuxian.com/wine/hjgf.htm?area=24" target="_blank">高分推荐</a>
-<a href="http://shop.jiuxian.com/brand-400/activity-2130.htm?area=24" target="_blank">送礼优选</a>
-</p>
-</div>
-</div>
-</div>                    
-<div class="menuItem  clearfix">
-<div class="menuItemTitle"><h4>名庄推荐</h4></div>      
-<div class="menuItemCon">
-<div class="menuCon-list">
-<p class="clearfix">
-<a href="http://sale.jiuxian.com/two/index-4044.htm?area=24" target="_blank">名庄名窖</a>
-<a class="hot" href="http://shop.jiuxian.com/brand-400/activity-1111.htm?area=24" target="_blank">名庄特卖</a>
-</p>
-</div>
-</div>
-</div>                    
-	
-<div class="menuHeight clearfix"><div class="menuItemTitle"></div><div class="menuItemCon"><div class="menuCon-list"></div></div></div>
+
+	<div class="menuItem clearfix">
+		<div class="menuItemTitle"><h4>价位</h4></div>
+		<div class="menuItemCon">
+			<div class="menuCon-list">
+				<p class="clearfix">
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-1%7C49-0-0-0-0-0.htm?area=24" target="_blank">1-100元</a>
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-50%7C99-0-0-0-0-0.htm?area=24" target="_blank">100-1000元</a>
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-100%7C199-0-0-0-0-0.htm?area=24" target="_blank">1000-10000元</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="menuItem clearfix">
+		<div class="menuItemTitle"><h4>年份</h4></div>
+		<div class="menuItemCon">
+			<div class="menuCon-list">
+				<p class="clearfix">
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-1%7C49-0-0-0-0-0.htm?area=24" target="_blank">1900-1950年</a>
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-50%7C99-0-0-0-0-0.htm?area=24" target="_blank">1950-2000年</a>
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-100%7C199-0-0-0-0-0.htm?area=24" target="_blank">2000年后</a>
+					<a href="http://list.jiuxian.com/1-0-0-0-0-0-100%7C199-0-0-0-0-0.htm?area=24" target="_blank">不知道为啥就想写个82年</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="menuHeight clearfix"><div class="menuItemTitle"></div><div class="menuItemCon"><div class="menuCon-list"></div></div></div>
 </div>
  <!-- 右侧文字 end -->
  <!-- 右侧广告位 start -->
@@ -1028,16 +1061,16 @@ var header1200 = ""; var header1000 = "";
 </div>
 <!--横导航 start -->
 <ul class="navList">
-<li class="home"><a name="home_zhudaoshouye" class="channel" id="httpwwwjiuxiancom" href="http://www.jiuxian.com/">首页</a></li>
-					<li><a name="home_zhudao1" class="channel" id="httpshopjiuxiancombrand-383activity-1981htm" href="http://shop.jiuxian.com/brand-383/activity-1981.htm" target="_blank">领券中心</a></li>
-							<li><a name="home_zhudao2" class="channel" id="httpshopjiuxiancombrand-386activity-3455htm" href="http://shop.jiuxian.com/brand-386/activity-3455.htm" target="_blank">自营甄选</a><span class="hot publicIcon"></span></li>
-							<li><a name="home_zhudao3" class="channel" id="httpshopjiuxiancomindex-1171activity-3405htm" href="http://shop.jiuxian.com/index-1171/activity-3405.htm" target="_blank">值得买</a><span class="hot publicIcon"></span></li>
-							<li><a name="home_zhudao4" class="channel" id="httpwinejiuxiancom" href="http://wine.jiuxian.com/" target="_blank">葡萄酒馆</a></li>
-							<li><a name="home_zhudao5" class="channel" id="httpspiritsjiuxiancom" href="http://spirits.jiuxian.com/" target="_blank">洋酒馆</a></li>
-							<li><a name="home_zhudao6" class="channel" id="httpshopjiuxiancombrand-382activity-2932htm" href="http://shop.jiuxian.com/brand-382/activity-2932.htm" target="_blank">新品</a><span class="hot publicIcon"></span></li>
-							<li><a name="home_zhudao7" class="channel" id="httpshopjiuxiancombrand-381activity-2207htm" href="http://shop.jiuxian.com/brand-381/activity-2207.htm" target="_blank">CLUB</a></li>
-							<li><a name="home_zhudao8" class="channel" id="httpshopjiuxiancombrand-383activity-3031htm" href="http://shop.jiuxian.com/brand-383/activity-3031.htm" target="_blank">门店加盟</a></li>
-			</ul>
+    <li class="home"><a name="home_zhudaoshouye" class="channel" id="httpwwwjiuxiancom" href="http://www.jiuxian.com/">首页</a></li>
+	<li><a name="home_zhudao1" class="channel" id="httpshopjiuxiancombrand-383activity-1981htm" href="http://shop.jiuxian.com/brand-383/activity-1981.htm" target="_blank">领券中心</a></li>
+	<li><a name="home_zhudao2" class="channel" id="httpshopjiuxiancombrand-386activity-3455htm" href="http://shop.jiuxian.com/brand-386/activity-3455.htm" target="_blank">自营甄选</a><span class="hot publicIcon"></span></li>
+	<li><a name="home_zhudao3" class="channel" id="httpshopjiuxiancomindex-1171activity-3405htm" href="http://shop.jiuxian.com/index-1171/activity-3405.htm" target="_blank">值得买</a><span class="hot publicIcon"></span></li>
+	<li><a name="home_zhudao4" class="channel" id="httpwinejiuxiancom" href="http://wine.jiuxian.com/" target="_blank">葡萄酒馆</a></li>
+	<li><a name="home_zhudao5" class="channel" id="httpspiritsjiuxiancom" href="http://spirits.jiuxian.com/" target="_blank">洋酒馆</a></li>
+	<li><a name="home_zhudao6" class="channel" id="httpshopjiuxiancombrand-382activity-2932htm" href="http://shop.jiuxian.com/brand-382/activity-2932.htm" target="_blank">新品</a><span class="hot publicIcon"></span></li>
+	<li><a name="home_zhudao7" class="channel" id="httpshopjiuxiancombrand-381activity-2207htm" href="http://shop.jiuxian.com/brand-381/activity-2207.htm" target="_blank">CLUB</a></li>
+	<li><a name="home_zhudao8" class="channel" id="httpshopjiuxiancombrand-383activity-3031htm" href="http://shop.jiuxian.com/brand-383/activity-3031.htm" target="_blank">门店加盟</a></li>
+</ul>
 
 <script type="text/javascript">jQuery("#"+stripscript(window.location.href)).parent("li").addClass("on");</script>
 </div>
@@ -3561,7 +3594,7 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 <p class="footerAddr" style="color:#999; line-height:22px;"><span>统一社会信用代码&nbsp;&nbsp;91110302306646672B&nbsp;&nbsp;&nbsp;食品流通许可证编号&nbsp;&nbsp;JY11131010328793&nbsp;&nbsp;&nbsp;京食药网食备201910019&nbsp;&nbsp;&nbsp;</span></p>
 <p class="footerAddr" style="color:#999; line-height:22px; padding-bottom:7px;"><span>地址：北京市北京经济技术开发区经海五路58号院8幢4层</span></p>
 <p class="copybot">
-	<script type="text/javascript" src="../ztxjiuxian/seallogo.dll.下载"></script><script id="kx_script" async="" cid="kx_verify" src="../ztxjiuxian/icon3.js" size="0"></script><span id="kx_verify" style="float: left; padding-right: 6px; display: inline-block; position: relative; width: 128px; height: 47px;"><a id="kx_verify_link" href="https://ss.knet.cn/verifyseal.dll?sn=2011040600100007749&amp;a=1&amp;pa=0.9514342322543635" tabindex="-1" target="_blank" kx_type="图标式" rel="nofollow"><img src="../ztxjiuxian/cnnic.png" style="border:0; position: absolute; top: 0px; left: 0px;" w="128" h="47" width="128" height="47" oncontextmenu="return false;" alt="可信网站"></a></span>
+	<script type="text/javascript" src="../ztxjiuxian/seallogo.dll"></script><script id="kx_script" async="" cid="kx_verify" src="../ztxjiuxian/icon3.js" size="0"></script><span id="kx_verify" style="float: left; padding-right: 6px; display: inline-block; position: relative; width: 128px; height: 47px;"><a id="kx_verify_link" href="https://ss.knet.cn/verifyseal.dll?sn=2011040600100007749&amp;a=1&amp;pa=0.9514342322543635" tabindex="-1" target="_blank" kx_type="图标式" rel="nofollow"><img src="../ztxjiuxian/cnnic.png" style="border:0; position: absolute; top: 0px; left: 0px;" w="128" h="47" width="128" height="47" oncontextmenu="return false;" alt="可信网站"></a></span>
 	<script type="text/javascript">
 		(function (){var _kxs = document.createElement('script');_kxs.id = 'kx_script';_kxs.async = true;_kxs.setAttribute('cid', 'kx_verify');_kxs.src = ('https:' == document.location.protocol ? 'https://ss.knet.cn' : 'http://rr.knet.cn')+'/static/js/icon3.js?sn=2011040600100007749&tp=icon3';_kxs.setAttribute('size', 0);var _kx = document.getElementById('kx_verify');_kx.parentNode.insertBefore(_kxs, _kx);})();
 	</script>
@@ -3680,7 +3713,7 @@ $("#kefusidebar").bind("click",function(){
 <script src="../ztxjiuxian/superslide.2.1.js" type="text/javascript"></script>
 <script src="../ztxjiuxian/slider.min.js" type="text/javascript"></script>
 <script src="../ztxjiuxian/index.js" type="text/javascript"></script>
-<script src="../ztxjiuxian/o_code.js(1).下载" type="text/javascript"></script>
+<script src="../ztxjiuxian/o_code.js" type="text/javascript"></script>
 <script src="../ztxjiuxian/indexfooter.min.js" type="text/javascript"></script>
 
 
