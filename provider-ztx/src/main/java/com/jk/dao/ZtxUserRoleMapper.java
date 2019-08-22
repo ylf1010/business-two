@@ -21,4 +21,9 @@ public interface ZtxUserRoleMapper {
 
     @Update("update y_user_role set roleid=#{ids} where userid=#{id}")
     void updatero(@Param("ids") Integer ids, @Param("id") Integer id);
+
+    @Select("select id from user where username=#{username}")
+    int queryidbyname(@Param("username") String username);
+    @Insert("insert into y_user_role(userid,roleid) values(#{a},#{roleid})")
+    void adduserrole(@Param("a")int a,@Param("roleid") Integer roleid);
 }

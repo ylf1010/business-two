@@ -219,6 +219,7 @@
             data: $("#formjifen").serialize(),
             success: function () {
                 $('#jifen').modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#formjifen")[0].reset();
                 $('#data').bootstrapTable("refresh");  //refresh刷新当前页
             }, error: function () {
                 alert("失败！");

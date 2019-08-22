@@ -121,6 +121,41 @@
 </div>
 
 
+<!--标签-->
+<div class="modal fade" id="myModalbq" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel2">标签更改</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="formbq">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">标签名称</label>
+                        <select id="biaoqian" name="bqid">
+
+                        </select>
+                    </div>
+                    <input type="hidden" id="bqkeid" name="keid">
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="biaoqiangai()" class="btn btn-ok"> 确定 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
 </body>
 <script>
 
@@ -200,7 +235,9 @@
                 { field : 'endtime', title : '上次登录时间', width : 300 },
                 { field : 'x', title : '操作', width : 300,
                     formatter:function(value,row,index){
-                        return  "<a href='javascript:xiangqing("+row.keid+")' >详情</a>";
+                      var  a="<a href='javascript:xiangqing("+row.keid+")' >详情  |   </a>";
+                         a+="<a href='javascript:biaoqian("+row.keid+","+row.bqid+")' >标签</a>";
+                        return  a;
                     }
                 }
             ]
@@ -306,7 +343,6 @@
         }
 
         ids = ids.substring(0, ids.length - 1);
-        alert(ids);
         if(confirm("确定移组")){
             $.ajax({
                 url: "../xu/xupdate1",
@@ -334,6 +370,36 @@
                   $("#form1")[0].reset();  //清除form表单
                 //  $('#data').bootstrapTable("refresh");  //refresh刷新当前页
               }
+        })
+    }
+
+    //标签
+    biaoqian=function(keid,bqid){
+        $.ajax({
+            url:"../xu/xXiaLaBiaoQian",
+            success:function(data){
+                var  op="";
+                for (var i = 0; i < data.length; i++) {
+                    op +="<option value='"+data[i].bqid+"'>"+data[i].bqname+"";
+                }
+                $("#biaoqian").html(op);
+                $("#biaoqian").val(bqid);
+                $("#bqkeid").val(keid);
+                $('#myModalbq').modal('show');
+            }
+        })
+    }
+
+    //改标签
+    biaoqiangai=function(){
+        $.ajax({
+            url:"../xu/xupdateBiaoQian",
+            data:$("#formbq").serialize(),
+            success:function(){
+                $('#myModalbq').modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#formbq")[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }
         })
     }
 </script>

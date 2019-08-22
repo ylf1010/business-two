@@ -47,6 +47,7 @@
     <button type="button" class="btn btn-success" onclick="querytj()">查询</button>
 </form>
 
+<button type="button" class="btn btn-Warning " onclick="adduser()">新增员工</button>
 <button type="button" class="btn btn-Warning " onclick="deleteuser()">批量删除</button>
 
 <!--  表格 -->
@@ -219,11 +220,11 @@
         return res;
     }
     //============================================新增====================================
-    function addrole(){
+    function adduser(){
         //打开新增弹框
         bootbox.dialog({
             title: '新增用户',
-            message: createAddContent("../ztx/toaddrole"),
+            message: createAddContent("../ztx/toadduser"),
             closeButton: true,//是否显示关闭按钮
             buttons: {
                 "success": {
@@ -231,7 +232,7 @@
                     "className": "btn-sm btn-success",
                     "callback": function () {
                         $.ajax({
-                            url: '../ztx/addrole',
+                            url: '../ztx/adduser',
                             type: 'post',
                             data: $("#addFormId").serialize(),
                             success: function (flag) {

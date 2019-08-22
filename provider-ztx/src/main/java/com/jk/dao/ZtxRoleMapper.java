@@ -38,4 +38,11 @@ public interface ZtxRoleMapper {
     User upduser(Integer id);
     @Update("update user set username=#{username},password=#{password},baccount=#{baccount},phone=#{phone},email=#{email} where id=#{id}")
     void updateuser(User user);
+    @Insert("insert into user(username,password,baccount,phone,email,balanceid,usercraetetime) values(#{username},#{password},#{baccount},#{phone},#{email},0,sysdate())")
+    void adduser(User user);
+
+    @Update("update ly_product set productsxj=#{state} where productid=#{id}")
+    void updateproduct(@Param("id") Integer id,@Param("state") Integer state);
+
+
 }

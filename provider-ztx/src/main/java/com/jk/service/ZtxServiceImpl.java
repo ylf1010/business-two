@@ -194,6 +194,39 @@ public class ZtxServiceImpl implements ZtxService{
         rm.updateuser(user);
     }
 
+    @Override
+    public void adduser(User user) {
+        rm.adduser(user);
+        int a=urm.queryidbyname(user.getUsername());
+        urm.adduserrole(a,user.getRoleid());
+    }
+
+    @Override
+    public void updateproduct(Integer id,Integer state) {
+        rm.updateproduct(id,state);
+    }
+
+    @Override
+    public List querydsh(ParameUtil param) {
+        int papa=(param.getPageNumber()-1)*param.getPageSize();
+        return tm.querydsh(param,papa,param.getPageSize());
+    }
+    @Override
+    public Long querydshcount(ParameUtil param) {
+        return tm.querydshcount(param);
+    }
+
+    @Override
+    public List queryytg(ParameUtil param) {
+        int papa=(param.getPageNumber()-1)*param.getPageSize();
+        return tm.queryytg(param,papa,param.getPageSize());
+    }
+
+    @Override
+    public Long queryytgcount(ParameUtil param) {
+        return tm.queryytgcount(param);
+    }
+
     public List<ZtxTree> queryOrgAll2(int id, int pid) {
         // 根据pid查询子节点
         List<ZtxTree> orgs = tm.queryOrgAll2(id,pid);

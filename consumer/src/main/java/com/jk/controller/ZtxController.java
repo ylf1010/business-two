@@ -29,6 +29,10 @@ public class ZtxController {
     public String tomain(){
         return "ztx/main";
     }
+    @RequestMapping("toztxjiuxian")
+    public String toztxjiuxian(){
+        return "ztx/ztxjiuxian";
+    }
     @RequestMapping("toshowrole")
     public String toshowrole(){
         return "ztx/showrole";
@@ -41,7 +45,18 @@ public class ZtxController {
     public String toshowuser(){
         return "ztx/showuser";
     }
-
+    @RequestMapping("toadduser")
+    public String toadduser(){
+        return "ztx/adduser";
+    }
+    @RequestMapping("todsh")
+    public String todsh(){
+        return "ztx/showpro";
+    }
+    @RequestMapping("toytg")
+    public String toytg(){
+        return "ztx/showytg";
+    }
     //注销
     @RequestMapping("zx")
     public String zx(HttpServletRequest request){
@@ -60,7 +75,7 @@ public class ZtxController {
     @ResponseBody
     public List<ZtxTree> querytree(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
-        List<ZtxTree> list = zs.querytree(user.getId());
+        List<ZtxTree> list = zs.querytree(1);
         list = TreeUtil.getFatherNode(list);
         return list;
     }
@@ -170,6 +185,34 @@ public class ZtxController {
     public void updatestatus(Integer id,Integer status){
         zs.updatestatus(id,status);
     }
+    //修改审核状态
+    @RequestMapping("updateproduct")
+    @ResponseBody
+    public void updateproduct(Integer productid,Integer state){
+        zs.updateproduct(productid,state);
+    }
+    //查待审核
+    @RequestMapping("querydsh")
+    @ResponseBody
+    public   Map  querydsh(@RequestBody ParameUtil param ){
+        List list=zs.querydsh(param);
+        Long l=zs.querydshcount(param);
+        Map map=new HashMap();
+        map.put("rows", list);
+        map.put("total", l);
+        return map;
+    }
+    //查待审核
+    @RequestMapping("queryytg")
+    @ResponseBody
+    public   Map  queryytg(@RequestBody ParameUtil param ){
+        List list=zs.queryytg(param);
+        Long l=zs.queryytgcount(param);
+        Map map=new HashMap();
+        map.put("rows", list);
+        map.put("total", l);
+        return map;
+    }
 
     //回显用户
     @RequestMapping("upduser")
@@ -184,4 +227,9 @@ public class ZtxController {
         zs.updateuser(user);
     }
 
+    @RequestMapping("adduser")
+    @ResponseBody
+    public void adduser(User user){
+        zs.adduser(user);
+    }
 }

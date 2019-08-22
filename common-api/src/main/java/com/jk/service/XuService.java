@@ -16,6 +16,10 @@ public interface XuService {
 
     List<Zu_xu> xxiala1();
 
+    List<BiaoQian_xu> xXiaLaBiaoQian();
+
+    void xupdateBiaoQian(User_xu userke);
+
     void xupdate1(Integer[] ids, Integer a);
 
     void xaddfenzu(Zu_xu zu);
@@ -50,4 +54,6 @@ public interface XuService {
     void uaddBiaoQian(BiaoQian_xu bq);
 
     void udeleteBiaoQian(Integer bqid);
+
+
 }
