@@ -1,11 +1,10 @@
 package com.jk.service;
 
-import com.jk.model.AreaBeanLxx;
-import com.jk.model.Product;
-import com.jk.model.RenZhengBean;
+import com.jk.model.*;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface LxxService {
@@ -27,4 +26,20 @@ public interface LxxService {
     void Pass(RenZhengBean renZhengBean);
 
     void Not(RenZhengBean renZhengBean);
+
+    User_xu loginUser(User_xu user);
+
+    void addregisUser(User_xu user);
+
+    PageUtil queryPaymentOnBehalfOfOthers(ParameUtil parame);
+
+    PageUtil DropShipping(ParameUtil parame);
+
+    PageUtil Shipped(ParameUtil parame);
+
+    PageUtil OffTheStocks(ParameUtil parame);
+
+    PageUtil queryClose(ParameUtil parame);
+
+    PageUtil queryRefund(ParameUtil parame);
 }
