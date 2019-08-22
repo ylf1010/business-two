@@ -1,5 +1,6 @@
 package com.jk.dao;
 
+import com.jk.model.Product;
 import com.jk.model.ZtxBrand;
 import org.apache.ibatis.annotations.Select;
 
@@ -22,4 +23,12 @@ public interface ZtxBrandMapper {
     List<ZtxBrand> querybrand(Integer typeid);
     @Select("select * from ly_brand ")
     List<ZtxBrand> querybrandall();
+
+
+
+    @Select("select * from ly_product order by productzxl desc")
+    List<Product> queryfkqg();
+
+    @Select("select * from ly_product where winepromotion=1")
+    List<Product> queryxsms();
 }

@@ -20,4 +20,6 @@ public interface ZtxShiMapper {
 
     @Select("select * from ly_orignshi where orignshengid=#{orignshengid}")
     List<ZtxShi> queryshi(Integer orignshengid);
+    @Select("select * from ly_orignshi ")
+    List<ZtxShi> queryfrom();
 }

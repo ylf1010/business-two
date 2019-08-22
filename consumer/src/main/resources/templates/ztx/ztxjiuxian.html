@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0040)http://www.jiuxian.com/?ozs=1796707-1722 -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" >
 <head><base href="<%=basePath%>">
 	<title>标题</title>
 	<meta http-equiv="pragma" content="no-cache">
@@ -157,28 +157,16 @@ var header1200 = ""; var header1000 = "";
 
 <div class="headerSearch">
 	<div class="searchHome">
-		<form action="http://list.jiuxian.com/search.htm" method="get">
-			<input id="wd" class="search-form" type="text" name="key" value="" maxlength="50" autocomplete="off"> 
+		<form action="../ztx/querytiaojian" method="get">
+			<input id="wd" class="search-form" type="text" name="productname" value="" maxlength="50" autocomplete="off">
 			<input class="search-btn" type="submit" name="" value="搜 索"> 
-			<input id="area" name="area" type="hidden" value="24">
 		</form>
 		<div class="searchCon" id="searchCon" style="display: none;">
 			<ul></ul>
 		</div>
 	</div>
 	<div class="hotWords" id="tiaojianid" style="">
-				    <p>
-					    <a href="http://shop.jiuxian.com/brand-382/activity-3376.htm" target="_blank">茅台<s></s></a>
-						<a href="http://list.jiuxian.com/1-2-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank">五粮液<s></s></a>
-						<a href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=23" target="_blank">酒鬼<s></s></a>
-						<a href="http://list.jiuxian.com/search.htm?area=2&amp;key=%E6%8B%89%E8%8F%B2" target="_blank">拉菲<s></s></a>
-						<a href="http://shop.jiuxian.com/brand-381/activity-3106.htm" target="_blank">郎酒<s></s></a>
-						<a href="http://list.jiuxian.com/2-254-0-0-0-0-0-0-0-0-0-0.htm" target="_blank">黄尾袋鼠<s></s></a>
-						<a href="http://shop.jiuxian.com/brand-386/activity-3757.htm" target="_blank">水井坊<s></s></a>
-						<a href="http://list.jiuxian.com/1-14-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank">泸州老窖<s></s></a>
-						<a href="http://list.jiuxian.com/search.htm?area=2&amp;key=%E5%A5%94%E5%AF%8C" target="_blank">奔富<s></s></a>
-						<a href="http://shop.jiuxian.com/index-1314.htm" target="_blank">董酒<s></s></a>
-					</p>
+
 	</div>
 	
 	<script>
@@ -192,31 +180,31 @@ var header1200 = ""; var header1000 = "";
                 url:"../lyproduct/queryClassify",
                 success:function(data){
                     var a1='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
-                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[0].flname+'</a></h3>\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="../ztx/querytiaojian?productpid='+data[0].flid+'">'+data[0].flname+'</a></h3>\n' +
                         '\t\t\t<div class="categoryCon" id="typeid1">\n' +
                         '</div>\n' +
                         '\t\t</div>\n'
                     $("#_nowactstr1").html(a1)
                     var a2='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
-                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[1].flname+'</a></h3>\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="../ztx/querytiaojian?productpid='+data[1].flid+'">'+data[1].flname+'</a></h3>\n' +
                         '\t\t\t<div class="categoryCon" id="typeid2">\n' +
                         '</div>\n' +
                         '\t\t</div>\n'
                     $("#_nowactstr2").html(a2)
                     var a3='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
-                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[2].flname+'</a></h3>\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="../ztx/querytiaojian?productpid='+data[2].flid+'">'+data[2].flname+'</a></h3>\n' +
                         '\t\t\t<div class="categoryCon" id="typeid3">\n' +
                         '</div>\n' +
                         '\t\t</div>\n'
                     $("#_nowactstr3").html(a3)
                     var a4='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
-                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[3].flname+'</a></h3>\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="../ztx/querytiaojian?productpid='+data[3].flid+'">'+data[3].flname+'</a></h3>\n' +
                         '\t\t\t<div class="categoryCon" id="typeid4">\n' +
                         '</div>\n' +
                         '\t\t</div>\n'
                     $("#_nowactstr4").html(a4)
                     var a5='\t\t<div class="catItemCon" name="__home_fenleiyang">\n' +
-                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2">'+data[4].flname+'</a></h3>\n' +
+                        '\t\t\t<h3 name="tagH" pathname="洋酒" url="http://list.jiuxian.com/4-0-0-0-0-0-0-0-0-0-0-0.htm?area=24#v2" ishot="true" iszlm="1"><i class="publicIcon yang"></i><a target="_blank" href="../ztx/querytiaojian?productpid='+data[4].flid+'">'+data[4].flname+'</a></h3>\n' +
                         '\t\t\t<div class="categoryCon" id="typeid5">\n' +
                         '</div>\n' +
                         '\t\t</div>\n'
@@ -232,7 +220,7 @@ var header1200 = ""; var header1000 = "";
                     success: function (data) {
                         var a1 = '';
                         for (var i = 0; i < data.length; i++) {
-                            a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;'
+                            a1 += '<a href="../ztx/querytiaojian?winebrandid='+data[i].brandid+'" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;'
                         }
                         $("#typeid1").html(a1)
                     }
@@ -245,7 +233,7 @@ var header1200 = ""; var header1000 = "";
                 success: function (data) {
                     var a1 = '';
                     for (var i = 0; i < data.length; i++) {
-                        a1 += '<a href="" target="_blank">'+data[i].brandname+'<s></s></a>'
+                        a1 += '<a href="../ztx/querytiaojian?winebrandid='+data[i].brandid+'" target="_blank">'+data[i].brandname+'<s></s></a>'
                     }
                     $("#tiaojianid").html(a1)
                 }
@@ -258,7 +246,7 @@ var header1200 = ""; var header1000 = "";
                 success: function (data) {
                     var a1 = '';
                     for (var i = 0; i < data.length; i++) {
-                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                        a1 += '<a href="../ztx/querytiaojian?winebrandid='+data[i].brandid+'" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
                     }
                     $("#typeid2").html(a1)
                 }
@@ -271,7 +259,7 @@ var header1200 = ""; var header1000 = "";
                 success: function (data) {
                     var a1 = '';
                     for (var i = 0; i < data.length; i++) {
-                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                        a1 += '<a href="../ztx/querytiaojian?winebrandid='+data[i].brandid+'" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
                     }
                     $("#typeid3").html(a1)
                 }
@@ -284,7 +272,7 @@ var header1200 = ""; var header1000 = "";
                 success: function (data) {
                     var a1 = '';
                     for (var i = 0; i < data.length; i++) {
-                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                        a1 += '<a href="../ztx/querytiaojian?winebrandid='+data[i].brandid+'" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
                     }
                     $("#typeid4").html(a1)
                 }
@@ -297,7 +285,7 @@ var header1200 = ""; var header1000 = "";
                 success: function (data) {
                     var a1 = '';
                     for (var i = 0; i < data.length; i++) {
-                        a1 += '<a href="" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
+                        a1 += '<a href="../ztx/querytiaojian?winebrandid='+data[i].brandid+'" target="_blank" class="on">' + data[i].brandname + '</a>&nbsp;&nbsp;'
                     }
                     $("#typeid5").html(a1)
                 }
@@ -311,7 +299,7 @@ var header1200 = ""; var header1000 = "";
                 success: function (data) {
                     var a1 = '';
                     for (var i = 0; i < data.length; i++) {
-                        a1 += '<a href="" target="_blank" class="on">' + data[i].orignshiname + '</a>&nbsp;&nbsp;'
+                        a1 += '<a href="../ztx/querytiaojian?wineyieldlyid='+data[i].orignshiid+'" target="_blank" class="on">' + data[i].orignshiname + '</a>&nbsp;&nbsp;'
                     }
                     $("#fromid1").html(a1)
                 }
@@ -1076,7 +1064,96 @@ var header1200 = ""; var header1000 = "";
 </div>
 </div>
 <script type="text/javascript">
+    function showimg() {
+        $.ajax({
+            type: "post",
+            url: "../ztx/queryimg",
+            success: function (data) {
+                var a1 = '';
+                for (var i = 0; i < data.length; i++) {
+                    a1 += '<li style="background: url(&quot;'+data[i].carouselurl+'&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">\n' +
+                        '        <div class="ban_cter">\n' +
+                        '            <a class="focusArea" target="_blank" href="../ztx/querytj?lxid='+data[i].lxid+'"></a>\n' +
+                        '            <div class="mav">\n' +
+                        '            \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a name="home_you7" style="background:url(http://img06.jiuxian.com/bill/2018/1116/c524b467897d4299ad8bafa109875173.png) no-repeat;" href="http://shop.jiuxian.com/index-1370.htm?source=12" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
+                        '\t\t\t\t<span class="mask1" style="display: none;"></span>\n' +
+                        '\t\t\t\t<a name="home_you8" style="background:url(http://img07.jiuxian.com/bill/2018/1116/b32135f3ce304a71a85111d5b2977e66.png) no-repeat;" href="http://shop.jiuxian.com/index-1365.htm?source=13" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
+                        '\t\t\t\t<span class="mask2" style="display: none;"></span>\n' +
+                        '\t\t\t\t<a name="home_you9" style="background:url(http://img10.jiuxian.com/bill/2018/1116/f0364c31559143adb038c172ace4fbd8.png) no-repeat;" href="http://shop.jiuxian.com/brand-400/activity-1111.htm?source=14" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
+                        '\t\t\t\t<span class="mask3" style="display: none;"></span>\n' +
+                        '\t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t            </div>\n' +
+                        '        </div>\n' +
+                        '    </li>'
+                }
+                $("#imgid").html(a1)
+            }
+        })
+    }
+    function showfkqg() {
+        $.ajax({
+            type: "post",
+            url: "../ztx/queryfkqg",
+            success: function (data) {
+                var a1 = '';
+                for (var i = 0; i < 10; i++) {
+                    a1 += '<li product-box="49255">\n' +
+                        '\t\t\t<div class="indexTabPic">\n' +
+                        '\t\t\t\t<a href="http://www.jiuxian.com/goods-49255.html?src=4766&amp;source=51" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t   <img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'">\n' +
+                        '\t\t\t\t</a>\n' +
+                        '\t\t\t\t<p>\n' +
+                        '\t\t\t\t<span></span>\n' +
+                        '\t\t\t\t</p>\n' +
+                        '\t\t\t</div>\n' +
+                        '\t\t\t<div class="indexTabTit">\n' +
+                        '\t\t\t\t<a href="http://www.jiuxian.com/goods-49255.html?src=4766&amp;source=51" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t\t<i class="zhenxuan"></i>'+data[i].productname+'' +
+                        '\t\t\t\t</a>\n' +
+                        '\t\t\t</div>\n' +
+                        '\t\t\t<div class="indexTabPrice homegoodPrice">\n' +
+                        '\t\t\t<strong goodid="49255" class="jxIndex_nowPrice_49255">￥'+data[i].productprice+'</strong><span><em clubgoodid="49255"></em><i class="clubIcon"></i></span>\n' +
+                        '\t\t\t</div>\n' +
+                        '\t\t</li>'
+                }
+                $("#fkqgid").html(a1)
+            }
+        })
+    }
+
+    function showxsms() {
+        $.ajax({
+            type: "post",
+            url: "../ztx/queryxsms",
+            success: function (data) {
+                var a1 = '';
+                for (var i = 0; i < 6; i++) {
+                    a1 += '<li product-box="32517">\n' +
+                        '\t\t\t\t\t\t<p><span></span></p>\n' +
+                        '\t\t\t\t\t\t<div class="raceListPic"><a href="../ztx/querytj?productname='+data[i].productname+'" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t\t\t\t<img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'"></a></div>\n' +
+                        '\t\t\t\t\t\t<div class="raceListTit">\n' +
+                        '\t\t\t\t\t\t\t<a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="'+data[i].productname+'">'+data[i].productname+'</a>\n' +
+                        '\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t<div class="raceListPrice"><strong goodid="32517" class="jxIndex_nowPrice_32517">￥'+data[i].productprice+'</strong></div>\n' +
+                        '\t\t\t\t\t\t<div class="raceListTime" id="jxIndex_timeAct_32517" time="0" style="display: none;">\n' +
+                        '\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t</li>'
+                }
+                $("#xsmsid").html(a1)
+            }
+        })
+    }
 $(function(){
+    showimg();
+    showfkqg();
+    showxsms();
+
+
+
+
+
+
+
 //循环取出主类目
 var tahH = $("h3[name=tagH]");
 tahH.each(function(i){	  
@@ -1149,30 +1226,29 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 <!--轮播start-->
 <div class="mainBanner" name="__home_shoutonglan">
 <div class="bigImg">
-    <ul class="bigUl" style="position: relative; width: 1519px; height: 470px;">
-    		<li style="background: url(&quot;http://img10.jiuxian.com/bill/2019/0819/221bf260497b446ea2e7517ed1e2b9f7.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
+    <ul id="imgid" class="bigUl" style="position: relative; width: 1519px; height: 470px;">
+		<!--<li style="background: url(&quot;http://img10.jiuxian.com/bill/2019/0819/221bf260497b446ea2e7517ed1e2b9f7.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
         <div class="ban_cter">
             <a class="focusArea" target="_blank" href="http://shop.jiuxian.com/brand-382/activity-3743.htm?source=3"></a>
             <div class="mav">
-            									<a name="home_you1" style="background:url(http://img07.jiuxian.com/bill/2019/0321/f15aa385f3874125bb4bdbef7537f353.png) no-repeat;" href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=4" target="_blank" class="smallImg" rel="nofollow"></a>
+				<a name="home_you1" style="background:url(http://img07.jiuxian.com/bill/2019/0321/f15aa385f3874125bb4bdbef7537f353.png) no-repeat;" href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=4" target="_blank" class="smallImg" rel="nofollow"></a>
 			<span class="mask1" style="display: none;"></span>
-												<a name="home_you2" style="background:url(http://img09.jiuxian.com/bill/2019/0814/dcc18300d7b84425a004a97ddfce9f7a.jpg) no-repeat;" href="http://shop.jiuxian.com/brand-209/custom-2407.htm?isPreview=1?source=5" target="_blank" class="smallImg" rel="nofollow"></a>
+				<a name="home_you2" style="background:url(http://img09.jiuxian.com/bill/2019/0814/dcc18300d7b84425a004a97ddfce9f7a.jpg) no-repeat;" href="http://shop.jiuxian.com/brand-209/custom-2407.htm?isPreview=1?source=5" target="_blank" class="smallImg" rel="nofollow"></a>
 			<span class="mask2" style="display: none;"></span>
-												<a name="home_you3" style="background:url(http://img06.jiuxian.com/bill/2018/1218/8ec83ea5c90943f99f0b4c54395374d5.png) no-repeat;" href="http://shop.jiuxian.com/brand-383/activity-2778.htm?source=6" target="_blank" class="smallImg" rel="nofollow"></a>
+				<a name="home_you3" style="background:url(http://img06.jiuxian.com/bill/2018/1218/8ec83ea5c90943f99f0b4c54395374d5.png) no-repeat;" href="http://shop.jiuxian.com/brand-383/activity-2778.htm?source=6" target="_blank" class="smallImg" rel="nofollow"></a>
 			<span class="mask3" style="display: none;"></span>
 																																																																																																																																																																																																																																																																																																																																																																																															            </div>
-        </div>
-    </li>
-    			<li style="background: url(&quot;http://img09.jiuxian.com/bill/2019/0819/3af0593606254c59894437b947b79c96.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
+		</div>
+    </li>-->
+		<li style="background: url(&quot;http://img09.jiuxian.com/bill/2019/0819/3af0593606254c59894437b947b79c96.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
         <div class="ban_cter">
             <a class="focusArea" target="_blank" href="http://shop.jiuxian.com/brand-382/activity-3746.htm?source=7"></a>
             <div class="mav">
-            																																																					<a name="home_you4" style="background:url(http://img09.jiuxian.com/bill/2018/1116/0b51ba7c23f34e61bee1a6701e974c94.png) no-repeat;" href="http://shop.jiuxian.com/brand-383/activity-3090.htm?source=8" target="_blank" class="smallImg" rel="nofollow"></a>
-				 				 				 <span class="mask1" style="display: none;"></span>
-				 																					<a name="home_you5" style="background:url(http://img09.jiuxian.com/bill/2018/1116/52707527f4ed49b6bc501fa1df5cf296.png) no-repeat;" href="http://shop.jiuxian.com/brand-371/activity-807.htm?source=9" target="_blank" class="smallImg" rel="nofollow"></a>
-				 				 				 <span class="mask2" style="display: none;"></span>
-				 																					<a name="home_you6" style="background:url(http://img09.jiuxian.com/bill/2019/0506/2e7778a9f05040059ea00c1bd4a762e9.png) no-repeat;" href="http://www.jiuxian.com/goods-84121.html?src=3890&amp;source=73?source=10" target="_blank" class="smallImg" rel="nofollow"></a>
-				 				 				 <span class="mask3" style="display: none;"></span>
+				<span class="mask1" style="display: none;"></span>
+				<a name="home_you5" style="background:url(http://img09.jiuxian.com/bill/2018/1116/52707527f4ed49b6bc501fa1df5cf296.png) no-repeat;" href="http://shop.jiuxian.com/brand-371/activity-807.htm?source=9" target="_blank" class="smallImg" rel="nofollow"></a>
+				<span class="mask2" style="display: none;"></span>
+				<a name="home_you6" style="background:url(http://img09.jiuxian.com/bill/2019/0506/2e7778a9f05040059ea00c1bd4a762e9.png) no-repeat;" href="http://www.jiuxian.com/goods-84121.html?src=3890&amp;source=73?source=10" target="_blank" class="smallImg" rel="nofollow"></a>
+				<span class="mask3" style="display: none;"></span>
 				 																																																																																																																																																																																																																																																																																																																																																												            </div>
         </div>
     </li>
@@ -1181,11 +1257,11 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
             <a class="focusArea" target="_blank" href="http://shop.jiuxian.com/brand-386/activity-2962.htm?source=11"></a>
             <div class="mav">
             																																																																																												<a name="home_you7" style="background:url(http://img06.jiuxian.com/bill/2018/1116/c524b467897d4299ad8bafa109875173.png) no-repeat;" href="http://shop.jiuxian.com/index-1370.htm?source=12" target="_blank" class="smallImg" rel="nofollow"></a>
-				 				 				 <span class="mask1" style="display: none;"></span>
-				 																					<a name="home_you8" style="background:url(http://img07.jiuxian.com/bill/2018/1116/b32135f3ce304a71a85111d5b2977e66.png) no-repeat;" href="http://shop.jiuxian.com/index-1365.htm?source=13" target="_blank" class="smallImg" rel="nofollow"></a>
-				 				 				 <span class="mask2" style="display: none;"></span>
-				 																					<a name="home_you9" style="background:url(http://img10.jiuxian.com/bill/2018/1116/f0364c31559143adb038c172ace4fbd8.png) no-repeat;" href="http://shop.jiuxian.com/brand-400/activity-1111.htm?source=14" target="_blank" class="smallImg" rel="nofollow"></a>
-				 				 				 <span class="mask3" style="display: none;"></span>
+				<span class="mask1" style="display: none;"></span>
+				<a name="home_you8" style="background:url(http://img07.jiuxian.com/bill/2018/1116/b32135f3ce304a71a85111d5b2977e66.png) no-repeat;" href="http://shop.jiuxian.com/index-1365.htm?source=13" target="_blank" class="smallImg" rel="nofollow"></a>
+				<span class="mask2" style="display: none;"></span>
+				<a name="home_you9" style="background:url(http://img10.jiuxian.com/bill/2018/1116/f0364c31559143adb038c172ace4fbd8.png) no-repeat;" href="http://shop.jiuxian.com/brand-400/activity-1111.htm?source=14" target="_blank" class="smallImg" rel="nofollow"></a>
+				<span class="mask3" style="display: none;"></span>
 				 																																																																																																																																																																																																																																																																																																																					            </div>
         </div>
     </li>
@@ -1298,138 +1374,29 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 	<div class="indexTabNav">
 		<ul>
 			<li class="n1 on">
-									疯狂抢购
-							</li>
+				疯狂抢购
+			</li>
             <li class="n2">
-    			                        					    							爆款推荐
-    					    				    			            </li>
+				爆款推荐
+			</li>
             <li class="n3"> 
-				                	    					    							实惠口粮
-    					    								            </li>
+				实惠口粮
+			</li>
             <li class="n4"> 
-    			                	    					    							整箱钜惠
-    					    				    			            </li>
+				整箱钜惠
+			</li>
 			<li class="n5"> 
-			            													精选大牌
-					                						</li>
+				精选大牌
+			</li>
 		</ul>
 	</div>
 <div class="indexTabConWrap"><div name="__home_daohang_tab1" class="indexTabCon">
+	<ul class="clearfix" id="fkqgid">
+	</ul>
+</div>
+
+<div name="__home_daohang_tab2" class="indexTabCon" style="display:none;">
 	<ul class="clearfix">
-<li product-box="49255"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-49255.html?src=4766&amp;source=51" target="_blank" title="52°白水杜康一坛老酒1000ml"><img src="../ztxjiuxian/cacb73cdd10e46569d8b8bd5c92b1c822.jpg" width="160" height="160" alt="52°白水杜康一坛老酒1000ml">
-	</a>
-	<p>
-	<span></span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-49255.html?src=4766&amp;source=51" target="_blank" title="52°白水杜康一坛老酒1000ml">
-	        <i class="zhenxuan"></i>
-		52°白水杜康一坛老酒1000ml</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="49255" class="jxIndex_nowPrice_49255">￥50.00</strong><span><em clubgoodid="49255"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="93983"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-93983.html?src=4767&amp;source=52" target="_blank" title="52°酒鬼原浆酒500ml+46°悠悠湘泉酒100ml"><img src="../ztxjiuxian/dc63016b84264b498c9ffc052a02e3c52.jpg" width="160" height="160" alt="52°酒鬼原浆酒500ml+46°悠悠湘泉酒100ml">
-	</a>
-	<p>
-	<span></span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-93983.html?src=4767&amp;source=52" target="_blank" title="52°酒鬼原浆酒500ml+46°悠悠湘泉酒100ml">
-		52°酒鬼原浆酒500ml+46°悠悠湘泉酒100ml</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="93983" class="jxIndex_nowPrice_93983">￥199.00</strong><span><em clubgoodid="93983"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="94766"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-94766.html?src=4768&amp;source=53" target="_blank" title="54°  刘伶醉 香港纪念酒套装 500ml*3"><img src="../ztxjiuxian/8b33f90763e34b32802bf13407901f192.jpg" width="160" height="160" alt="54°  刘伶醉 香港纪念酒套装 500ml*3">
-	</a>
-	<p class="Tag Tag_b">
-	<span>群众<br>推荐</span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-94766.html?src=4768&amp;source=53" target="_blank" title="54°  刘伶醉 香港纪念酒套装 500ml*3">
-		54°  刘伶醉 香港纪念酒套装 500ml*3</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="94766" class="jxIndex_nowPrice_94766">￥319.00</strong><span><em clubgoodid="94766"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="92548"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-92548.html?src=4769&amp;source=54" target="_blank" title="野格（Jagermeister）洋酒 德国 野格利口酒700ml"><img src="../ztxjiuxian/4a7466ee542e4acfbf2c56bbadf968f92.jpg" width="160" height="160" alt="野格（Jagermeister）洋酒 德国 野格利口酒700ml">
-	</a>
-	<p class="Tag Tag_b">
-	<span>爆款<br>热卖</span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-92548.html?src=4769&amp;source=54" target="_blank" title="野格（Jagermeister）洋酒 德国 野格利口酒700ml">
-		野格（Jagermeister）洋酒 德国 野格利口酒700ml</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="92548" class="jxIndex_nowPrice_92548">￥109.00</strong><span><em clubgoodid="92548"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="14440"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-14440.html?src=4770&amp;source=55" target="_blank" title="整箱红酒7°通天柔红山葡萄甜酒750ml（6瓶装）"><img src="../ztxjiuxian/6efb435be39c4867a485b8191da230c12.jpg" width="160" height="160" alt="整箱红酒7°通天柔红山葡萄甜酒750ml（6瓶装）">
-	</a>
-	<p>
-	<span></span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-14440.html?src=4770&amp;source=55" target="_blank" title="整箱红酒7°通天柔红山葡萄甜酒750ml（6瓶装）">
-		整箱红酒7°通天柔红山葡萄甜酒750ml（6瓶装）</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="14440" class="jxIndex_nowPrice_14440">￥99.00</strong><span><em clubgoodid="14440"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="13048"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-13048.html?src=4771&amp;source=56" target="_blank" title="53°红习酱500ml(6瓶装)"><img src="../ztxjiuxian/56f77d99f4714f31b45e2a83a65fd15b2.jpg" width="160" height="160" alt="53°红习酱500ml(6瓶装)">
-	</a>
-	<p class="Tag Tag_a">
-	<span>下单享小酒</span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-13048.html?src=4771&amp;source=56" target="_blank" title="53°红习酱500ml(6瓶装)">
-		53°红习酱500ml(6瓶装)</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="13048" class="jxIndex_nowPrice_13048">￥399.00</strong><span><em clubgoodid="13048"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="93584"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-93584.html?src=4772&amp;source=57" target="_blank" title="【新品首发 震撼上市】60°扳倒井井窖原浆青花大坛酒5000ml（酒仙网10周年纪念酒）"><img src="../ztxjiuxian/2676b078b8354992aaafbacf901493a52.jpg" width="160" height="160" alt="【新品首发 震撼上市】60°扳倒井井窖原浆青花大坛酒5000ml（酒仙网10周年纪念酒）">
-	</a>
-	<p class="Tag Tag_b">
-	<span>大坛<br>特卖</span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-93584.html?src=4772&amp;source=57" target="_blank" title="【新品首发 震撼上市】60°扳倒井井窖原浆青花大坛酒5000ml（酒仙网10周年纪念酒）">
-		【新品首发 震撼上市】60°扳倒井井窖原浆青花大坛酒5000ml（酒仙网10周年纪念酒）</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="93584" class="jxIndex_nowPrice_93584">￥199.00</strong><span><em clubgoodid="93584"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="42846"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-42846.html?src=4773&amp;source=58" target="_blank" title="53°贵州茅台集团  习酒 精品红习酒 酱香型白酒整箱 500ml*6瓶"><img src="../ztxjiuxian/eee3b0cd5f7346d0adfca0ea4034ce552.jpg" width="160" height="160" alt="53°贵州茅台集团  习酒 精品红习酒 酱香型白酒整箱 500ml*6瓶">
-	</a>
-	<p>
-	<span></span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-42846.html?src=4773&amp;source=58" target="_blank" title="53°贵州茅台集团  习酒 精品红习酒 酱香型白酒整箱 500ml*6瓶">
-		53°贵州茅台集团  习酒 精品红习酒 酱香型白酒整箱 500ml*6瓶</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="42846" class="jxIndex_nowPrice_42846">￥399.00</strong><span><em clubgoodid="42846"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="55671"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-55671.html?src=4774&amp;source=59" target="_blank" title="西班牙安徒生美人鱼干红葡萄酒750ml*6"><img src="../ztxjiuxian/2b1753af5ff14550bb40c416c4201c862.jpg" width="160" height="160" alt="西班牙安徒生美人鱼干红葡萄酒750ml*6">
-	</a>
-	<p>
-	<span></span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-55671.html?src=4774&amp;source=59" target="_blank" title="西班牙安徒生美人鱼干红葡萄酒750ml*6">
-	        <i class="zhenxuan"></i>
-		西班牙安徒生美人鱼干红葡萄酒750ml*6</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="55671" class="jxIndex_nowPrice_55671">￥219.00</strong><span><em clubgoodid="55671"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-<li product-box="92456"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-92456.html?src=4775&amp;source=60" target="_blank" title="芝华士12年威士忌500ml +百龄坛特醇500ml 威士忌双雄"><img src="../ztxjiuxian/95eeb07d7e884926985f067e29fb07c62.jpg" width="160" height="160" alt="芝华士12年威士忌500ml +百龄坛特醇500ml 威士忌双雄">
-	</a>
-	<p>
-	<span></span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-92456.html?src=4775&amp;source=60" target="_blank" title="芝华士12年威士忌500ml +百龄坛特醇500ml 威士忌双雄">
-		芝华士12年威士忌500ml +百龄坛特醇500ml 威士忌双雄</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="92456" class="jxIndex_nowPrice_92456">￥169.00</strong><span><em clubgoodid="92456"></em><i class="clubIcon"></i></span>
-</div>
-</li>
-</ul></div>
-<div name="__home_daohang_tab2" class="indexTabCon" style="display:none;"><ul class="clearfix">
 <li product-box="3113"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-3113.html?source=61" target="_blank" title="茅台集团 53°银质习酒500ml"><img src="../ztxjiuxian/loading.gif" data-original="http://img07.jiuxian.com/2014/0430/b55452ae8f4348e2adfb19d6b6cc85452.jpg" width="160" height="160" alt="茅台集团 53°银质习酒500ml">
 	</a>
 	<p class="Tag Tag_b">
@@ -1937,23 +1904,29 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 							</div>
 		<!--广告位end--><!--限时秒杀start-->
 <div class="Lay_4 mt10 clearfix" id="countDownPanel">
-<div name="__home_youhui" class="raceBox"><div class="titlebox"><div class="title_2"><i class="newIndexIcon"></i><span>优惠推荐</span></div><div class="rightNavBox">
+<div name="__home_youhui" class="raceBox"><div class="titlebox"><div class="title_2"><i class="newIndexIcon"></i><span>限时秒杀</span></div><div class="rightNavBox">
 <span class="on">4</span>
 <span></span>
 <span></span>
-</div></div><div class="raceListWrap"><i class="newIndexIcon raceArrow raceLeft"></i><i class="newIndexIcon raceArrow raceRight"></i><div class="receBoxs" style="margin-left: 0px;"><div class="raceList" waitpro="0"><ul class="clearfix">
-<li product-box="32517">
-	<p>
-	<span></span>
-</p>
-<div class="raceListPic"><a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="45°古井大曲250ml（6瓶装）"><img src="../ztxjiuxian/38cf9dfd1f3a4b3bb95a19f3f72a1b002.jpg" width="160" height="160" alt="45°古井大曲250ml（6瓶装）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="45°古井大曲250ml（6瓶装）">
-				45°古井大曲250ml（6瓶装）
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="32517" class="jxIndex_nowPrice_32517">￥36.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_32517" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
+</div></div>
+	<div class="raceListWrap">
+		<i class="newIndexIcon raceArrow raceLeft"></i>
+		<i class="newIndexIcon raceArrow raceRight"></i>
+		<div class="receBoxs" style="margin-left: 0px;">
+			<div class="raceList" waitpro="0">
+				<ul class="clearfix" id="xsmsid">
+
+					<!--<li product-box="32517">
+						<p><span></span></p>
+						<div class="raceListPic"><a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="45°古井大曲250ml（6瓶装）">
+							<img src="../ztxjiuxian/38cf9dfd1f3a4b3bb95a19f3f72a1b002.jpg" width="160" height="160" alt="45°古井大曲250ml（6瓶装）"></a></div>
+						<div class="raceListTit">
+							<a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="45°古井大曲250ml（6瓶装）">45°古井大曲250ml（6瓶装）</a>
+						</div>
+						<div class="raceListPrice"><strong goodid="32517" class="jxIndex_nowPrice_32517">￥36.00</strong></div>
+						<div class="raceListTime" id="jxIndex_timeAct_32517" time="0" style="display: none;">
+						</div>
+					</li>-->
 <li product-box="55984">
 	<p>
 	<span></span>

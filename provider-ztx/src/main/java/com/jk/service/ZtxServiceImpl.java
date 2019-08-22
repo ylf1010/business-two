@@ -245,6 +245,31 @@ public class ZtxServiceImpl implements ZtxService{
         return bm.querybrandall();
     }
 
+    @Override
+    public List<Lunbo> queryimg() {
+        return rtm.queryimg();
+    }
+
+    @Override
+    public List<Product> queryfkqg() {
+        return bm.queryfkqg();
+    }
+
+    @Override
+    public List<Product> queryxsms() {
+        return bm.queryxsms();
+    }
+
+    @Override
+    public List<ZtxShi> queryfrom() {
+        return shim.queryfrom();
+    }
+
+    @Override
+    public List<Product> querytiaojian(Product pro) {
+        return rtm.querytiaojian(pro);
+    }
+
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {
         // 根据pid查询子节点

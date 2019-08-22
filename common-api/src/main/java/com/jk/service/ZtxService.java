@@ -63,4 +63,14 @@ public interface ZtxService {
     List<ZtxShi> queryshi(Integer orignshengid);
 
     List<ZtxBrand> querybrandall();
+
+    List<Lunbo> queryimg();
+
+    List<Product> queryfkqg();
+
+    List<Product> queryxsms();
+
+    List<ZtxShi> queryfrom();
+
+    List<Product> querytiaojian(Product pro);
 }

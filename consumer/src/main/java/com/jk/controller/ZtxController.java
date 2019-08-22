@@ -52,6 +52,14 @@ public class ZtxController {
     public String toytg(){
         return "ztx/showytg";
     }
+    @RequestMapping("toztxjiuxian")
+    public String toztxjiuxian(){
+        return "ztx/ztxjiuxian";
+    }
+    @RequestMapping("toztxjiuall")
+    public String toztxjiuall(){
+        return "ztx/ztxjiuxianall";
+    }
     //注销
     @RequestMapping("zx")
     public String zx(HttpServletRequest request){
@@ -246,6 +254,36 @@ public class ZtxController {
         List<ZtxShi> list=zs.queryshi(orignshengid);
         return list;
     }
+    @RequestMapping("queryfrom")
+    @ResponseBody
+    public List<ZtxShi> queryfrom(){
+        List<ZtxShi> list=zs.queryfrom();
+        return list;
+    }
+    @RequestMapping("queryimg")
+    @ResponseBody
+    public List<Lunbo> queryimg(){
+        List<Lunbo> list=zs.queryimg();
+        return list;
+    }
+    @RequestMapping("queryfkqg")
+    @ResponseBody
+    public List<Product> queryfkqg(){
+        List<Product> list=zs.queryfkqg();
+        return list;
+    }
+    @RequestMapping("queryxsms")
+    @ResponseBody
+    public List<Product> queryxsms(){
+        List<Product> list=zs.queryxsms();
+        return list;
+    }
 
+    @RequestMapping("querytiaojian")
+    public String querytiaojian(Product pro ,Model model ){
+        List<Product> list=zs.querytiaojian(pro);
+        model.addAttribute("list",list);
+        return "ztx/ztxjiuxianall";
+    }
 
 }

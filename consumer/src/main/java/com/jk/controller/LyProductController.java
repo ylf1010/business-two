@@ -75,12 +75,6 @@ public class LyProductController {
         return clist;
     }
 
-    @RequestMapping("toztxjiuxian")
-    public String toztxjiuxian(Model model){
-        List<Classify> clist=productService.queryClassify();
-        model.addAttribute("clist",clist);
-        return "ztx/ztxjiuxian";
-    }
   //下架/上架
   @RequestMapping("updateproductzt")
   @ResponseBody
