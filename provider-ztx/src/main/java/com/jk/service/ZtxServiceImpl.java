@@ -270,6 +270,16 @@ public class ZtxServiceImpl implements ZtxService{
         return rtm.querytiaojian(pro);
     }
 
+    @Override
+    public Product queryone(Integer productid) {
+        return rtm.queryone(productid);
+    }
+
+    @Override
+    public List<Classify> queryClassify() {
+        return rtm.queryClassify();
+    }
+
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {
         // 根据pid查询子节点

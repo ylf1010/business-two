@@ -17,6 +17,15 @@ public class Product implements Serializable {
 
     private Double productprice;   //酒品(价格)
 
+    public Integer getProductcount() {
+        return productcount;
+    }
+
+    public void setProductcount(Integer productcount) {
+        this.productcount = productcount;
+    }
+
+    private Integer productcount;   //酒品(价格)
     private Integer productkucun;   //酒品(库存)
 
     private Integer productzxl;    //酒品(总销量)
@@ -42,9 +51,60 @@ public class Product implements Serializable {
     private   Integer   winehotsale;      //酒品(热卖/火爆)
     private   String    winestore;        // 酒品(储藏条件)
 
+    private  Integer minprice;
+    private  Integer maxprice;
+    private  Integer mindushu;
+    private  Integer maxdushu;
+    private  Integer minjhl;
+    private  Integer maxjhl;
 
+    public Integer getMinprice() {
+        return minprice;
+    }
 
+    public void setMinprice(Integer minprice) {
+        this.minprice = minprice;
+    }
 
+    public Integer getMaxprice() {
+        return maxprice;
+    }
+
+    public void setMaxprice(Integer maxprice) {
+        this.maxprice = maxprice;
+    }
+
+    public Integer getMindushu() {
+        return mindushu;
+    }
+
+    public void setMindushu(Integer mindushu) {
+        this.mindushu = mindushu;
+    }
+
+    public Integer getMaxdushu() {
+        return maxdushu;
+    }
+
+    public void setMaxdushu(Integer maxdushu) {
+        this.maxdushu = maxdushu;
+    }
+
+    public Integer getMinjhl() {
+        return minjhl;
+    }
+
+    public void setMinjhl(Integer minjhl) {
+        this.minjhl = minjhl;
+    }
+
+    public Integer getMaxjhl() {
+        return maxjhl;
+    }
+
+    public void setMaxjhl(Integer maxjhl) {
+        this.maxjhl = maxjhl;
+    }
 
     public Integer getProductsxj() {
         return productsxj;
