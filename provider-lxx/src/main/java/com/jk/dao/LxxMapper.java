@@ -1,7 +1,6 @@
 package com.jk.dao;
 
-import com.jk.model.AreaBeanLxx;
-import com.jk.model.RenZhengBean;
+import com.jk.model.*;
 import com.jk.util.ParameUtil;
 
 import org.apache.ibatis.annotations.Insert;
@@ -45,4 +44,47 @@ public interface LxxMapper {
     //审核不通过
     @Update(" update dianpu_lxx set shzt = 3 where id = #{id} ")
     void Not(RenZhengBean renZhengBean);
+
+    //登录
+    @Select(" select * from xu_user where username = #{username} ")
+    User_xu loginUser(User_xu user);
+
+    //注册
+    void addregisUser(User_xu user);
+
+    //用户表获取id
+    @Select(" select max(keid) from xu_user  ")
+    int findId(User_xu user);
+
+    //新增积分表uid
+    void addJf(Integer uid);
+
+    //积分表获取id
+    @Select(" select max(jfid) from xu_jifen  ")
+    int findJfId(Jifen_xu jifenXu);
+
+    //更改用户表积分id
+    void updateJfid( Integer jfids, Integer uid);
+
+    //查询代付款订单
+    @Select(" select * from  jiaoyi_ysq where state = 1 ")
+    List<YsqJiaoYi> queryPaymentOnBehalfOfOthers(ParameUtil parame);
+    //查询代发货订单
+    @Select(" select * from  jiaoyi_ysq where state = 2 ")
+    List<YsqJiaoYi> DropShipping(ParameUtil parame);
+    //查询已发货订单
+    @Select(" select * from  jiaoyi_ysq where state = 3 ")
+    List<YsqJiaoYi> Shipped(ParameUtil parame);
+
+    //查询已发货订单
+    @Select(" select * from  jiaoyi_ysq where state = 4 ")
+    List<YsqJiaoYi> OffTheStocks(ParameUtil parame);
+
+    //查询已发货订单
+    @Select(" select * from  jiaoyi_ysq where state = 5 ")
+    List<YsqJiaoYi> queryClose(ParameUtil parame);
+
+    //查询已发货订单
+    @Select(" select * from  jiaoyi_ysq where state = 6 ")
+    List<YsqJiaoYi> queryRefund(ParameUtil parame);
 }
