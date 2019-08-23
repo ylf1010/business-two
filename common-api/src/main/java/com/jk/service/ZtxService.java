@@ -1,8 +1,6 @@
 package com.jk.service;
 
-import com.jk.model.User;
-import com.jk.model.ZtxRole;
-import com.jk.model.ZtxTree;
+import com.jk.model.*;
 import com.jk.util.ParameUtil;
 
 import java.util.List;
@@ -47,4 +45,32 @@ public interface ZtxService {
     User upduser(Integer id);
 
     void updateuser(User user);
+
+    void adduser(User user);
+
+    void updateproduct(Integer id,Integer state);
+
+    List querydsh(ParameUtil param);
+
+    Long querydshcount(ParameUtil param);
+
+    List queryytg(ParameUtil param);
+
+    Long queryytgcount(ParameUtil param);
+
+    List<ZtxBrand> querybrand(Integer typeid);
+
+    List<ZtxShi> queryshi(Integer orignshengid);
+
+    List<ZtxBrand> querybrandall();
+
+    List<Lunbo> queryimg();
+
+    List<Product> queryfkqg();
+
+    List<Product> queryxsms();
+
+    List<ZtxShi> queryfrom();
+
+    List<Product> querytiaojian(Product pro);
 }

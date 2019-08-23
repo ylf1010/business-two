@@ -2,10 +2,7 @@ package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONObject;
-import com.jk.dao.ZtxRoleMapper;
-import com.jk.dao.ZtxRoleTreeMapper;
-import com.jk.dao.ZtxTreeMapper;
-import com.jk.dao.ZtxUserRoleMapper;
+import com.jk.dao.*;
 import com.jk.model.*;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,12 @@ public class ZtxServiceImpl implements ZtxService{
     private ZtxRoleTreeMapper rtm;
     @Autowired
     private ZtxUserRoleMapper urm;
+    @Autowired
+    private ZtxBrandMapper bm;
+    @Autowired
+    private ZtxShengMapper shengm;
+    @Autowired
+    private ZtxShiMapper shim;
 
     @Override
     public List<ZtxTree> querytree(Integer id) {
@@ -193,6 +196,80 @@ public class ZtxServiceImpl implements ZtxService{
     public void updateuser(User user) {
         rm.updateuser(user);
     }
+
+    @Override
+    public void adduser(User user) {
+        rm.adduser(user);
+        int a=urm.queryidbyname(user.getUsername());
+        urm.adduserrole(a,user.getRoleid());
+    }
+
+    @Override
+    public void updateproduct(Integer id,Integer state) {
+        rm.updateproduct(id,state);
+    }
+
+    @Override
+    public List querydsh(ParameUtil param) {
+        int papa=(param.getPageNumber()-1)*param.getPageSize();
+        return tm.querydsh(param,papa,param.getPageSize());
+    }
+    @Override
+    public Long querydshcount(ParameUtil param) {
+        return tm.querydshcount(param);
+    }
+
+    @Override
+    public List queryytg(ParameUtil param) {
+        int papa=(param.getPageNumber()-1)*param.getPageSize();
+        return tm.queryytg(param,papa,param.getPageSize());
+    }
+
+    @Override
+    public Long queryytgcount(ParameUtil param) {
+        return tm.queryytgcount(param);
+    }
+
+    @Override
+    public List<ZtxBrand> querybrand(Integer typeid) {
+        return bm.querybrand(typeid);
+    }
+
+    @Override
+    public List<ZtxShi> queryshi(Integer orignshengid) {
+        return shim.queryshi(orignshengid);
+    }
+
+    @Override
+    public List<ZtxBrand> querybrandall() {
+        return bm.querybrandall();
+    }
+
+    @Override
+    public List<Lunbo> queryimg() {
+        return rtm.queryimg();
+    }
+
+    @Override
+    public List<Product> queryfkqg() {
+        return bm.queryfkqg();
+    }
+
+    @Override
+    public List<Product> queryxsms() {
+        return bm.queryxsms();
+    }
+
+    @Override
+    public List<ZtxShi> queryfrom() {
+        return shim.queryfrom();
+    }
+
+    @Override
+    public List<Product> querytiaojian(Product pro) {
+        return rtm.querytiaojian(pro);
+    }
+
 
     public List<ZtxTree> queryOrgAll2(int id, int pid) {
         // 根据pid查询子节点

@@ -164,29 +164,37 @@
                 {field: 'productzxl', title: '商品(总销量)', width: 300},
                 {field: 'productdate', title: '商品(发布时间)', width: 300},
                     {field: 'productdescribe', title: '商品(描述)', width: 300},
-                {field: 'productsxj', title: '商品(上/下架)', width: 300,
+                {field: 'productsxj', title: '商品状态', width: 300,
                     formatter: function (value, row, index) {//单元格格式化器（字段值，行对象，行索引）
-                        var sxj = "";
                         if (value == 1) {
-                            sxj = "上架"
+                            return "未审核"
                         } else if (value == 2) {
-                            sxj = "下架"
+                            return "审核中"
+                        }else if (value == 3) {
+                            return "已通过"
+                        }else if (value == 4) {
+                            return "已拒绝"
+                        }else if (value == 5) {
+                            return "已上架"
+                        }else if (value == 6) {
+                            return "已下架"
                         }
-                        return sxj;
                     }
 
                 },
                 {field:'act',title:'操作',width:300,
                     formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
                         if(row.productsxj==1){
-                            return "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+row.productsxj+")'></input>";
-                        }else if(row.productsxj==2){
-                            return "<input type='button' value='上架' bgcolor='blue' onclick='edituser("+row.productid+","+row.productsxj+")'></input>";
-                        }else{
-                            return "不明";
+                            return "<input type='button' value='提交审核' bgcolor='red' onclick='edituser("+row.productid+","+2+")'></input>";
+                        }else if(row.productsxj==3){
+                            return "<input type='button' value='上架' bgcolor='red' onclick='edituser("+row.productid+","+5+")'></input>";
+                        }else if(row.productsxj==4){
+                            return "<input type='button' value='重新审核' bgcolor='red' onclick='edituser("+row.productid+","+2+")'></input>" +
+                                "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+6+")'></input>";
+                        }else if(row.productsxj==5){
+                            return "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+6+")'></input>";
                         }
                     }
-
                 },
 
       ]
@@ -219,18 +227,18 @@
 
     })
     //修改状态
-    function edituser(productid,zt){
+    function edituser(productid,state){
        /* alert(productid);
         alert(zt);*/
         $.ajax({
             type:"post",
-            url:"../lyproduct/updateproductzt",
+            url:"../ztx/updateproduct",
             data:{
                 productid:productid,
-                zt:zt
+                state:state
             },
             success:function(){
-                alert("修改成功")
+                alert("提交成功")
                 $('#product-table').bootstrapTable("refresh");
             }
         })

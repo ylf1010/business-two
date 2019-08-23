@@ -48,4 +48,16 @@
     </where>
   </select>
 
+  <select id="querydsh" resultMap="BaseResultMap">
+    select * from ly_product where productsxj=2
+    limit #{papa},#{pageSize}
+  </select>
+ <!-- <select id="querydsh" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and sp.productsxj=2
+      limit #{papa},#{pageSize}
+  </select>
+
+  <select id="querydshcount" resultType="long">
+    select count(*) from ly_product where productsxj=2
+  </select>-->
 </mapper>

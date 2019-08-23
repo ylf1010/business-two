@@ -39,6 +39,16 @@ public class ParameUtil implements Serializable {
     private String productname;
     private Integer flid;
 
+    private Integer ordernumber;
+
+    public Integer getOrdernumber() {
+        return ordernumber;
+    }
+
+    public void setOrdernumber(Integer ordernumber) {
+        this.ordernumber = ordernumber;
+    }
+
     public Integer getFlid() {
         return flid;
     }

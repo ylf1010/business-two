@@ -1,9 +1,7 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.User;
-import com.jk.model.ZtxRole;
-import com.jk.model.ZtxTree;
+import com.jk.model.*;
 import com.jk.service.ZtxService;
 import com.jk.util.ParameUtil;
 import com.jk.util.TreeUtil;
@@ -29,6 +27,7 @@ public class ZtxController {
     public String tomain(){
         return "ztx/main";
     }
+
     @RequestMapping("toshowrole")
     public String toshowrole(){
         return "ztx/showrole";
@@ -41,7 +40,26 @@ public class ZtxController {
     public String toshowuser(){
         return "ztx/showuser";
     }
-
+    @RequestMapping("toadduser")
+    public String toadduser(){
+        return "ztx/adduser";
+    }
+    @RequestMapping("todsh")
+    public String todsh(){
+        return "ztx/showpro";
+    }
+    @RequestMapping("toytg")
+    public String toytg(){
+        return "ztx/showytg";
+    }
+    @RequestMapping("toztxjiuxian")
+    public String toztxjiuxian(){
+        return "ztx/ztxjiuxian";
+    }
+    @RequestMapping("toztxjiuall")
+    public String toztxjiuall(){
+        return "ztx/ztxjiuxianall";
+    }
     //注销
     @RequestMapping("zx")
     public String zx(HttpServletRequest request){
@@ -60,7 +78,7 @@ public class ZtxController {
     @ResponseBody
     public List<ZtxTree> querytree(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
-        List<ZtxTree> list = zs.querytree(user.getId());
+        List<ZtxTree> list = zs.querytree(1);
         list = TreeUtil.getFatherNode(list);
         return list;
     }
@@ -170,6 +188,34 @@ public class ZtxController {
     public void updatestatus(Integer id,Integer status){
         zs.updatestatus(id,status);
     }
+    //修改审核状态
+    @RequestMapping("updateproduct")
+    @ResponseBody
+    public void updateproduct(Integer productid,Integer state){
+        zs.updateproduct(productid,state);
+    }
+    //查待审核
+    @RequestMapping("querydsh")
+    @ResponseBody
+    public   Map  querydsh(@RequestBody ParameUtil param ){
+        List list=zs.querydsh(param);
+        Long l=zs.querydshcount(param);
+        Map map=new HashMap();
+        map.put("rows", list);
+        map.put("total", l);
+        return map;
+    }
+    //查待审核
+    @RequestMapping("queryytg")
+    @ResponseBody
+    public   Map  queryytg(@RequestBody ParameUtil param ){
+        List list=zs.queryytg(param);
+        Long l=zs.queryytgcount(param);
+        Map map=new HashMap();
+        map.put("rows", list);
+        map.put("total", l);
+        return map;
+    }
 
     //回显用户
     @RequestMapping("upduser")
@@ -182,6 +228,62 @@ public class ZtxController {
     @ResponseBody
     public void updateuser(User user){
         zs.updateuser(user);
+    }
+
+    @RequestMapping("adduser")
+    @ResponseBody
+    public void adduser(User user){
+        zs.adduser(user);
+    }
+
+    @RequestMapping("querybrand")
+    @ResponseBody
+    public List<ZtxBrand> querybrand(Integer typeid){
+        List<ZtxBrand> list=zs.querybrand(typeid);
+        return list;
+    }
+    @RequestMapping("querybrandall")
+    @ResponseBody
+    public List<ZtxBrand> querybrandall(){
+        List<ZtxBrand> list=zs.querybrandall();
+        return list;
+    }
+    @RequestMapping("queryshi")
+    @ResponseBody
+    public List<ZtxShi> queryshi(Integer orignshengid){
+        List<ZtxShi> list=zs.queryshi(orignshengid);
+        return list;
+    }
+    @RequestMapping("queryfrom")
+    @ResponseBody
+    public List<ZtxShi> queryfrom(){
+        List<ZtxShi> list=zs.queryfrom();
+        return list;
+    }
+    @RequestMapping("queryimg")
+    @ResponseBody
+    public List<Lunbo> queryimg(){
+        List<Lunbo> list=zs.queryimg();
+        return list;
+    }
+    @RequestMapping("queryfkqg")
+    @ResponseBody
+    public List<Product> queryfkqg(){
+        List<Product> list=zs.queryfkqg();
+        return list;
+    }
+    @RequestMapping("queryxsms")
+    @ResponseBody
+    public List<Product> queryxsms(){
+        List<Product> list=zs.queryxsms();
+        return list;
+    }
+
+    @RequestMapping("querytiaojian")
+    public String querytiaojian(Product pro ,Model model ){
+        List<Product> list=zs.querytiaojian(pro);
+        model.addAttribute("list",list);
+        return "ztx/ztxjiuxianall";
     }
 
 }

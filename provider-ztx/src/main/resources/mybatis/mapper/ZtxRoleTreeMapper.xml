@@ -10,4 +10,16 @@
   <select id="querytreebyid" resultType="java.lang.String">
     SELECT treeid FROM  y_role_tree where roleid = #{roleid}
   </select>
+
+  <select id="querytiaojian" resultType="HashMap">
+    select * from ly_product
+      <where>
+        <if test="p.productname!=null and p.productname!=''">
+          and productname like '%${p.productname}%'
+        </if>
+        <if test="p.winebrandid!=null ">
+          and winebrandid =#{p.winebrandid}
+        </if>
+      </where>
+  </select>
 </mapper>
