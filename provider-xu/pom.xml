@@ -55,6 +55,18 @@
             <artifactId>zkclient</artifactId>
             <version>0.4</version>
         </dependency>
+
+        <!--mongodb jar包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!--redis jar包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.jk</groupId>
             <artifactId>common-api</artifactId>
