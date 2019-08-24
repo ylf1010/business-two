@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("xu")
@@ -238,11 +240,36 @@ public class XuController {
 
 
 
-            //兑换码
-    //跳转兑换码页面
+            //优惠卷
+    //跳转优惠卷页面
      @RequestMapping("uDuiHuanMa1")
      public  String  uDuiHuanMa1(){
                 return  "xu/uDuiHuanMa1";
             }
 
+
+      //优惠劵查
+    @RequestMapping("ulistyouhiu")
+    @ResponseBody
+    public Map ulistyouhiu(@RequestBody BootStrapUtil bt){
+        List<Youhiu_xu> list=xu.ulistyouhiu(bt);
+        Map map=new HashMap();
+        map.put("rows",list);
+        return map;
+    }
+
+    //新增  修改
+    @RequestMapping("uaddyouhiu")
+    @ResponseBody
+    public void uaddyouhiu(Youhiu_xu youhiu){
+
+        xu.uaddyouhiu(youhiu);
+    }
+
+    //删除
+    @RequestMapping("udeleteyouhiu")
+    @ResponseBody
+    public void udeleteyouhiu(String[] ids){
+        xu.udeleteyouhiu(ids);
+    }
 }

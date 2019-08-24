@@ -305,7 +305,7 @@
                 {field : 'xx', title : '商品信息', width : 800,height:500,
                     formatter:function(value,row,index){
                         var a="<img src='../upload/"+row.productphoto+"' width='80' height='80'>";
-                        a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"   "+row.brandname+"   </a>";
+                        a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"   </a>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'>    "+row.winejhl+"ml    "+row.winedushu+"°</a>";
                         return a;
                     }
@@ -355,6 +355,7 @@
         $.ajax({
             url:"../xu1/deleteshopping",
             data:{id:id},
+            type:"post",
             success:function(){
                 $("#myModalshan").modal('hide');
                 $("#formshan")[0].reset();
@@ -404,7 +405,29 @@
 
     //结算
     jieshan=function(){
-        alert($("#spsum1").val());
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        if (arr.length <= 0) {
+            return ;
+        }
+        var productid ="";
+        var count="";
+        for (var i = 0; i < arr.length; i++) {
+            productid +=arr[i].productid +",";
+            count +=$("#co"+arr[i].productid).val()+",";
+        }
+        productid = productid.substring(0, productid.length - 1);
+        count = count.substring(0, count.length - 1);
+        $.ajax({
+            url:"../xu1/updatecount",
+            data:{productid:productid,count:count},
+            type:"post",
+            success:function(data){
+                if(data == 1){
+                    location.href="../ysqthree/tiao3?ids="+productid;
+                }
+            }
+        })
     }
 
     //移入收藏

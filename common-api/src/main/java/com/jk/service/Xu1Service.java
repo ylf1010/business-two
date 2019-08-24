@@ -15,4 +15,6 @@ public interface Xu1Service {
     void addshoucang(Shopping_xu sho,Integer uid);
 
     List<Shopping_xu> listshoucang(Integer id);
+
+    Integer updatecount(Integer[] productid, Integer[] count, Integer uid);
 }

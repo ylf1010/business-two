@@ -22,8 +22,7 @@ public class Xu1Controller {
             //客户前端
      @Reference
     private Xu1Service xu1;
-    @Autowired
-    private MongoTemplate mongoTemplate;
+
 
     //跳购物车
      @RequestMapping("shopping1")
@@ -43,14 +42,13 @@ public class Xu1Controller {
          }
      */
 
-        sho.setProductid(3);
+        sho.setProductid(1);
         sho.setProducount(1);  //数量默认1
         sho.setProductphoto("123.jpg");
         sho.setProductname("二锅头");
         sho.setProductprice(150.00);
         sho.setWinejhl(500);
         sho.setWinedushu(36);
-        sho.setBrandname("茅台");
          xu1.addshopping(sho,1);
 
          return  "2";
@@ -73,8 +71,19 @@ public class Xu1Controller {
     @ResponseBody
     public void deleteshopping(Integer id,HttpServletRequest request){
         //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.listshopping(id,us.getKeid());
+        // List<Shopping_xu>  list= xu1.deleteshopping(id,us.getKeid());
          xu1.deleteshopping(id,1);
+    }
+
+    //结算改数量
+    @RequestMapping("updatecount")
+    @ResponseBody
+    public Integer updatecount(Integer[] productid,Integer[] count,HttpServletRequest request){
+        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+        //  xu1.updatecount(productid,count,us.getKeid());
+       Integer a= xu1.updatecount(productid,count,1);
+
+       return  a;
     }
 
     //跳收藏
@@ -82,7 +91,6 @@ public class Xu1Controller {
     public  String  shoucang1(){
          return  "xu1/shoucang";
     }
-
 
 
 //移入收藏

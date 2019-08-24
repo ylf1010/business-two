@@ -56,4 +56,9 @@ public interface XuService {
     void udeleteBiaoQian(Integer bqid);
 
 
+    List<Youhiu_xu> ulistyouhiu(BootStrapUtil bt);
+
+    void uaddyouhiu(Youhiu_xu youhiu);
+
+    void udeleteyouhiu(String[] ids);
 }

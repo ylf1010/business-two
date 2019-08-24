@@ -37,7 +37,7 @@
 
     <style>
         body{ text-align:center}
-        #divcss5{margin:0 auto;border:0px solid #000;width:300px;height:100px}
+        #divcss5{margin:0 auto;border:0px solid #000;width:800px}
     </style>
 </head>
 
@@ -179,7 +179,7 @@
                // { field : 'checkbox',checkbox : true}, //开启复选框
                 {field : 'xx', title : '', width : 800,height:500,
                     formatter:function(value,row,index){
-                        var a="<a href='javascript:xiangqing("+row.productid+")'><img src='../upload/"+row.productphoto+"' width='80' height='80'></a> <br>";
+                        var a="<a href='javascript:xiangqing("+row.productid+")'><img src='../upload/"+row.productphoto+"' width='150' height='80'></a> <br>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"</a><br>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'><font color='#c71585'>￥"+row.productprice+"</font> </a>";
                         return a;
@@ -191,5 +191,9 @@
     })
 
 
+    //跳商品详情页
+    xiangqing=function(productid){
+       // location.href="../ztx/queryone?id="
+    }
 </script>
 </html>

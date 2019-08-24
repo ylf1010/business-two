@@ -2,6 +2,7 @@ package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.model.Shopping_xu;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
+
 public class Xu1ServiceInpl implements Xu1Service{
               //客户端
     @Autowired
@@ -61,13 +63,28 @@ public class Xu1ServiceInpl implements Xu1Service{
         mongoTemplate.remove(query,"shopping"+uid);
     }
 
+    //结算改数量
+    @Override
+    public Integer updatecount(Integer[] productid, Integer[] count, Integer uid) {
+        for (int i=0;i < productid.length;i++){
+            Criteria c=new  Criteria();    //设置条件
+            c.and("productid").is(productid[i]);
+            Query query =new  Query();   //使条件生效
+            query.addCriteria( c );
+            Update up=new Update();  //赋值要修改的字段
+            up.set("producount",count[i]);
+             mongoTemplate.updateFirst(query, up, "shopping"+uid);
+        }
+        return 1;
+    }
+
     //加收藏夹   删除购物车
     @Override
     public void addshoucang(Shopping_xu sho,Integer uid) {
          //存redis
           String  key="shopping"+uid;
         redisTemplate.opsForList().rightPush(key,sho);
-        redisTemplate.expire(key,60, TimeUnit.HOURS);
+        redisTemplate.expire(key,60, TimeUnit.MINUTES);
          //删mogo
         Criteria c=new Criteria();   //设置条件
         c.and("productid").is(sho.getProductid());  //删除数组里in包含的所有( is 等于)
@@ -84,6 +101,8 @@ public class Xu1ServiceInpl implements Xu1Service{
         List<Shopping_xu> list = redisTemplate.opsForList().range(key, 0, -1);
         return list;
     }
+
+
 
 
 }
