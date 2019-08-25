@@ -20,10 +20,10 @@
 <body>
 <!--头部-->
 <div class="head clearfix" >
-    <div class="logo"><a href="index.html">酒神网</a></div>
+    <div class="logo"><a href="index.html"><img src="http://aliying.oss-cn-beijing.aliyuncs.com/aliying/1566696863951.png" alt="酒仙网"/></a></div>
     <div class="head_r">
         <div class="shopcar"></div>
-        <div class="by"><h1 ><font color="red">最专业的大型网上美酒交易平台</font></h1></div>
+        <div class="by"><img src="http://aliying.oss-cn-beijing.aliyuncs.com/aliying/1566698029487.png" alt=""/></div>
     </div>
 </div>
 <ul class="nav clearfix">
@@ -144,9 +144,9 @@
                 <ul class="ra clearfix">
                     <li class="clearfix">
                     	<span class="title">数量：</span>
-                        	<input type="button" value="-" onclick="jianshao()">
-                            <input id="countid" type="text" value="1">
-                            <input type="button" value="+" onclick="zengjia()">
+                        	<input type="button" style="width:20px" value="-" onclick="jianshao()">
+                            <input id="countid" style="width:30px" type="text" value="1">
+                            <input type="button" style="width:20px" value="+" onclick="zengjia()">
                     </li>
                 </ul>
                 <div class="price">￥：<span id="priceid" th:value="${product.productprice}" th:text="${product.productprice}"></span></div>
