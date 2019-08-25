@@ -1,7 +1,9 @@
 package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.jk.dao.Xu1Dao;
 import com.jk.model.Shopping_xu;
+import com.jk.model.Youhiu_xu;
 import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -19,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Xu1ServiceInpl implements Xu1Service{
               //客户端
+    @Autowired
+    private Xu1Dao xu1;
     @Autowired
     private MongoTemplate  mongoTemplate;
     @Autowired
@@ -78,6 +82,8 @@ public class Xu1ServiceInpl implements Xu1Service{
         return 1;
     }
 
+
+
     //加收藏夹   删除购物车
     @Override
     public void addshoucang(Shopping_xu sho,Integer uid) {
@@ -103,6 +109,19 @@ public class Xu1ServiceInpl implements Xu1Service{
     }
 
 
+
+
+    //优惠劵查询1
+    @Override
+    public List<Youhiu_xu> listyouhiujuan() {
+        return xu1.listyouhiujuan();
+    }
+
+    //优惠劵查询2
+    @Override
+    public List<Youhiu_xu> listyouhiujuan2() {
+        return xu1.listyouhiujuan2();
+    }
 
 
 }

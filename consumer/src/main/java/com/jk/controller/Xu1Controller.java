@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.Shopping_xu;
 import com.jk.model.User_xu;
+import com.jk.model.Youhiu_xu;
 import com.jk.service.Xu1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -115,4 +116,31 @@ public class Xu1Controller {
         return map;
     }
 
+
+
+    //跳转优惠页面
+    @RequestMapping("youhiujuan1")
+    public String youhiujuan1(){
+        return "xu1/youhiujuan";
+    }
+
+    //优惠劵 查询展示
+    @RequestMapping("listyouhiujuan1")
+    @ResponseBody
+    public Map listyouhiujuan1(){
+          List<Youhiu_xu>  list=xu1.listyouhiujuan();
+        Map map=new HashMap();
+        map.put("rows",list);
+        return map;
+    }
+
+    //优惠劵 查询展示
+    @RequestMapping("listyouhiujuan2")
+    @ResponseBody
+    public Map listyouhiujuan2(){
+        List<Youhiu_xu>  list=xu1.listyouhiujuan2();
+        Map map=new HashMap();
+        map.put("rows",list);
+        return map;
+    }
 }
