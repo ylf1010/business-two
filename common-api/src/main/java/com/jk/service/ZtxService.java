@@ -73,4 +73,8 @@ public interface ZtxService {
     List<ZtxShi> queryfrom();
 
     List<Product> querytiaojian(Product pro);
+
+    Product queryone(Integer productid);
+
+    List<Classify> queryClassify();
 }

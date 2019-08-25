@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<!-- saved from url=(0040)http://www.jiuxian.com/?ozs=1796707-1722 -->
-<html lang="en" >
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head><base href="<%=basePath%>">
 	<title>标题</title>
 	<meta http-equiv="pragma" content="no-cache">
@@ -1073,15 +1072,15 @@ var header1200 = ""; var header1000 = "";
                 for (var i = 0; i < data.length; i++) {
                     a1 += '<li style="background: url(&quot;'+data[i].carouselurl+'&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">\n' +
                         '        <div class="ban_cter">\n' +
-                        '            <a class="focusArea" target="_blank" href="../ztx/querytj?lxid='+data[i].lxid+'"></a>\n' +
+                        '            <a class="focusArea" target="_blank" href="../ztx/querytiaojian?productpid='+data[i].lxid+'"></a>\n' +
                         '            <div class="mav">\n' +
-                        '            \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a name="home_you7" style="background:url(http://img06.jiuxian.com/bill/2018/1116/c524b467897d4299ad8bafa109875173.png) no-repeat;" href="http://shop.jiuxian.com/index-1370.htm?source=12" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
+                        ' <a name="home_you7" style="background:url(http://img06.jiuxian.com/bill/2018/1116/c524b467897d4299ad8bafa109875173.png) no-repeat;" href="http://shop.jiuxian.com/index-1370.htm?source=12" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
                         '\t\t\t\t<span class="mask1" style="display: none;"></span>\n' +
                         '\t\t\t\t<a name="home_you8" style="background:url(http://img07.jiuxian.com/bill/2018/1116/b32135f3ce304a71a85111d5b2977e66.png) no-repeat;" href="http://shop.jiuxian.com/index-1365.htm?source=13" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
                         '\t\t\t\t<span class="mask2" style="display: none;"></span>\n' +
                         '\t\t\t\t<a name="home_you9" style="background:url(http://img10.jiuxian.com/bill/2018/1116/f0364c31559143adb038c172ace4fbd8.png) no-repeat;" href="http://shop.jiuxian.com/brand-400/activity-1111.htm?source=14" target="_blank" class="smallImg" rel="nofollow"></a>\n' +
                         '\t\t\t\t<span class="mask3" style="display: none;"></span>\n' +
-                        '\t\t\t\t \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t            </div>\n' +
+                        '            </div>\n' +
                         '        </div>\n' +
                         '    </li>'
                 }
@@ -1098,7 +1097,7 @@ var header1200 = ""; var header1000 = "";
                 for (var i = 0; i < 10; i++) {
                     a1 += '<li product-box="49255">\n' +
                         '\t\t\t<div class="indexTabPic">\n' +
-                        '\t\t\t\t<a href="http://www.jiuxian.com/goods-49255.html?src=4766&amp;source=51" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t<a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t   <img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'">\n' +
                         '\t\t\t\t</a>\n' +
                         '\t\t\t\t<p>\n' +
@@ -1106,7 +1105,7 @@ var header1200 = ""; var header1000 = "";
                         '\t\t\t\t</p>\n' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabTit">\n' +
-                        '\t\t\t\t<a href="http://www.jiuxian.com/goods-49255.html?src=4766&amp;source=51" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t<a href="../ztx/queryone?'+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t\t<i class="zhenxuan"></i>'+data[i].productname+'' +
                         '\t\t\t\t</a>\n' +
                         '\t\t\t</div>\n' +
@@ -1129,10 +1128,10 @@ var header1200 = ""; var header1000 = "";
                 for (var i = 0; i < 6; i++) {
                     a1 += '<li product-box="32517">\n' +
                         '\t\t\t\t\t\t<p><span></span></p>\n' +
-                        '\t\t\t\t\t\t<div class="raceListPic"><a href="../ztx/querytj?productname='+data[i].productname+'" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t\t\t<div class="raceListPic"><a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t\t\t\t<img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'"></a></div>\n' +
                         '\t\t\t\t\t\t<div class="raceListTit">\n' +
-                        '\t\t\t\t\t\t\t<a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="'+data[i].productname+'">'+data[i].productname+'</a>\n' +
+                        '\t\t\t\t\t\t\t<a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">'+data[i].productname+'</a>\n' +
                         '\t\t\t\t\t\t</div>\n' +
                         '\t\t\t\t\t\t<div class="raceListPrice"><strong goodid="32517" class="jxIndex_nowPrice_32517">￥'+data[i].productprice+'</strong></div>\n' +
                         '\t\t\t\t\t\t<div class="raceListTime" id="jxIndex_timeAct_32517" time="0" style="display: none;">\n' +
@@ -1227,7 +1226,17 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 <div class="mainBanner" name="__home_shoutonglan">
 <div class="bigImg">
     <ul id="imgid" class="bigUl" style="position: relative; width: 1519px; height: 470px;">
-		<!--<li style="background: url(&quot;http://img10.jiuxian.com/bill/2019/0819/221bf260497b446ea2e7517ed1e2b9f7.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
+
+
+
+
+
+
+
+
+
+
+		<li style="background: url(&quot;http://img10.jiuxian.com/bill/2019/0819/221bf260497b446ea2e7517ed1e2b9f7.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
         <div class="ban_cter">
             <a class="focusArea" target="_blank" href="http://shop.jiuxian.com/brand-382/activity-3743.htm?source=3"></a>
             <div class="mav">
@@ -1239,7 +1248,7 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 			<span class="mask3" style="display: none;"></span>
 																																																																																																																																																																																																																																																																																																																																																																																															            </div>
 		</div>
-    </li>-->
+    </li>
 		<li style="background: url(&quot;http://img09.jiuxian.com/bill/2019/0819/3af0593606254c59894437b947b79c96.jpg&quot;) center 0px no-repeat; position: absolute; width: 1519px; left: 0px; top: 0px; display: none;">
         <div class="ban_cter">
             <a class="focusArea" target="_blank" href="http://shop.jiuxian.com/brand-382/activity-3746.htm?source=7"></a>

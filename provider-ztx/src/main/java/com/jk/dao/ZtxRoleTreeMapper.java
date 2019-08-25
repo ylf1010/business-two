@@ -1,5 +1,6 @@
 package com.jk.dao;
 
+import com.jk.model.Classify;
 import com.jk.model.Lunbo;
 import com.jk.model.Product;
 import com.jk.model.ZtxRoleTree;
@@ -23,4 +24,9 @@ public interface ZtxRoleTreeMapper {
     List<Lunbo> queryimg();
 
     List<Product> querytiaojian(@Param("p") Product pro);
+
+    @Select("select * from ly_product where productid=#{productid} and productsxj=5")
+    Product queryone(@Param("productid") Integer productid);
+    @Select("select * from ly_classify ")
+    List<Classify> queryClassify();
 }

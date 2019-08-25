@@ -286,4 +286,16 @@ public class ZtxController {
         return "ztx/ztxjiuxianall";
     }
 
+    @RequestMapping("queryone")
+    public String queryone(Integer productid ,Model model ){
+        Product product=zs.queryone(productid);
+        List<ZtxBrand> blist=zs.querybrandall();
+        List<ZtxShi> flist=zs.queryfrom();
+        List<Classify> clist=zs.queryClassify();
+        model.addAttribute("product",product);
+        model.addAttribute("blist",blist);
+        model.addAttribute("flist",flist);
+        model.addAttribute("clist",clist);
+        return "ztx/ztxjiuone";
+    }
 }
