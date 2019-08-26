@@ -4,7 +4,7 @@ import com.jk.model.*;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 
 public interface LxxService {
@@ -31,15 +31,21 @@ public interface LxxService {
 
     void addregisUser(User_xu user);
 
-    PageUtil queryPaymentOnBehalfOfOthers(ParameUtil parame);
 
-    PageUtil DropShipping(ParameUtil parame);
+    List<YsqJiaoYi> queryPaymentOnBehalfOfOthers();
 
-    PageUtil Shipped(ParameUtil parame);
+    List<YsqJiaoYi> queryDropShipping();
 
-    PageUtil OffTheStocks(ParameUtil parame);
+    List<YsqJiaoYi> queryShippedOrder();
 
-    PageUtil queryClose(ParameUtil parame);
+    List<YsqJiaoYi> queryOffTheStocks();
 
-    PageUtil queryRefund(ParameUtil parame);
+    List<YsqJiaoYi> queryClose();
+
+    List<YsqJiaoYi> queryRefund();
+
+    List<YsqJiaoYi> queryQuan();
+
+
+    List<Object> queryIntegral();
 }
