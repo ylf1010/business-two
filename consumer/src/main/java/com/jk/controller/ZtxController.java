@@ -1,9 +1,7 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.User;
-import com.jk.model.ZtxRole;
-import com.jk.model.ZtxTree;
+import com.jk.model.*;
 import com.jk.service.ZtxService;
 import com.jk.util.ParameUtil;
 import com.jk.util.TreeUtil;
@@ -29,10 +27,7 @@ public class ZtxController {
     public String tomain(){
         return "ztx/main";
     }
-    @RequestMapping("toztxjiuxian")
-    public String toztxjiuxian(){
-        return "ztx/ztxjiuxian";
-    }
+
     @RequestMapping("toshowrole")
     public String toshowrole(){
         return "ztx/showrole";
@@ -56,6 +51,14 @@ public class ZtxController {
     @RequestMapping("toytg")
     public String toytg(){
         return "ztx/showytg";
+    }
+    @RequestMapping("toztxjiuxian")
+    public String toztxjiuxian(){
+        return "ztx/ztxjiuxian";
+    }
+    @RequestMapping("toztxjiuall")
+    public String toztxjiuall(){
+        return "ztx/ztxjiuxianall";
     }
     //注销
     @RequestMapping("zx")
@@ -231,5 +234,68 @@ public class ZtxController {
     @ResponseBody
     public void adduser(User user){
         zs.adduser(user);
+    }
+
+    @RequestMapping("querybrand")
+    @ResponseBody
+    public List<ZtxBrand> querybrand(Integer typeid){
+        List<ZtxBrand> list=zs.querybrand(typeid);
+        return list;
+    }
+    @RequestMapping("querybrandall")
+    @ResponseBody
+    public List<ZtxBrand> querybrandall(){
+        List<ZtxBrand> list=zs.querybrandall();
+        return list;
+    }
+    @RequestMapping("queryshi")
+    @ResponseBody
+    public List<ZtxShi> queryshi(Integer orignshengid){
+        List<ZtxShi> list=zs.queryshi(orignshengid);
+        return list;
+    }
+    @RequestMapping("queryfrom")
+    @ResponseBody
+    public List<ZtxShi> queryfrom(){
+        List<ZtxShi> list=zs.queryfrom();
+        return list;
+    }
+    @RequestMapping("queryimg")
+    @ResponseBody
+    public List<Lunbo> queryimg(){
+        List<Lunbo> list=zs.queryimg();
+        return list;
+    }
+    @RequestMapping("queryfkqg")
+    @ResponseBody
+    public List<Product> queryfkqg(){
+        List<Product> list=zs.queryfkqg();
+        return list;
+    }
+    @RequestMapping("queryxsms")
+    @ResponseBody
+    public List<Product> queryxsms(){
+        List<Product> list=zs.queryxsms();
+        return list;
+    }
+
+    @RequestMapping("querytiaojian")
+    public String querytiaojian(Product pro ,Model model ){
+        List<Product> list=zs.querytiaojian(pro);
+        model.addAttribute("list",list);
+        return "ztx/ztxjiuxianall";
+    }
+
+    @RequestMapping("queryone")
+    public String queryone(Integer productid ,Model model ){
+        Product product=zs.queryone(productid);
+        List<ZtxBrand> blist=zs.querybrandall();
+        List<ZtxShi> flist=zs.queryfrom();
+        List<Classify> clist=zs.queryClassify();
+        model.addAttribute("product",product);
+        model.addAttribute("blist",blist);
+        model.addAttribute("flist",flist);
+        model.addAttribute("clist",clist);
+        return "ztx/ztxjiuone";
     }
 }

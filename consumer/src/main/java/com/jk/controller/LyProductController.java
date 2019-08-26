@@ -74,6 +74,7 @@ public class LyProductController {
         List<Classify> clist=productService.queryClassify();
         return clist;
     }
+
   //下架/上架
   @RequestMapping("updateproductzt")
   @ResponseBody

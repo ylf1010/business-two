@@ -1,6 +1,7 @@
 package com.jk.dao;
 
 import com.jk.model.*;
+import com.jk.util.BootStrapUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -78,4 +79,11 @@ public interface XuDao {
     void uupdateKeHuBiaoQian(Integer bqid);
 
 
+    List<Youhiu_xu> ulistyouhiu(BootStrapUtil bt);
+
+    void uupdateyouhiu(Youhiu_xu youhiu);
+
+    void uaddyouhiu(Youhiu_xu youhiu);
+
+    void udeleteyouhiu(String[] ids);
 }

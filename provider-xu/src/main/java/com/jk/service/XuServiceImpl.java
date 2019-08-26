@@ -222,4 +222,30 @@ public class XuServiceImpl  implements  XuService{
         }
     }
 
+
+               //优惠劵
+    //优惠劵查
+    @Override
+    public List<Youhiu_xu> ulistyouhiu(BootStrapUtil bt) {
+
+        List<Youhiu_xu> list = xu.ulistyouhiu(bt);
+        return list;
+    }
+    //优惠劵增 改
+    @Override
+    public void uaddyouhiu(Youhiu_xu youhiu) {
+        if (youhiu.getYhid() != null) {
+            xu.uupdateyouhiu(youhiu);  //有id修改
+        } else {
+
+            xu.uaddyouhiu(youhiu);   //新增
+        }
+    }
+
+    //优惠劵删
+    @Override
+    public void udeleteyouhiu(String[] ids) {
+            xu.udeleteyouhiu(ids);
+    }
+
 }
