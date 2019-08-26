@@ -111,10 +111,12 @@
             <form id="addformid">
                 <input type="hidden" name="productid" th:value="${product.productid}">
                 <input type="hidden" name="productname" th:value="${product.productname}">
+                <input type="hidden" name="productphoto" th:value="${product.productphoto}">
+
                 <input type="hidden" name="winejhl" th:value="${product.winejhl}">
                 <input type="hidden" name="winedushu" th:value="${product.winedushu}">
                 <input type="hidden" name="productprice" th:value="${product.productprice}">
-                <input type="hidden" name="productcount" value="1 " id="productcountid">
+                <input type="hidden" name="productcount" id="productcountid" value="1">
             </form>
 
 

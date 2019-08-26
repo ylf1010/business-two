@@ -218,5 +218,35 @@
     </insert>
 
 
+    <!--优惠劵查-->
+    <select id="ulistyouhiu" resultType="com.jk.model.Youhiu_xu">
+        select * from xu_youhiu  where 1=1
+        <if test="name == 1 "> and enddate &lt; now()</if>
+        <if test="name == 2 "> and enddate >= now()</if>
+         order by enddate
+    </select>
+
+    <!--优惠劵删-->
+    <delete id="udeleteyouhiu" parameterType="String">
+        delete from  xu_youhiu  where yhid in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--优惠劵增-->
+   <insert id="uaddyouhiu" parameterType="com.jk.model.Youhiu_xu">
+       insert  into xu_youhiu(yhname,shangpinid,yhtype,man,jian,shuliang,xianling,stadate,enddate,cuangdate,shuoming,lianjie)
+         values(#{yhname},#{shangpinid},#{yhtype},#{man},#{jian},#{shuliang},#{xianling},#{stadate},#{enddate},now(),#{shuoming},#{lianjie})
+   </insert>
+
+    <!--优惠劵改-->
+    <update id="uupdateyouhiu"  parameterType="com.jk.model.Youhiu_xu">
+        update xu_youhiu set yhname=#{yhname},shangpinid=#{shangpinid},yhtype=#{yhtype},man=#{man},jian=#{jian},
+          shuliang=#{shuliang},xianling=#{xianling},stadate=#{stadate},enddate=#{enddate},shuoming=#{shuoming},lianjie=#{lianjie}
+                    where yhid=#{yhid}
+    </update>
+
+
 
 </mapper>

@@ -96,14 +96,14 @@ public class LxxServiceImpl implements  LxxService {
         lxxMapper.Not(renZhengBean);
     }
 
-
+//登录
     @Override
     public User_xu loginUser(User_xu user) {
         return lxxMapper.loginUser(user);
     }
 
 
-
+//注册
     @Override
     public void addregisUser(User_xu user) {
         //新增用户
@@ -125,95 +125,48 @@ public class LxxServiceImpl implements  LxxService {
         lxxMapper.updateJfid(jfids,uid);
     }
 
-    //查询代付款订单
+
+
+
+    //待付款
     @Override
-    public PageUtil queryPaymentOnBehalfOfOthers(ParameUtil parame) {
-        PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-
-        List<YsqJiaoYi> list = lxxMapper.queryPaymentOnBehalfOfOthers(parame);
-
-        PageInfo<YsqJiaoYi> pageInfo = new PageInfo<YsqJiaoYi>(list);
-
-        PageUtil pageUtil = new PageUtil((int) pageInfo.getTotal(), parame.getPageNumber(), parame.getPageSize());
-
-        pageUtil.setList(list);
-
-        return pageUtil;
+    public List<YsqJiaoYi> queryPaymentOnBehalfOfOthers() {
+        return lxxMapper.queryPaymentOnBehalfOfOthers();
     }
-    //查询代发货订单
+//待发货
     @Override
-    public PageUtil DropShipping(ParameUtil parame) {
-        PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-
-        List<YsqJiaoYi> list = lxxMapper.DropShipping(parame);
-
-        PageInfo<YsqJiaoYi> pageInfo = new PageInfo<YsqJiaoYi>(list);
-
-        PageUtil pageUtil = new PageUtil((int) pageInfo.getTotal(), parame.getPageNumber(), parame.getPageSize());
-
-        pageUtil.setList(list);
-
-        return pageUtil;
+    public List<YsqJiaoYi> queryDropShipping() {
+        return lxxMapper.queryDropShipping();
     }
-    //查询已发货订单
+//已发货
     @Override
-    public PageUtil Shipped(ParameUtil parame) {
-        PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-
-        List<YsqJiaoYi> list = lxxMapper.Shipped(parame);
-
-        PageInfo<YsqJiaoYi> pageInfo = new PageInfo<YsqJiaoYi>(list);
-
-        PageUtil pageUtil = new PageUtil((int) pageInfo.getTotal(), parame.getPageNumber(), parame.getPageSize());
-
-        pageUtil.setList(list);
-
-        return pageUtil;
+    public List<YsqJiaoYi> queryShippedOrder() {
+        return lxxMapper.queryShippedOrder();
     }
-    //查询已完成订单
+//已完成
     @Override
-    public PageUtil OffTheStocks(ParameUtil parame) {
-        PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-
-        List<YsqJiaoYi> list = lxxMapper.OffTheStocks(parame);
-
-        PageInfo<YsqJiaoYi> pageInfo = new PageInfo<YsqJiaoYi>(list);
-
-        PageUtil pageUtil = new PageUtil((int) pageInfo.getTotal(), parame.getPageNumber(), parame.getPageSize());
-
-        pageUtil.setList(list);
-
-        return pageUtil;
+    public List<YsqJiaoYi> queryOffTheStocks() {
+        return lxxMapper.queryOffTheStocks();
     }
-    //查询已关闭订单
+//已关闭
     @Override
-    public PageUtil queryClose(ParameUtil parame) {
-        PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-
-        List<YsqJiaoYi> list = lxxMapper.queryClose(parame);
-
-        PageInfo<YsqJiaoYi> pageInfo = new PageInfo<YsqJiaoYi>(list);
-
-        PageUtil pageUtil = new PageUtil((int) pageInfo.getTotal(), parame.getPageNumber(), parame.getPageSize());
-
-        pageUtil.setList(list);
-
-        return pageUtil;
+    public List<YsqJiaoYi> queryClose() {
+        return lxxMapper.queryClose();
     }
-    //查询已退款订单
+//退款中
     @Override
-    public PageUtil queryRefund(ParameUtil parame) {
-        PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
-
-        List<YsqJiaoYi> list = lxxMapper.queryRefund(parame);
-
-        PageInfo<YsqJiaoYi> pageInfo = new PageInfo<YsqJiaoYi>(list);
-
-        PageUtil pageUtil = new PageUtil((int) pageInfo.getTotal(), parame.getPageNumber(), parame.getPageSize());
-
-        pageUtil.setList(list);
-
-        return pageUtil;
+    public List<YsqJiaoYi> queryRefund() {
+        return lxxMapper.queryRefund();
+    }
+//查询所有订单
+    @Override
+    public List<YsqJiaoYi> queryQuan() {
+        return lxxMapper.queryQuan();
+    }
+    //查询个人中心
+    @Override
+    public List<Object> queryIntegral() {
+        return lxxMapper.queryIntegral();
     }
 
 

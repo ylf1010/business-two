@@ -67,24 +67,25 @@ public interface LxxMapper {
     void updateJfid( Integer jfids, Integer uid);
 
     //查询代付款订单
-    @Select(" select * from  jiaoyi_ysq where state = 1 ")
-    List<YsqJiaoYi> queryPaymentOnBehalfOfOthers(ParameUtil parame);
+    List<YsqJiaoYi> queryPaymentOnBehalfOfOthers();
+
     //查询代发货订单
-    @Select(" select * from  jiaoyi_ysq where state = 2 ")
-    List<YsqJiaoYi> DropShipping(ParameUtil parame);
-    //查询已发货订单
-    @Select(" select * from  jiaoyi_ysq where state = 3 ")
-    List<YsqJiaoYi> Shipped(ParameUtil parame);
+    List<YsqJiaoYi> queryDropShipping();
 
     //查询已发货订单
-    @Select(" select * from  jiaoyi_ysq where state = 4 ")
-    List<YsqJiaoYi> OffTheStocks(ParameUtil parame);
+    List<YsqJiaoYi> queryShippedOrder();
 
-    //查询已发货订单
-    @Select(" select * from  jiaoyi_ysq where state = 5 ")
-    List<YsqJiaoYi> queryClose(ParameUtil parame);
+    //查询已完成订单
+    List<YsqJiaoYi> queryOffTheStocks();
 
-    //查询已发货订单
-    @Select(" select * from  jiaoyi_ysq where state = 6 ")
-    List<YsqJiaoYi> queryRefund(ParameUtil parame);
+    //查询已关闭订单
+    List<YsqJiaoYi> queryClose();
+
+    //查询已退款订单
+    List<YsqJiaoYi> queryRefund();
+
+    //查询全部
+    List<YsqJiaoYi> queryQuan();
+    //查询个人中心
+    List<Object> queryIntegral();
 }

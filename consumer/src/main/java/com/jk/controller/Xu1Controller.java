@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jk.model.Shopping_xu;
 import com.jk.model.User_xu;
+import com.jk.model.Youhiu_xu;
 import com.jk.service.Xu1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +24,7 @@ public class Xu1Controller {
             //客户前端
      @Reference
     private Xu1Service xu1;
-    @Autowired
-    private MongoTemplate mongoTemplate;
+
 
     //跳购物车
      @RequestMapping("shopping1")
@@ -35,23 +36,13 @@ public class Xu1Controller {
     @RequestMapping("addshopping")
     @ResponseBody
     public  String  addshopping(Shopping_xu sho, HttpServletRequest request){
-      /*  User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
          if(us == null){
              return  "1";  //判断 跳登录页
          }else{
               xu1.addshopping(sho,us.getKeid());
          }
-     */
 
-        sho.setProductid(3);
-        sho.setProducount(1);  //数量默认1
-        sho.setProductphoto("123.jpg");
-        sho.setProductname("二锅头");
-        sho.setProductprice(150.00);
-        sho.setWinejhl(500);
-        sho.setWinedushu(36);
-        sho.setBrandname("茅台");
-         xu1.addshopping(sho,1);
 
          return  "2";
     }
@@ -60,9 +51,13 @@ public class Xu1Controller {
    @RequestMapping("listshopping")
    @ResponseBody
     public Map  listshopping(HttpServletRequest request){
-       //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-      // List<Shopping_xu>  list= xu1.listshopping(us.getKeid());
-       List<Shopping_xu>  list= xu1.listshopping(1);
+       User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+       List<Shopping_xu>  list=new ArrayList<Shopping_xu>();
+       if(us==null){
+            return null;
+       }else{
+           list= xu1.listshopping(us.getKeid());
+       }
        Map map=new HashMap();
        map.put("rows",list);
        return map;
@@ -72,9 +67,22 @@ public class Xu1Controller {
     @RequestMapping("deleteshopping")
     @ResponseBody
     public void deleteshopping(Integer id,HttpServletRequest request){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.listshopping(id,us.getKeid());
-         xu1.deleteshopping(id,1);
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+         xu1.deleteshopping(id,us.getKeid());
+    }
+
+    //结算改数量
+    @RequestMapping("updatecount")
+    @ResponseBody
+    public Integer updatecount(Integer[] productid,Integer[] count,double[] productprice,HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+       if(us==null){
+           return 2;
+       }else{
+           xu1.updatecount(productid,count,productprice,us.getKeid());
+       }
+
+       return  1;
     }
 
     //跳收藏
@@ -84,27 +92,52 @@ public class Xu1Controller {
     }
 
 
-
 //移入收藏
     @RequestMapping("addshoucang")
     @ResponseBody
     public void addshoucang(Shopping_xu sho,HttpServletRequest request){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.listshopping(sho,us.getKeid());
-     xu1.addshoucang(sho,1);
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+     xu1.addshoucang(sho,us.getKeid());
 
     }
+
 
     //查收藏夹
     @RequestMapping("listshoucang")
     @ResponseBody
-    public Map listshoucang(){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.listshopping(us.getKeid());
-       List<Shopping_xu> list= xu1.listshoucang(1);
+    public Map listshoucang(HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+       List<Shopping_xu> list= xu1.listshoucang(us.getKeid());
         Map map=new HashMap();
         map.put("rows",list);
         return map;
     }
 
+
+
+    //跳转优惠页面
+    @RequestMapping("youhiujuan1")
+    public String youhiujuan1(){
+        return "xu1/youhiujuan";
+    }
+
+    //优惠劵 查询展示1
+    @RequestMapping("listyouhiujuan1")
+    @ResponseBody
+    public Map listyouhiujuan1(){
+          List<Youhiu_xu>  list=xu1.listyouhiujuan();
+        Map map=new HashMap();
+        map.put("rows",list);
+        return map;
+    }
+
+    //优惠劵 查询展示2
+    @RequestMapping("listyouhiujuan2")
+    @ResponseBody
+    public Map listyouhiujuan2(){
+        List<Youhiu_xu>  list=xu1.listyouhiujuan2();
+        Map map=new HashMap();
+        map.put("rows",list);
+        return map;
+    }
 }
