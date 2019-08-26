@@ -26,8 +26,15 @@ public class Youhiu_xu implements Serializable {
     private  Date   cuangdate;
     private  String   shuoming;
     private  String   lianjie;
+    private  String productphoto;
 
+    public String getProductphoto() {
+        return productphoto;
+    }
 
+    public void setProductphoto(String productphoto) {
+        this.productphoto = productphoto;
+    }
 
     public void setYhid(Integer yhid) {
         this.yhid = yhid;

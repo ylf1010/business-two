@@ -295,6 +295,13 @@ public class LxxController {
         return "regissuccess";
     }
 
+    //注销
+    @RequestMapping("zhuxiao")
+    public String loginUser(HttpServletRequest request) {
+        request.getSession().removeAttribute("user_xu");
+        return "ztx/ztxjiuxian";
+    }
+
     @RequestMapping("check")
     @ResponseBody
     public void  checkCode(String mobile,HttpServletRequest request) {

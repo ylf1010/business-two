@@ -84,9 +84,9 @@
             <!-- 右边的    导航 按钮样式 -->
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="#"> &nbsp登录</a></li>
-                <li><a href="#">&nbsp免费注册 </a></li>
-                <li><a href="#">&nbsp&nbsp 注销</a></li>
+                <li><a href="../lxx/LoginUser"> &nbsp登录</a></li>
+                <li><a href="../lxx/Register">&nbsp免费注册 </a></li>
+                <li><a href="../lxx/zhuxiao">&nbsp&nbsp 注销</a></li>
             </ul>
             </ul>
         </div>
@@ -121,7 +121,7 @@
 
     <!--数据展示-->
 
-            <div  id="data" style="margin:0 auto;border:0px solid #000" class="alert alert-warning"></div>
+            <div  id="data" style="margin:0 auto;border:0px solid #000;display:1 " class="alert alert-warning"></div>
 
 <br>
     <div class="alert alert-info">
@@ -304,7 +304,7 @@
                 }, //开启复选框
                 {field : 'xx', title : '商品信息', width : 800,height:500,
                     formatter:function(value,row,index){
-                        var a="<img src='../upload/"+row.productphoto+"' width='80' height='80'>";
+                        var a="<img src='"+row.productphoto+"' width='80' height='80'>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"   </a>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'>    "+row.winejhl+"ml    "+row.winedushu+"°</a>";
                         return a;
@@ -319,15 +319,17 @@
                 { field : 'x', title : '数量', width : 350 ,height:500,
                     formatter:function(value,row,index){
                         var tr="<button type='button' class=\"btn btn-info\" onclick='jian("+row.productid+","+row.productprice+")'>-</button>"
-                        tr +="<input id='co"+row.productid+"' size=1 value='"+row.producount+"'style='width: 20px'>"
-                        tr +="<button type='button' class=\"btn btn-info\" onclick='jia("+row.productid+","+row.productprice+")'>+</button>"
+                        tr +="<input id='co"+row.productid+"' onkeyup='kuang("+row.productid+","+row.productprice+")' size=1 value='"+row.productcount+"' style='width: 20px'>"
+                        tr +="<button type='button' class=\"btn btn-info\" onclick='jia("+row.productid+","+row.productprice+")'>+</button> <br>"
+                        tr +="<input type='hidden' id='ku"+row.productid+"' size=1 value='"+row.productkucun+"'><span id='kusp"+row.productid+"'></span>";
+
                         return tr;
                     }
                 },
                 { field : 'xxx', title : '金额', width : 200,height:500,
                     formatter:function(value,row,index){
                         var  a="<font  color='red'>￥</font>";
-                        a+= "<span id='sum"+row.productid+"'  >"+row.productprice * row.producount+"</span>";  //隐藏的每行总额
+                        a+= "<span id='sum"+row.productid+"'  >"+row.productprice * row.productcount+"</span>";  //隐藏的每行总额
                         return  a;
                     }
                 },
@@ -344,6 +346,11 @@
         });
     })
 
+    //详情
+    xiangqing=function(productid){
+        location.href="../ztx/queryone?productid="+productid;
+
+    }
 
     //删除
     shanchu=function(id){
@@ -371,6 +378,7 @@
         console.log(arr);
         var money =0;
         var y=0;
+
         for (var i = 0; i < arr.length; i++) {
             sums =$("#sum"+arr[i].productid).html();
             money +=Number(sums);
@@ -385,8 +393,19 @@
 
     //加 价格
     jia=function(id,price){
-        var count=Number($("#co"+id).val());	  //Number 要转为Number格式才行
-        $("#co"+id).val(count+1);
+        var count=Number($("#co"+id).val()); //数量	  //Number 要转为Number格式才行
+        var kucun=Number($("#ku"+id).val()); //库存
+       if(count >= kucun){
+
+           $("#co"+id).val(kucun);
+           $("#kusp"+id).html("<font color='red' >最多只能购买"+kucun+"件</font>");
+        }else{
+
+           $("#co"+id).val(count+1);
+           $("#kusp"+id).html("");
+       }
+
+
         //每行总额
         var sum= price*$("#co"+id).val();
         $("#sum"+id).html(sum);
@@ -395,6 +414,8 @@
 
     //减 价格
     jian=function(id,vprice){
+        $("#kusp"+id).html("");  //最多购买提示设空
+
         var count=$("#co"+id).val()<=1?1:$("#co"+id).val()-1;
         $("#co"+id).val(count);
         //每行总额
@@ -403,28 +424,58 @@
         sum11();
     }
 
+    //文本框
+    kuang=function(id,vprice){
+        var count=Number($("#co"+id).val()); //数量	  //Number 要转为Number格式才行
+        var kucun=Number($("#ku"+id).val()); //库存
+        if(count > kucun){
+            $("#co"+id).val(kucun);
+            $("#kusp"+id).html("<font color='red' >最多只能购买"+kucun+"件</font>");
+        }else  if(count <= 0){
+            $("#co"+id).val(1);
+        }
+        else{
+            $("#co"+id).val(count);
+            $("#kusp"+id).html("");
+        }
+
+        //每行总额
+        var sum= vprice*$("#co"+id).val();
+        $("#sum"+id).html(sum);
+        sum11();
+
+    }
+
     //结算
     jieshan=function(){
         var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
         console.log(arr);
         if (arr.length <= 0) {
+            alert("请选择的要购买的商品");
             return ;
         }
         var productid ="";
         var count="";
+        var productprice="";
         for (var i = 0; i < arr.length; i++) {
             productid +=arr[i].productid +",";
+
             count +=$("#co"+arr[i].productid).val()+",";
+            productprice +=arr[i].productprice +",";
         }
         productid = productid.substring(0, productid.length - 1);
         count = count.substring(0, count.length - 1);
+        productprice = productprice.substring(0, productprice.length - 1);
+
         $.ajax({
             url:"../xu1/updatecount",
-            data:{productid:productid,count:count},
+            data:{productid:productid,count:count,productprice:productprice},
             type:"post",
             success:function(data){
                 if(data == 1){
                     location.href="../ysqthree/tiao3?ids="+productid;
+                }else if(data == 2){
+
                 }
             }
         })
@@ -443,14 +494,18 @@
 
 /*
   $(function() {
-      var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
-  alert(arr);
-      if(arr ==null && arr ==''){
+      alert(125);
+     // var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+      //console.log(arr);
+    //  alert(arr[i].productprice);
+
+      if(arr ==null || arr =="" ){
+          alert(12);
       document.getElementById("data").style.display = "none"; //隐藏
 
   }
 
-  })*/
-
+  })
+*/
 </script>
 </html>

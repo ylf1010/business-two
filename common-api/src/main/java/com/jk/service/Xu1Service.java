@@ -17,7 +17,7 @@ public interface Xu1Service {
 
     List<Shopping_xu> listshoucang(Integer id);
 
-    Integer updatecount(Integer[] productid, Integer[] count, Integer uid);
+    void updatecount(Integer[] productid, Integer[] count,double[] productprice, Integer uid);
 
     List<Youhiu_xu> listyouhiujuan();
 

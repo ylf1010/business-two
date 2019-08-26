@@ -82,9 +82,9 @@
                 <!-- 右边的    导航 按钮样式 -->
                 <ul class="nav navbar-nav navbar-right">
 
-                    <li><a href="#"> &nbsp登录</a></li>
-                    <li><a href="#">&nbsp免费注册 </a></li>
-                    <li><a href="#">&nbsp&nbsp 注销</a></li>
+                    <li><a href="../lxx/LoginUser"> &nbsp登录</a></li>
+                    <li><a href="../lxx/Register">&nbsp免费注册 </a></li>
+                    <li><a href="../lxx/zhuxiao">&nbsp&nbsp 注销</a></li>
                 </ul>
             </ul>
         </div>
@@ -179,7 +179,7 @@
                // { field : 'checkbox',checkbox : true}, //开启复选框
                 {field : 'xx', title : '', width : 800,height:500,
                     formatter:function(value,row,index){
-                        var a="<a href='javascript:xiangqing("+row.productid+")'><img src='../upload/"+row.productphoto+"' width='150' height='80'></a> <br>";
+                        var a="<a href='javascript:xiangqing("+row.productid+")'><img src='"+row.productphoto+"' width='150' height='80'></a> <br>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"</a><br>";
                         a+="<a href='javascript:xiangqing("+row.productid+")'><font color='#c71585'>￥"+row.productprice+"</font> </a>";
                         return a;
@@ -193,7 +193,7 @@
 
     //跳商品详情页
     xiangqing=function(productid){
-       // location.href="../ztx/queryone?id="
+        location.href="../ztx/queryone?productid="+productid;
     }
 </script>
 </html>
