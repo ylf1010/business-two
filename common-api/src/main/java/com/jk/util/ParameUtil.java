@@ -40,6 +40,15 @@ public class ParameUtil implements Serializable {
     private Integer flid;
 
     private Integer ordernumber;
+    private Integer brandid;
+
+    public Integer getBrandid() {
+        return brandid;
+    }
+
+    public void setBrandid(Integer brandid) {
+        this.brandid = brandid;
+    }
 
     public Integer getOrdernumber() {
         return ordernumber;
