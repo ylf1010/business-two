@@ -14,8 +14,8 @@
   <update id="updateJiaoYiState">
      update jiaoyi_ysq set state=1 where ordernumber=#{0}
   </update>
-  <select id="chaJiaoYi" resultType="com.jk.model.YsqJiaoYi">
-    select * from jiaoyi_ysq where ordernumber = 213146
+  <select id="chaJiaoYi" resultType="com.jk.model.Product">
+    select * from ly_product where productid = #{0}
   </select>
   <insert id="addressDiZhi" parameterType="com.jk.model.Addressysq">
     insert into address_ysq(address,consignee,phone,particular,keid)
@@ -32,8 +32,8 @@
         select * from ly_product where productid = #{0}
   </select>
   <insert id="addDingDan" parameterType="com.jk.model.YsqJiaoYi">
-    insert into jiaoyi_ysq (ordernumber,productname,money,amount,ordertime,xu_userid,state,unitprice,buyer)
-    values (#{ordernumber},#{productname},#{money},#{amount},now(),#{xu_userid},#{state},#{unitprice},'yyy')
+    insert into jiaoyi_ysq (ordernumber,productname,money,amount,ordertime,xu_userid,state,unitprice)
+    values (#{ordernumber},#{productname},#{money},#{amount},now(),#{xu_userid},#{state},#{unitprice})
   </insert>
   <select id="chaShopping" parameterType="int" resultType="com.jk.model.Product">
     select * from  ly_product where productid in
