@@ -49,9 +49,9 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<YsqJiaoYi> chaJiaoYi(Long ordernumber) {
+    public List<Product> chaJiaoYi(Integer productid) {
 
-        return addressDao.chaJiaoYi(ordernumber);
+        return addressDao.chaJiaoYi(productid);
     }
 
     @Override
@@ -84,7 +84,8 @@ public class AddressServiceImpl implements AddressService {
         jiaoYi.setUnitprice(p.getProductprice().intValue());
         jiaoYi.setProductname(p.getProductname());
         jiaoYi.setXu_userid(id);
-        addressDao.addDingDan(jiaoYi);
+        redisTemplate.opsForList().rightPush("shopping"+id,jiaoYi);
+        //addressDao.addDingDan(jiaoYi);
         return buffer.toString();
     }
 
