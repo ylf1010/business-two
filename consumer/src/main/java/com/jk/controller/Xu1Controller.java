@@ -44,7 +44,7 @@ public class Xu1Controller {
      */
 
         sho.setProductid(1);
-        sho.setProducount(1);  //数量默认1
+        sho.setProductcount(1);  //数量默认1
         sho.setProductphoto("123.jpg");
         sho.setProductname("二锅头");
         sho.setProductprice(150.00);
