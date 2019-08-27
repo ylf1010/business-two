@@ -14,7 +14,7 @@ public interface AddressService {
 
     void updateJiaoYiState(Integer ordernumber);
 
-    List<YsqJiaoYi> chaJiaoYi(Long ordernumber);
+    List<Product> chaJiaoYi(Integer productid);
 
     void addressDiZhi(Addressysq addressysq);
 
