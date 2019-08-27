@@ -196,7 +196,7 @@
 
     function jiaru(){
         $.ajax({
-            url:"../xu1/iaddshopping",
+            url:"../xu1/addshopping",
             type:"post",
             data:$("#addformid").serialize(),
             success:function(flag){
@@ -209,13 +209,16 @@
 
     function jiesuan(){
         $.ajax({
-            url:"../xu1/iaddshopping",
+            url:"../ysqthree/panduanuser",
             type:"post",
             data:$("#addformid").serialize(),
             success:function(flag){
-                if(flag==1){
+                var parse = JSON.parse(flag);
+                if(parse.productid==null){
                     location.href="../lxx/LoginUser";
+                    return;
                 }
+                location.href = "../ysqthree/tiao?"+$("#addformid").serialize();
             }
         })
     }
