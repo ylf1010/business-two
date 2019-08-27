@@ -22,6 +22,7 @@
 <body>
 <form role="form" id="updspformId">
     <input type="hidden" name="productid" th:value="${product.productid }">
+    <input type="hidden" name="productsxj" th:value="${product.productsxj }">
     <div class="form-group">
         <label for="productname">酒品(名称)</label>
         <input type="text" class="form-control" id="name" th:value="${product.productname}" name="productname" placeholder="酒品(名称)"/>

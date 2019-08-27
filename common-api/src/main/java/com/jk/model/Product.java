@@ -1,5 +1,6 @@
 package com.jk.model;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -7,6 +8,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Product implements Serializable {
+
+
+    private static final long serialVersionUID = -7597108645487154778L;
     private Integer productid;       //酒品(编号ID)
 
     private String productphoto;      //酒品(展示图片)
@@ -41,25 +45,15 @@ public class Product implements Serializable {
     private   Integer   winepromotion;    //酒品(优惠/秒杀/促销)
     private   Integer   winehotsale;      //酒品(热卖/火爆)
     private   String    winestore;        // 酒品(储藏条件)
-    /*@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
-    @JsonFormat(pattern="yyyy-MM-dd hh:mm:ss",timezone="GMT+8")// 处理从	后端到前端的时间*/
+
     private  String daoqidate;  //设置到期时间
 
-    public String getDaoqidate() {
-        return daoqidate;
-    }
-
-    public void setDaoqidate(String daoqidate) {
-        this.daoqidate = daoqidate;
-    }
-
-    public Integer getProductsxj() {
-        return productsxj;
-    }
-
-    public void setProductsxj(Integer productsxj) {
-        this.productsxj = productsxj;
-    }
+    private Integer mindushu;
+    private Integer maxdushu;
+    private Integer minjhl;
+    private Integer maxjhl;
+    private Integer minprice;
+    private Integer maxprice;
 
     public Integer getProductid() {
         return productid;
@@ -74,7 +68,7 @@ public class Product implements Serializable {
     }
 
     public void setProductphoto(String productphoto) {
-        this.productphoto = productphoto == null ? null : productphoto.trim();
+        this.productphoto = productphoto;
     }
 
     public String getProductname() {
@@ -82,7 +76,7 @@ public class Product implements Serializable {
     }
 
     public void setProductname(String productname) {
-        this.productname = productname == null ? null : productname.trim();
+        this.productname = productname;
     }
 
     public Integer getProductpid() {
@@ -130,9 +124,16 @@ public class Product implements Serializable {
     }
 
     public void setProductdescribe(String productdescribe) {
-        this.productdescribe = productdescribe == null ? null : productdescribe.trim();
+        this.productdescribe = productdescribe;
     }
 
+    public Integer getProductsxj() {
+        return productsxj;
+    }
+
+    public void setProductsxj(Integer productsxj) {
+        this.productsxj = productsxj;
+    }
 
     public Integer getWinejhl() {
         return winejhl;
@@ -236,5 +237,61 @@ public class Product implements Serializable {
 
     public void setWinestore(String winestore) {
         this.winestore = winestore;
+    }
+
+    public String getDaoqidate() {
+        return daoqidate;
+    }
+
+    public void setDaoqidate(String daoqidate) {
+        this.daoqidate = daoqidate;
+    }
+
+    public Integer getMindushu() {
+        return mindushu;
+    }
+
+    public void setMindushu(Integer mindushu) {
+        this.mindushu = mindushu;
+    }
+
+    public Integer getMaxdushu() {
+        return maxdushu;
+    }
+
+    public void setMaxdushu(Integer maxdushu) {
+        this.maxdushu = maxdushu;
+    }
+
+    public Integer getMinjhl() {
+        return minjhl;
+    }
+
+    public void setMinjhl(Integer minjhl) {
+        this.minjhl = minjhl;
+    }
+
+    public Integer getMaxjhl() {
+        return maxjhl;
+    }
+
+    public void setMaxjhl(Integer maxjhl) {
+        this.maxjhl = maxjhl;
+    }
+
+    public Integer getMinprice() {
+        return minprice;
+    }
+
+    public void setMinprice(Integer minprice) {
+        this.minprice = minprice;
+    }
+
+    public Integer getMaxprice() {
+        return maxprice;
+    }
+
+    public void setMaxprice(Integer maxprice) {
+        this.maxprice = maxprice;
     }
 }

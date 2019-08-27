@@ -77,7 +77,7 @@ var header1200 = ""; var header1000 = "";
 <ul>
 <li class="hd-n1 dropTitle">
 <div class="myJiuxian"><a href="http://member.jiuxian.com/index.htm" target="_blank" rel="nofollow">我的酒仙</a><s class="publicIcon"></s></div>
-<div class="myJiuxianBox dropTitleBox clearfix"><a href="http://member.jiuxian.com/trademanage/my_order-9.htm" target="_blank" rel="nofollow">我的订单</a>
+<div class="myJiuxianBox dropTitleBox clearfix"><a href="../lxx/aa" target="_blank" rel="nofollow">我的订单</a>
 <a href="http://member.jiuxian.com/trademanage/my_order-9.htm" target="_blank" rel="nofollow">物流跟踪</a><a href="http://member.jiuxian.com/purse/my_coupon-11.htm" target="_blank" rel="nofollow">我的优惠券</a></div>
 </li>
 <li class="hd-n2"><a href="http://sale.jiuxian.com/feedback.htm" target="_blank" rel="nofollow">CEO邮箱</a></li>
@@ -1100,13 +1100,13 @@ var header1200 = ""; var header1000 = "";
                         '\t\t\t\t<a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t   <img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'">\n' +
                         '\t\t\t\t</a>\n' +
-                        '\t\t\t\t<p>\n' +
-                        '\t\t\t\t<span></span>\n' +
-                        '\t\t\t\t</p>\n' +
+                        '<p class="Tag Tag_b">' +
+                        '<span>抢购</span>' +
+                        '</p>' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabTit">\n' +
                         '\t\t\t\t<a href="../ztx/queryone?'+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
-                        '\t\t\t\t\t<i class="zhenxuan"></i>'+data[i].productname+'' +
+                        '\t\t\t\t\t'+data[i].productname+' 剩'+data[i].productkucun+'件' +
                         '\t\t\t\t</a>\n' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabPrice homegoodPrice">\n' +
@@ -1122,7 +1122,7 @@ var header1200 = ""; var header1000 = "";
     function showbkrm() {
         $.ajax({
             type: "post",
-            url: "../ztx/queryfkqg",
+            url: "../ztx/queryxsms",
             success: function (data) {
                 var a1 = '';
                 for (var i = 0; i < 10; i++) {
@@ -1132,12 +1132,12 @@ var header1200 = ""; var header1000 = "";
                         '\t\t\t\t   <img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'">\n' +
                         '\t\t\t\t</a>\n' +
                         '<p class="Tag Tag_b">\n' +
-                        '\t\t<span>实惠<br>好喝</span>\n' +
+                        '\t\t<span>热卖</span>\n' +
                         '\t\t</p>' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabTit">\n' +
                         '\t\t\t\t<a href="../ztx/queryone?'+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
-                        '\t\t\t\t\t<i class="zhenxuan"></i>'+data[i].productname+'' +
+                        '\t\t\t\t\t'+data[i].productname+' 已售'+data[i].productzxl+'件' +
                         '\t\t\t\t</a>\n' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabPrice homegoodPrice">\n' +
@@ -1150,6 +1150,11 @@ var header1200 = ""; var header1000 = "";
         })
     }
 
+
+    var d=0;
+    var h=0;
+    var m=0;
+    var s=0;
     function showxsms() {
         $.ajax({
             type: "post",
@@ -1157,8 +1162,25 @@ var header1200 = ""; var header1000 = "";
             success: function (data) {
                 var a1 = '';
                 for (var i = 0; i < data.length; i++) {
+                    var endTime = new Date(data[i].daoqidate); // 最终时间
+                    setInterval(clock(),1000); // 开启定时器
+                    function clock(){
+                        var nowTime = new Date(); // 一定是要获取最新的时间
+                        var second = parseInt((endTime.getTime() - nowTime.getTime()) / 1000);
+                        d = parseInt(second / 3600 / 24); //天数
+                        h = parseInt(second / 3600 % 24) // 小时
+                        m = parseInt(second / 60 %60);
+                        s = parseInt(second %60 ); // 当前的秒
+                        console.log(s);
+                         d<10 ? d="0"+d : d;
+                         h<10 ? h="0"+h : h;
+                         m<10 ? m="0"+m : m;
+                         s<10 ? s="0"+s : s;
+                        /* a2="距结束还剩: "+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒";
+                        $('[name="djsid"]').html(a2)*/
+                    }
                     a1 += '<li product-box="32517">\n' +
-                        '\t\t\t\t\t\t<div name="djsid"></div>\n' +
+                        '\t\t\t\t\t\t<div name="djsid">'+"距结束还剩: "+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒"+'</div>\n' +
                         '\t\t\t\t\t\t<div class="raceListPic"><a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t\t\t\t<img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'"></a></div>\n' +
                         '\t\t\t\t\t\t<div class="raceListTit">\n' +
@@ -1168,23 +1190,6 @@ var header1200 = ""; var header1000 = "";
                         '\t\t\t\t\t\t<div class="raceListTime" id="jxIndex_timeAct_32517" time="0" style="display: none;">\n' +
                         '\t\t\t\t\t\t</div>\n' +
                         '\t\t\t\t\t</li>'
-                    var endTime = new Date(data[i].daoqidate); // 最终时间
-                    setInterval(clock,1000); // 开启定时器
-                    function clock(){
-                        var nowTime = new Date(); // 一定是要获取最新的时间
-                        var second = parseInt((endTime.getTime() - nowTime.getTime()) / 1000);
-                        var d = parseInt(second / 3600 / 24); //天数
-                        var h = parseInt(second / 3600 % 24) // 小时
-                        var m = parseInt(second / 60 %60);
-                        var s = parseInt(second %60 ); // 当前的秒
-                        console.log(s);
-                        d<10 ? d="0"+d : d;
-                        h<10 ? h="0"+h : h;
-                        m<10 ? m="0"+m : m;
-                        s<10 ? s="0"+s : s;
-                        a2="距结束还剩: "+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒";
-                        $('[name="djsid"]').html(a2)
-                    }
                 }
                 $("#xsmsid").html(a1)
             }
@@ -1455,24 +1460,12 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 
 <div name="__home_daohang_tab2" class="indexTabCon" style="display:none;">
 	<ul class="clearfix" id="bkrmid">
-<!--<li product-box="3113">
-	<div class="indexTabPic">
-		<a href="http://www.jiuxian.com/goods-3113.html?source=61" target="_blank" title="茅台集团 53°银质习酒500ml">
-			<img src="../ztxjiuxian/loading.gif" data-original="http://img07.jiuxian.com/2014/0430/b55452ae8f4348e2adfb19d6b6cc85452.jpg" width="160" height="160" alt="茅台集团 53°银质习酒500ml">
-		</a>
-		<p class="Tag Tag_b">
-		<span>实惠<br>好喝</span>
-		</p>
-	</div>
-	<div class="indexTabTit">
-		<a href="http://www.jiuxian.com/goods-3113.html?source=61" target="_blank" title="茅台集团 53°银质习酒500ml">
-			茅台集团 53°银质习酒500ml</a>
-	</div>
-	<div class="indexTabPrice homegoodPrice">
-	<strong goodid="3113" class="jxIndex_nowPrice_3113">￥98.00</strong>
-		<span><em clubgoodid="3113"></em><i class="clubIcon"></i></span>
-	</div>
-</li>-->
+
+
+
+
+
+
 
 <li product-box="53008"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-53008.html?source=62" target="_blank" title="52°白水杜康一坛老酒1000ml（双坛装）"><img src="../ztxjiuxian/loading.gif" data-original="http://img07.jiuxian.com/2018/1225/fc979c1278c5468a95150ec47723a1b22.jpg" width="160" height="160" alt="52°白水杜康一坛老酒1000ml（双坛装）">
 	</a>
@@ -1957,19 +1950,7 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 </span></div></div></div></div>
 <!--疯狂抢购end--><div class="loadFirst on" style="height:1159px; overflow:hidden;">
 		<div id="indexLayer1">
-<!--广告位start-->
-			<div class="indexAdBox mt30 floorBanner1" style="background: url(&#39;http://img08.jiuxian.com/bill/2018/1204/9b19420219414ce08737eb0b327a7afd.jpg&#39;) no-repeat top center scroll;">
-								<p>
-			<a name="__home_tong1" href="http://shop.jiuxian.com/index-20.htm?source=23" target="_blank" rel="nofollow"><img src="../ztxjiuxian/d99c097fde7b4575b21f68bef24f3841.png"></a>
-		</p>
-								<p>
-			<a name="__home_tong2" href="http://shop.jiuxian.com/brand-402/activity-3723.htm" target="_blank" rel="nofollow"><img src="../ztxjiuxian/3fa454a4454d47fab24574cf3092e85d.png"></a>
-		</p>
-								<p>
-			<a name="__home_tong3" href="http://shop.jiuxian.com/index-1171/activity-3788.htm" target="_blank" rel="nofollow"><img src="../ztxjiuxian/deaf399cdb1f457083b69b5c91b15ee5.png"></a>
-		</p>
-							</div>
-		<!--广告位end--><!--限时秒杀start-->
+<!--限时秒杀start-->
 <div class="Lay_4 mt10 clearfix" id="countDownPanel">
 <div name="__home_youhui" class="raceBox"><div class="titlebox"><div class="title_2"><i class="newIndexIcon"></i><span>限时秒杀</span></div><div class="rightNavBox">
 <span class="on">4</span>
@@ -2006,8 +1987,7 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 
 
 
-
-            <!--白酒馆start-->
+			<!--白酒馆start-->
 <div class="Lay_5 mt10 whiteWine" lay5="lay5"><div class="titlebox"><div class="comTitle"><i class="comIcon1 newIndexIcon">1F</i><span>白酒馆</span></div><!-- 白酒馆顶部文字广告Start -->
 <div class="rightMenu" name="__home_baireci">
 <a href="http://list.jiuxian.com/1-0-0-9500-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="贵州">贵州</a>
@@ -2017,9 +1997,22 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 |<a href="http://list.jiuxian.com/1-0-0-9479-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="江苏">江苏</a>
 |<a href="http://list.jiuxian.com/1-0-0-9478-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="山东">山东</a>
 |<a href="http://list.jiuxian.com/1-0-0-9487-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="安徽">安徽</a>
-<!-- 白酒馆顶部文字广告End --><a name="home_bairukou" href="http://list.jiuxian.com/1-0-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank" class="goBlank" title="去白酒馆" rel="nofollow">白酒馆<span>&gt;</span></a></div></div>
-<div class="spiritWrap"><div class="bannerSlier sliderBox"><div name="__home_bailunxin" class="imgBox"><ul class="clearfix bigUl" style="margin-left: -210px;">
-<li><a href="http://shop.jiuxian.com/brand-382/activity-3770.htm" title="白水杜康" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/f63e17c4af3f43f3ba4450f163715797.jpg" alt=""></a></li>
+<!-- 白酒馆顶部文字广告End -->
+	<a name="home_bairukou" href="http://list.jiuxian.com/1-0-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank" class="goBlank" title="去白酒馆" rel="nofollow">白酒馆
+		<span>&gt;</span>
+	</a>
+</div>
+</div>
+
+<div class="spiritWrap">
+	<div class="bannerSlier sliderBox">
+		<div name="__home_bailunxin" class="imgBox">
+			<ul class="clearfix bigUl" style="margin-left: -210px;">
+<li>
+	<a href="http://shop.jiuxian.com/brand-382/activity-3770.htm" title="白水杜康" target="_blank" rel="nofollow">
+		<img height="485" width="210" _src="" src="../ztxjiuxian/f63e17c4af3f43f3ba4450f163715797.jpg" alt="">
+	</a>
+</li>
 <li><a href="http://shop.jiuxian.com/index-1286.htm" title="品质酒窖" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/f27f4651489b43d9ac22be2b2dd689cb.jpg" alt=""></a></li>
 <li><a href="http://shop.jiuxian.com/index-1310.htm" title="五粮液" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/7da11c7506d9480283bab377affc014c.jpg" alt=""></a></li>
 <li><a href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=23" title="酒鬼酒" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/3b50e158f5bd4e18bc9a6327ea22f843.jpg" alt=""></a></li>

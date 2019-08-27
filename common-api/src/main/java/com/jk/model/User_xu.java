@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User_xu implements Serializable {
-      //客户user表
+    //客户user表
     private  Integer keid;
     private  String img;
     private  String nickname;

@@ -20,7 +20,7 @@ public interface LunboMapper {
 
     int updateByPrimaryKey(Lunbo record);
 
-    List<Lunbo> querylylunbo(ParameUtil parame);
+    List<Lunbo> querylylunbo(@Param("p") ParameUtil parame);
 
     void addLunbo(Lunbo lunbo);
     @Delete("delete from ly_lunbotu where carouselid =#{carouselid} ")

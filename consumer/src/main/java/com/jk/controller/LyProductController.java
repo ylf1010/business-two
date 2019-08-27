@@ -219,7 +219,7 @@ public class LyProductController {
         for(int i=0;i<list.size();i++){
             String key="miaosha"+list.get(i).getProductid();
             if(redisTemplate.hasKey(key)){
-                list1.add((Product) redisTemplate.opsForValue().get(key));
+               list1.add((Product) redisTemplate.opsForValue().get(key));
             }
         }
         return list1;

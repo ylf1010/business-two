@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Um_xu implements Serializable {
-         //会员列表（客户与会员中间表）
+    //会员列表（客户与会员中间表）
     private   Integer umid;
     private   Integer uid;
     private   Integer mid;
