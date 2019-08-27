@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" x>
+    <meta charset="UTF-8">
     <title>订单结算-酒仙网</title>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
 
@@ -40,7 +40,7 @@
 
 </div>
 <input type="hidden" id="productid" th:value="${ordernumber.getProductid()}">
-<input type="hidden" id="number" th:value="${ordernumber.getProductkucun()}">
+<input type="hidden" id="number" th:value="${ordernumber.getProductcount()}">
 <form id="formId">
     <input type="hidden" name="id" id="id" >
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -145,28 +145,36 @@
             columns: [
                // {field:'cb',checkbox:true},
                 //{field: 'id', title: '用户id'},
-                {field:'ordernumber',title:'订单号'},//  列    field   代表是 后台  传过来的值
-                {field:'productname',title:'商品名称'},
-                {field:'unitprice',title:'商品单价'},
-                //{field: 'ordertime', title: '下单时间'},
-                {field: 'amount', title: '商品数量',
+                //{field:'ordernumber',title:'订单号'},//  列    field   代表是 后台  传过来的值
+                {field:'productname',title:'商品名称',
                 formatter:function (value,row,index) {
-                    return "<input id='addBtnmin' onclick='jian("+row.unitprice+")' type='button' value='-' />\n" +
-                        "<input id='join-money' style='width: 30px;' type='text' value="+value+">\n" +
-                        "<input id='addBtnadd' onclick='add("+row.unitprice+")' type=\"button\" value=\"+\" />";
+                    return value+"<img src='"+row.productphoto+"' width='30px' height='30px' />";
                 }
                 },
-                //{field: 'buyer', title: '买家'},
-                //{field: 'money', title: '实收金额'},
-                //{field: 'state', title: '状态'},
+                {field:'productprice',title:'商品单价'},
+                {field: 'productcount', title: '数量',
+                formatter:function (value,row,index) {
+                    return "<input id='addBtnmin' onclick='jian("+row.productprice+")' type='button' value='-' />\n" +
+                        "<input id='join-money' style='width: 30px;' type='text' value="+$("#number").val()+">\n" +
+                        "<input id='addBtnadd' onclick='add("+row.productprice+")' type=\"button\" value=\"+\" />";
+                }
+                },
                 {field: 'caozuo', title: '操作',
                    formatter:function(value,row,index){
-                    $("#price").html(row.unitprice*row.amount);
-                       /* return "<a href='javascript:xiangqing()'>详情</a>"
-                            + "<a href='javascript:xiu()' class='btn button'>备注</a>";*/
+                    //$("#price").html(row.productprice*row.productcount);
+                       //var number = row.productprice*$("#number").val()
+                    return "$<font color='red'><span id='productpricecount'></span></font>";
                     }
                 },
-            ]
+            ],
+            onLoadSuccess:function () {
+                var bootstrapTable = $("#dataGrid").bootstrapTable("getData");
+                var number = bootstrapTable[0].productprice*$("#join-money").val();
+                alert(number)
+                $("#productpricecount").html(number);
+                $("#money").html(number);
+            }
+
         })
     }
     queryaddress = function(){
@@ -287,6 +295,7 @@
     function changeMonry(price){
         var count = $("#join-money").val();
         var sumPrice = count*price;
+        $("#productpricecount").html(sumPrice);
         $("#money").html(sumPrice);
     }
     jiesuan = function(){
@@ -299,9 +308,9 @@
         $.ajax({
             url:'../ysqthree/adddingdan',
             type:'post',
-            data:{id:3,producount:$("#join-money").val()},
+            data:{id:$("#productid").val(),productcount:$("#join-money").val()},
             success:function (data) {
-                location.href='../goAlipay?price='+$("#private").val()+"&ordernumber="+data;
+                location.href='../goAlipay?price='+$("#money").html()+"&ordernumber="+data;
             }
         })
         //goAlipay
