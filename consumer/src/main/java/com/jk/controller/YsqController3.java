@@ -24,11 +24,22 @@ public class YsqController3 {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @RequestMapping("panduanuser")
+    @ResponseBody
+    public Shopping_xu PanDuanUser(HttpServletRequest request,Shopping_xu shopping_xu){
+        User_xu xu = (User_xu) request.getSession().getAttribute("user_xu");
+        if(xu==null){
+            shopping_xu.setProductid(null);
+            return shopping_xu;
+        }
+
+        return shopping_xu;
+    }
     @RequestMapping("tiao")
-    public ModelAndView tiao(Product product){
+    public ModelAndView tiao(Shopping_xu shopping){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("cha4");
-        modelAndView.addObject("ordernumber",product);
+        modelAndView.addObject("ordernumber",shopping);
         return modelAndView;
     }
     /*@RequestMapping("tiao2")
@@ -65,8 +76,8 @@ public class YsqController3 {
 }
 @RequestMapping("chajiaoyi")
     @ResponseBody
-    public DataGridResult chaJiaoYi(Long ordernumber){
-        List<YsqJiaoYi> row = addressService.chaJiaoYi(ordernumber);
+    public DataGridResult chaJiaoYi(Integer productid){
+        List<Product> row = addressService.chaJiaoYi(productid);
     DataGridResult result = new DataGridResult();
     result.setRows(row);
     return result;
@@ -86,8 +97,8 @@ public class YsqController3 {
 @RequestMapping("adddingdan")
     @ResponseBody
     public String addDingDan(Shopping_xu shopping,HttpServletRequest request){
-    User_xu user = (User_xu)request.getSession().getAttribute("user");
-    String s = addressService.addDingDan(shopping, 2);
+    User_xu user = (User_xu)request.getSession().getAttribute("user_xu");
+    String s = addressService.addDingDan(shopping, user.getKeid());
     return s;
 }
 @RequestMapping("chashopping")
@@ -127,7 +138,11 @@ public class YsqController3 {
     ModelAndView view = new ModelAndView();
     view.setViewName("cha5");
     User_xu user = (User_xu) request.getSession().getAttribute("user_xu");
-    addressService.addDingDan1(2);
+    addressService.addDingDan1(user.getKeid());
     return view;
+}
+@RequestMapping("tiao5")
+    public String tiao5(){
+        return "cha6";
 }
 }
