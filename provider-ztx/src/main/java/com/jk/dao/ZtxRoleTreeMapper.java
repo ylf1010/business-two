@@ -25,7 +25,7 @@ public interface ZtxRoleTreeMapper {
 
     List<Product> querytiaojian(@Param("p") Product pro);
 
-    @Select("select * from ly_product where productid=#{productid} and productsxj=5")
+    @Select("select * from ly_product where productid=#{productid}")
     Product queryone(@Param("productid") Integer productid);
     @Select("select * from ly_classify ")
     List<Classify> queryClassify();

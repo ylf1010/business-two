@@ -211,32 +211,32 @@
                 {field : 'keid', title : '编号', width : 300},
                 {field : 'xx', title : '客户', width : 300,
                     formatter:function(value,row,index){
-                        var a="<img src='../upload/"+row.img+"' width='20' height='20'>";
-                        a+="<a href='javascript:xiangqing("+row.keid+")'>"+row.nickname+"</a>";
+                       var a="<img src='../upload/"+row.img+"' width='20' height='20'>";
+                         a+="<a href='javascript:xiangqing("+row.keid+")'>"+row.nickname+"</a>";
                         return a;
                     }
                 },
                 { field : 'phone', title : '手机号',width : 300 },
                 { field : 'rank', title : '会员级别', width : 300,
                     formatter:function(value,row,index){
-                        var  a=value;
-                        if(row.hystatus == 2){
-                            a+="<font  color='#990000'>[已停用]</font>";
-                        }
+                      var  a=value;
+                      if(row.hystatus == 2){
+                          a+="<font  color='#990000'>[已停用]</font>";
+                      }
                         return a;
                     }
                 },
                 { field : 'jfsum', title : '积分', width : 300 },
                 { field : 'bqname', title : '标签', width : 300 ,
                     formatter:function(value,row,index){
-                        return "<font  color='red'>"+value+"</font>";  //value;
+                       return "<font  color='red'>"+value+"</font>";  //value;
                     }
                 },
                 { field : 'endtime', title : '上次登录时间', width : 300 },
                 { field : 'x', title : '操作', width : 300,
                     formatter:function(value,row,index){
-                        var  a="<a href='javascript:xiangqing("+row.keid+")' >详情  |   </a>";
-                        a+="<a href='javascript:biaoqian("+row.keid+","+row.bqid+")' >标签</a>";
+                      var  a="<a href='javascript:xiangqing("+row.keid+")' >详情  |   </a>";
+                         a+="<a href='javascript:biaoqian("+row.keid+","+row.bqid+")' >标签</a>";
                         return  a;
                     }
                 }

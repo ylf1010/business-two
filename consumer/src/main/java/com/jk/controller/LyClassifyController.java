@@ -32,6 +32,7 @@ import com.jk.service.LyClassifyService;
 import com.jk.util.DataGridResult;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
+import com.jk.utils.OSSClientUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,10 +40,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.UUID;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("lyclassify")
@@ -73,8 +71,26 @@ public class LyClassifyController {
         classifyService.addClassify(classify);
         return "123";
     }
+
+    /**
+     * OSS阿里云上传图片
+     */
+    @RequestMapping("updaloadImg")
+    @ResponseBody
+    public String uploadImg(MultipartFile imgg)throws IOException {
+        if (imgg == null || imgg.getSize() <= 0) {
+            throw new IOException("file不能为空");
+        }
+        OSSClientUtil ossClient=new OSSClientUtil();
+        String name = ossClient.uploadImg2Oss(imgg);
+        String imgUrl = ossClient.getImgUrl(name);
+        String[] split = imgUrl.split("\\?");
+        //System.out.println(split[0]);
+        return split[0];
+    }
+
     //上传图片
-    @RequestMapping("uploadPhotoFile")
+   /* @RequestMapping("uploadPhotoFile")
     @ResponseBody
     public String upImg(MultipartFile artImg, HttpServletRequest req) throws
             Exception{
@@ -95,7 +111,7 @@ public class LyClassifyController {
         fos.flush();
         fos.close();
         return "/upload/"+onlyFileName;
-    }
+    }*/
     //批量删除
     @RequestMapping("delClassify")
     @ResponseBody

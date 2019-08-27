@@ -5,6 +5,8 @@ import com.jk.model.*;
 import com.jk.service.ZtxService;
 import com.jk.util.ParameUtil;
 import com.jk.util.TreeUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +25,8 @@ public class ZtxController {
 
     @Reference
     private ZtxService zs;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @RequestMapping("tomain")
     public String tomain(){
@@ -276,7 +281,14 @@ public class ZtxController {
     @ResponseBody
     public List<Product> queryxsms(){
         List<Product> list=zs.queryxsms();
-        return list;
+        List<Product> list1 = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            String key="miaosha"+list.get(i).getProductid();
+            if(redisTemplate.hasKey(key)){
+                list1.add((Product) redisTemplate.opsForValue().get(key));
+            }
+        }
+        return list1;
     }
 
     @RequestMapping("querytiaojian")
@@ -297,5 +309,15 @@ public class ZtxController {
         model.addAttribute("flist",flist);
         model.addAttribute("clist",clist);
         return "ztx/ztxjiuone";
+    }
+
+    @RequestMapping("querymiaosha")
+    @ResponseBody
+    public List<Product> querymiaosha(){
+        String key="miaosha*";
+        List<Product> list=redisTemplate.opsForList().range(key,0,-1);
+//        System.out.println(list.get(0));
+  //      System.out.println(list.get(1));
+        return list;
     }
 }

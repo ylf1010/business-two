@@ -2,7 +2,7 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>领取优惠劵</title>
+    <title>领取中心</title>
     <!-- 引入jquery -->
     <script type="text/javascript" src="../js/jquery.min.js"></script>
 
@@ -43,7 +43,116 @@
 </head>
 <body>
 
-  <div id="divcss5">
+<!-- 网页顶部导航信息 -->
+<!--导航条  最上头放置以下内容的黑框-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <!-- 容器 以下内容为 顶部信息   -->
+    <div class="container-fluid">
+
+        <!-- 此段为窗口小化时用’三‘来代替隐藏所有导航信息 -->
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span
+                class="icon-bar"></span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+        </button>
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+        <!-- 头部信息 -->
+        <div class="navbar-header">
+            <a class="navbar-brand glyphicon glyphicon-globe"
+               href="#" id="menu-toggle"> 三组酒圣网 </a>
+        </div>
+
+        <!-- 左边 信息 -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active "><a href="#"
+                                       class="glyphicon ">&nbsp领劵中心&nbsp&nbsp <span
+                        class="sr-only">(current)</span></a></li>
+
+                <li><a href="#" class="glyphicon ">&nbsp&nbsp首页&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li><a href="#" class="glyphicon glyphicon-grain">&nbsp&nbsp 我的优惠劵&nbsp&nbsp&nbsp&nbsp</a></li>
+
+
+                <!-- 右边的    导航 按钮样式 -->
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="../lxx/LoginUser"> &nbsp登录</a></li>
+                    <li><a href="../lxx/Register">&nbsp免费注册 </a></li>
+                    <li><a href="../lxx/zhuxiao">&nbsp&nbsp 注销</a></li>
+                </ul>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<br><br><br><br>
+<div id="divcss5">
+
+<div>
+    <ul class="nav navbar-nav navbar-left">
+
+        <img alt="" src="../upload/xo.jpg" style="width:150px;height: 80px"/>
+         <font color="red">酒 圣 网</font>
+
+    </ul>
+</div>
+
+<br><br>
+    <br><br><br>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="carousel slide" id="carousel-903621">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-903621">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-903621">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-903621">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="../upload/xo.jpg" style="width:800px;height: 200px"/>
+                        <div class="carousel-caption">
+                            <h4>运动</h4>
+                            <p> 生命在于 运动，运动在于 行动，你的好酒正在 流动</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="../upload/xo3.jpg" style="width:800px;height: 200px"/>
+                        <div class="carousel-caption">
+                            <h4>生活</h4>
+                            <p> 生活 苦辣酸甜各有味道，细细品尝 烈酒的味道</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="../upload/xo2.jpg"  style="width:800px;height: 200px"/>
+                        <div class="carousel-caption">
+                            <h4>美酒</h4>
+                            <p>这路还长，酒让我陪你慢慢走吧</p>
+                        </div>
+                    </div>
+                </div> <a data-slide="prev" href="#carousel-903621" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-903621" class="right carousel-control">›</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+        <h3>--为你推荐好劵--</h3>
+    <br><br>
       <div class="row">
           <div class="col-md-6">
   <div  id="data" class="alert alert-warning"></div>
@@ -99,10 +208,10 @@
             },
             columns : [
                 //{field : 'yhid', title : '优惠劵编码', width : 300},
-                {field : 'yhname', title : '', width : 200,
+                {field : 'productphoto', title : '', width : 200,
                     formatter:function(value,row,index){
                         //var  a=  "<i>"+value+"</i> <br>";
-                       var a="<img src='http://aliying.oss-cn-beijing.aliyuncs.com/aliying/1566548841256.jpg'  width='100' height='80'>";
+                       var a="<img src='"+value+"'  width='100' height='80'>";
                         return a;
                     }
                 },
@@ -180,10 +289,10 @@
             },
             columns : [
                 //{field : 'yhid', title : '优惠劵编码', width : 300},
-                {field : 'yhname', title : '', width : 200,
+                {field : 'productphoto', title : '', width : 200,
                     formatter:function(value,row,index){
                         //var  a=  "<i>"+value+"</i> <br>";
-                        var a="<img src='http://aliying.oss-cn-beijing.aliyuncs.com/aliying/1566548841256.jpg'  width='100' height='80'>";
+                        var a="<img src='"+value+"'  width='100' height='80'>";
                         return a;
                     }
                 },

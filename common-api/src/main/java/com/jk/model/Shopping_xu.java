@@ -6,12 +6,21 @@ public class Shopping_xu implements Serializable {
     private   String id;
     private   Integer productid;  //商品id
     private   Integer productcount;  //数量
+    private   Integer productkucun;  //库存
     private   String productphoto;  //图片
     private   String productname;   //商品名
     private   Double productprice;  //价格
     private   Integer winejhl;      //毫升
     private   Integer winedushu;   //度数
-    private   String brandname;     //品牌
+
+
+    public Integer getProductkucun() {
+        return productkucun;
+    }
+
+    public void setProductkucun(Integer productkucun) {
+        this.productkucun = productkucun;
+    }
 
     public Integer getProductcount() {
         return productcount;
@@ -20,7 +29,6 @@ public class Shopping_xu implements Serializable {
     public void setProductcount(Integer productcount) {
         this.productcount = productcount;
     }
-
 
     public Integer getProductid() {
         return productid;
@@ -79,11 +87,6 @@ public class Shopping_xu implements Serializable {
         this.winedushu = winedushu;
     }
 
-    public String getBrandname() {
-        return brandname;
-    }
 
-    public void setBrandname(String brandname) {
-        this.brandname = brandname;
-    }
+
 }

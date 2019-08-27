@@ -9,12 +9,16 @@ import com.jk.model.*;
 import com.jk.service.LxxService;
 import com.jk.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -269,6 +273,7 @@ public class LxxController {
             return "passerror";
         }
         request.getSession().setAttribute("user_xu", loginUser);
+
         return "success";
     }
 
@@ -293,6 +298,13 @@ public class LxxController {
         lxxService.addregisUser(user);
 
         return "regissuccess";
+    }
+
+    //注销
+    @RequestMapping("zhuxiao")
+    public String loginUser(HttpServletRequest request) {
+        request.getSession().removeAttribute("user_xu");
+        return "ztx/ztxjiuxian";
     }
 
     @RequestMapping("check")
@@ -350,64 +362,95 @@ public class LxxController {
 
     }*/
 
+            @Autowired
+            private MongoTemplate mongoTemplate;
+
     //查询代付款订单
-    @RequestMapping("queryPaymentOnBehalfOfOthers")
-    @ResponseBody
-    public DataGridResult queryPaymentOnBehalfOfOthers(@RequestBody ParameUtil parame) {
-        DataGridResult dgr = new DataGridResult();
-        PageUtil pageUtil = lxxService.queryPaymentOnBehalfOfOthers(parame);
-        dgr.setRows(pageUtil.getList());
-        dgr.setTotal(pageUtil.getSumSize());
-        return dgr;
-    }
+        @RequestMapping("queryPaymentOnBehalfOfOthers")
+        @ResponseBody
+        public ModelAndView queryPaymentOnBehalfOfOthers(YsqJiaoYi ysqJiaoYi,User_xu user) {
+            List<YsqJiaoYi> list =lxxService.queryDropShipping();
+            ModelAndView mv = new ModelAndView();
+            mv.setViewName("/lxx/daifahuo");
+            mv.addObject("jy", list);
+
+            return mv;
+        }
     //查询代发货订单
     @RequestMapping("queryDropShipping")
     @ResponseBody
-    public DataGridResult DropShipping(@RequestBody ParameUtil parame) {
-        DataGridResult dgr = new DataGridResult();
-        PageUtil pageUtil = lxxService.DropShipping(parame);
-        dgr.setRows(pageUtil.getList());
-        dgr.setTotal(pageUtil.getSumSize());
-        return dgr;
+    public ModelAndView queryDropShipping() {
+        List<YsqJiaoYi> list =lxxService.queryDropShipping();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/daifahuo");
+        mv.addObject("jy", list);
+
+        return mv;
     }
     //查询已发货订单
     @RequestMapping("queryShippedOrder")
     @ResponseBody
-    public DataGridResult queryShippedOrder(@RequestBody ParameUtil parame) {
-        DataGridResult dgr = new DataGridResult();
-        PageUtil pageUtil = lxxService.Shipped(parame);
-        dgr.setRows(pageUtil.getList());
-        dgr.setTotal(pageUtil.getSumSize());
-        return dgr;
+    public ModelAndView queryShippedOrder() {
+        List<YsqJiaoYi> list =lxxService.queryShippedOrder();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/yifahuo");
+        mv.addObject("jy", list);
+
+        return mv;
     }
     //查询已完成订单
     @RequestMapping("queryOffTheStocks")
     @ResponseBody
-    public DataGridResult OffTheStocks(@RequestBody ParameUtil parame) {
-        DataGridResult dgr = new DataGridResult();
-        PageUtil pageUtil = lxxService.OffTheStocks(parame);
-        dgr.setRows(pageUtil.getList());
-        dgr.setTotal(pageUtil.getSumSize());
-        return dgr;
+    public ModelAndView queryOffTheStocks() {
+        List<YsqJiaoYi> list =lxxService.queryOffTheStocks();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/yiwancheng");
+        mv.addObject("jy", list);
+        return mv;
     }
     //查询已关闭订单
     @RequestMapping("queryClose")
     @ResponseBody
-    public DataGridResult queryClose(@RequestBody ParameUtil parame) {
-        DataGridResult dgr = new DataGridResult();
-        PageUtil pageUtil = lxxService.queryClose(parame);
-        dgr.setRows(pageUtil.getList());
-        dgr.setTotal(pageUtil.getSumSize());
-        return dgr;
+    public ModelAndView queryClose() {
+        List<YsqJiaoYi> list =lxxService.queryClose();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/yiguanbi");
+        mv.addObject("jy", list);
+        return mv;
     }
     //查询退款中订单
     @RequestMapping("queryRefund")
     @ResponseBody
-    public DataGridResult queryOrder(@RequestBody ParameUtil parame) {
-        DataGridResult dgr = new DataGridResult();
-        PageUtil pageUtil = lxxService.queryRefund(parame);
-        dgr.setRows(pageUtil.getList());
-        dgr.setTotal(pageUtil.getSumSize());
-        return dgr;
+    public ModelAndView queryRefund() {
+        List<YsqJiaoYi> list =lxxService.queryRefund();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/tuikuanzhong");
+        mv.addObject("jy", list);
+        return mv;
+    }
+    //查询全部
+    @RequestMapping("queryQuan")
+    @ResponseBody
+    public ModelAndView queryQuan() {
+
+        List<YsqJiaoYi> list =lxxService.queryQuan();
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/index");
+        mv.addObject("jy", list);
+
+        return mv;
+    }
+    //查询个人中心
+    @RequestMapping("queryIntegral")
+    @ResponseBody
+    public ModelAndView queryIntegral() {
+
+        List<Object> list =lxxService.queryIntegral();
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/lxx/personage");
+        mv.addObject("grzx", list);
+
+        return mv;
     }
 }

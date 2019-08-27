@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,22 +36,13 @@ public class Xu1Controller {
     @RequestMapping("addshopping")
     @ResponseBody
     public  String  addshopping(Shopping_xu sho, HttpServletRequest request){
-      /*  User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
          if(us == null){
              return  "1";  //判断 跳登录页
          }else{
               xu1.addshopping(sho,us.getKeid());
          }
-     */
 
-        sho.setProductid(1);
-        sho.setProductcount(1);  //数量默认1
-        sho.setProductphoto("123.jpg");
-        sho.setProductname("二锅头");
-        sho.setProductprice(150.00);
-        sho.setWinejhl(500);
-        sho.setWinedushu(36);
-         xu1.addshopping(sho,1);
 
          return  "2";
     }
@@ -59,9 +51,13 @@ public class Xu1Controller {
    @RequestMapping("listshopping")
    @ResponseBody
     public Map  listshopping(HttpServletRequest request){
-       //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-      // List<Shopping_xu>  list= xu1.listshopping(us.getKeid());
-       List<Shopping_xu>  list= xu1.listshopping(1);
+       User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+       List<Shopping_xu>  list=new ArrayList<Shopping_xu>();
+       if(us==null){
+            return null;
+       }else{
+           list= xu1.listshopping(us.getKeid());
+       }
        Map map=new HashMap();
        map.put("rows",list);
        return map;
@@ -71,20 +67,22 @@ public class Xu1Controller {
     @RequestMapping("deleteshopping")
     @ResponseBody
     public void deleteshopping(Integer id,HttpServletRequest request){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.deleteshopping(id,us.getKeid());
-         xu1.deleteshopping(id,1);
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+         xu1.deleteshopping(id,us.getKeid());
     }
 
     //结算改数量
     @RequestMapping("updatecount")
     @ResponseBody
-    public Integer updatecount(Integer[] productid,Integer[] count,HttpServletRequest request){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        //  xu1.updatecount(productid,count,us.getKeid());
-       Integer a= xu1.updatecount(productid,count,1);
+    public Integer updatecount(Integer[] productid,Integer[] count,double[] productprice,HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+       if(us==null){
+           return 2;
+       }else{
+           xu1.updatecount(productid,count,productprice,us.getKeid());
+       }
 
-       return  a;
+       return  1;
     }
 
     //跳收藏
@@ -98,19 +96,18 @@ public class Xu1Controller {
     @RequestMapping("addshoucang")
     @ResponseBody
     public void addshoucang(Shopping_xu sho,HttpServletRequest request){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.listshopping(sho,us.getKeid());
-     xu1.addshoucang(sho,1);
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+     xu1.addshoucang(sho,us.getKeid());
 
     }
+
 
     //查收藏夹
     @RequestMapping("listshoucang")
     @ResponseBody
-    public Map listshoucang(){
-        //User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-        // List<Shopping_xu>  list= xu1.listshopping(us.getKeid());
-       List<Shopping_xu> list= xu1.listshoucang(1);
+    public Map listshoucang(HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+       List<Shopping_xu> list= xu1.listshoucang(us.getKeid());
         Map map=new HashMap();
         map.put("rows",list);
         return map;
@@ -124,7 +121,7 @@ public class Xu1Controller {
         return "xu1/youhiujuan";
     }
 
-    //优惠劵 查询展示
+    //优惠劵 查询展示1
     @RequestMapping("listyouhiujuan1")
     @ResponseBody
     public Map listyouhiujuan1(){
@@ -134,7 +131,7 @@ public class Xu1Controller {
         return map;
     }
 
-    //优惠劵 查询展示
+    //优惠劵 查询展示2
     @RequestMapping("listyouhiujuan2")
     @ResponseBody
     public Map listyouhiujuan2(){
