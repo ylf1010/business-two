@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Shopping_xu implements Serializable {
     private   String id;
     private   Integer productid;  //商品id
-    private   Integer producount;  //数量
+    private   Integer productcount;  //数量
     private   String productphoto;  //图片
     private   String productname;   //商品名
     private   Double productprice;  //价格
@@ -13,12 +13,12 @@ public class Shopping_xu implements Serializable {
     private   Integer winedushu;   //度数
     private   String brandname;     //品牌
 
-    public Integer getProducount() {
-        return producount;
+    public Integer getProductcount() {
+        return productcount;
     }
 
-    public void setProducount(Integer producount) {
-        this.producount = producount;
+    public void setProductcount(Integer productcount) {
+        this.productcount = productcount;
     }
 
 

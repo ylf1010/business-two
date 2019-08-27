@@ -1,23 +1,40 @@
 package com.jk.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
 
 public class YsqJiaoYi implements Serializable {
     private Integer id;
+    private String productid;
 
-    private Integer ordernumber;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getProductid() {
+        return productid;
+    }
+
+    public void setProductid(String productid) {
+        this.productid = productid;
+    }
+
+    private String ordernumber;
 
     private String productname;
+
+    private String img;
 
     private Integer unitprice;
 
     private Integer amount;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")// 处理从	后端到前端的时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date ordertime;
 
     private String buyer;
@@ -28,6 +45,24 @@ public class YsqJiaoYi implements Serializable {
 
     private String beizhu;
 
+    private Integer xu_userid;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Integer getXu_userid() {
+        return xu_userid;
+    }
+
+    public void setXu_userid(Integer xu_userid) {
+        this.xu_userid = xu_userid;
+    }
+
     public String getBeizhu() {
         return beizhu;
     }
@@ -36,19 +71,12 @@ public class YsqJiaoYi implements Serializable {
         this.beizhu = beizhu;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getOrdernumber() {
+    public String getOrdernumber() {
         return ordernumber;
     }
 
-    public void setOrdernumber(Integer ordernumber) {
+    public void setOrdernumber(String ordernumber) {
         this.ordernumber = ordernumber;
     }
 
