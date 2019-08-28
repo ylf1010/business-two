@@ -4,8 +4,6 @@ package com.jk.model;
 import java.io.Serializable;
 
 public class Lunbo implements Serializable {
-
-
     private Integer carouselid;
 
     private String carouselurl;

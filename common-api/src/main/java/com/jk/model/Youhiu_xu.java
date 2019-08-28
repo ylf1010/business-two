@@ -27,6 +27,15 @@ public class Youhiu_xu implements Serializable {
     private  String   shuoming;
     private  String   lianjie;
     private  String productphoto;
+    private Integer  member;
+
+    public Integer getMember() {
+        return member;
+    }
+
+    public void setMember(Integer member) {
+        this.member = member;
+    }
 
     public String getProductphoto() {
         return productphoto;

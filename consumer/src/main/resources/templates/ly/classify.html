@@ -38,12 +38,12 @@
     <!--  引入fileinput的js -->
     <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
     <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
-   <!-- &lt;!&ndash;  引入上传图片的js &ndash;&gt;
+    <!--  引入上传图片的js -->
     <script src="../js/uploadify/jquery.uploadify.min.js"></script>
     <link rel="stylesheet" href="../js/uploadify/uploadify.css">
     <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
     <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
--->
+
 
 </head>
 <body>
@@ -80,7 +80,7 @@
         $("#fl-table").bootstrapTable({
             url: "../lyclassify/showClassify",
             method: 'post',
-            striped: true, // 斑马线效果     默认false
+            striped: true,  	// 斑马线效果     默认false
             //只允许选中一行
             singleSelect: false,
             //选中行是不选中复选框或者单选按钮
@@ -128,17 +128,11 @@
                 {field: 'flname', title: '分类(名称)', width: 300},
                 {field: 'flphoto', title: '分类(展示图片)', width: 300,
                     formatter: function(value,row,index){
-                        return "<img width='100' src='"+value+"'>";
-                      /*  return "<img width='100' src='../"+value+"'>"*/
+                        return "<img width='100' src='../"+value+"'>"
                     }
 
                 },
-                {field: 'productnumber', title: '商品(数)', width: 300,
-                    formatter: function(value,row,index){
-                        return value+"箱";
-                        /*  return "<img width='100' src='../"+value+"'>"*/
-                    }
-                },
+                {field: 'productnumber', title: '商品(数)', width: 300},
                 {field: 'fltime', title: '分类(创建时间)', width: 300},
                 /*{field: 'productsxj', title: '商品(上/下架)', width: 300,
                     formatter: function (value, row, index) {//单元格格式化器（字段值，行对象，行索引）
@@ -263,7 +257,7 @@
         }else{
 
             bootbox.dialog({
-                title: '修改分类',
+                title: '修改音乐',
                 message: createAddContent("../lyclassify/xgClassifypage?flid="+arr[0].flid),
                 closeButton: true,//是否显示关闭按钮
                 buttons: {

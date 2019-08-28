@@ -236,14 +236,14 @@
 
     <!--优惠劵增-->
    <insert id="uaddyouhiu" parameterType="com.jk.model.Youhiu_xu">
-       insert  into xu_youhiu(yhname,shangpinid,yhtype,man,jian,shuliang,xianling,stadate,enddate,cuangdate,shuoming,lianjie)
-         values(#{yhname},#{shangpinid},#{yhtype},#{man},#{jian},#{shuliang},#{xianling},#{stadate},#{enddate},now(),#{shuoming},#{lianjie})
+       insert  into xu_youhiu(yhname,shangpinid,yhtype,man,jian,shuliang,xianling,stadate,enddate,cuangdate,shuoming,lianjie,member)
+         values(#{yhname},#{shangpinid},#{yhtype},#{man},#{jian},#{shuliang},#{xianling},#{stadate},#{enddate},now(),#{shuoming},#{lianjie},#{member})
    </insert>
 
     <!--优惠劵改-->
     <update id="uupdateyouhiu"  parameterType="com.jk.model.Youhiu_xu">
         update xu_youhiu set yhname=#{yhname},shangpinid=#{shangpinid},yhtype=#{yhtype},man=#{man},jian=#{jian},
-          shuliang=#{shuliang},xianling=#{xianling},stadate=#{stadate},enddate=#{enddate},shuoming=#{shuoming},lianjie=#{lianjie}
+          shuliang=#{shuliang},xianling=#{xianling},stadate=#{stadate},enddate=#{enddate},shuoming=#{shuoming},lianjie=#{lianjie},member=#{member}
                     where yhid=#{yhid}
     </update>
 

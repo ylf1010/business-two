@@ -3,7 +3,6 @@ package com.jk.dao;
 import com.jk.model.Product;
 import com.jk.util.ParameUtil;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -30,8 +29,4 @@ public interface ProductMapper {
 
     Product queryProductPage(@Param("productid") String productid);
 
-    Product queryMiaosha(@Param("productid") Integer productid);
-
-    @Select("select * from ly_product")
-    List<Product> querymiaosha();
 }

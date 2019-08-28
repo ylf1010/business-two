@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public class DataGridResult implements Serializable {
-
+    /**
+     * serialVersionUID : TODO
+     */
+    private static final long serialVersionUID = 4438889826054379161L;
     private long total;
     private List rows;
 

@@ -39,6 +39,12 @@
     <style>
         body{ text-align:center}
         #divcss5{margin:0 auto;border:0px solid #000;width:1200px}
+
+    </style>
+    <style>
+        body{ text-align:center}
+        #divcss4{margin:0 auto;border:0px solid #000;width:1200px}
+
     </style>
 </head>
 <body>
@@ -76,8 +82,8 @@
                                        class="glyphicon ">&nbsp领劵中心&nbsp&nbsp <span
                         class="sr-only">(current)</span></a></li>
 
-                <li><a href="#" class="glyphicon ">&nbsp&nbsp首页&nbsp&nbsp&nbsp&nbsp</a></li>
-                <li><a href="#" class="glyphicon glyphicon-grain">&nbsp&nbsp 我的优惠劵&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li><a href="../ztx/toztxjiuxian" class="glyphicon ">&nbsp&nbsp首页&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li><a href="../xu1/YouHiuJuanCha1" class="glyphicon glyphicon-grain">&nbsp&nbsp 我的优惠劵&nbsp&nbsp&nbsp&nbsp</a></li>
 
 
                 <!-- 右边的    导航 按钮样式 -->
@@ -96,7 +102,7 @@
 
 
 <br><br><br><br>
-<div id="divcss5">
+<div id="divcss4">
 
 <div>
     <ul class="nav navbar-nav navbar-left">
@@ -106,9 +112,12 @@
 
     </ul>
 </div>
-
+</div>
 <br><br>
     <br><br><br>
+
+    <div><img src="../upload/1002.jpg" width="outo" height="500"/></div>
+    <!--
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span12">
@@ -148,9 +157,9 @@
         </div>
     </div>
 </div>
-
+-->
 <br><br>
-
+<div id="divcss5">
         <h3>--为你推荐好劵--</h3>
     <br><br>
       <div class="row">
@@ -164,7 +173,7 @@
           </div>
           </div>
   </div>
-
+<br><br><br>
 </body>
 <script>
     //查询    数据展示
@@ -216,7 +225,7 @@
                     }
                 },
                // {field : 'shangpinid', title : '优惠商品编号', width : 300,},
-                { field : 'shuoming', title : '',width : 500,
+                { field : 'shuoming', title : '<h4><font color="#e9967a" >商品劵</font></h4>',width : 500,
                     formatter:function(value,row,index){
                         var a="<h4><font color='red'>￥"+row.jian+"</font></h4>";
                             a+=  "<font color='red'>满"+row.man+"元减"+row.jian+"</font> <br>";
@@ -231,7 +240,7 @@
 
                  { field : 'x', title : '', width : 100,
                      formatter:function(value,row,index){
-                         var  a="<a href='javascript:xiangqing()' > 立<br>即<br>领<br>取 </a>";
+                         var  a="<a href='javascript:lingqu1("+row.yhid+")' > 立<br>即<br>领<br>取 </a>";
                          return  a;
                      }
                  }
@@ -239,13 +248,31 @@
         });
     })
 
-    //条件查询     使用parameUtil工具类
+   /* //条件查询     使用parameUtil工具类
     function sousuo() {
         $("#data").bootstrapTable("refresh", {
             "query":{
                 "name" : $("#selectyouhiu").val(),
             }
         });
+    }*/
+
+   //非会员劵领
+    lingqu1=function(hyid){
+        $.ajax({
+            url:"../xu1/LingQuYouHiuJuan1",
+            data:{hyid:hyid},
+            type:"post",
+            success:function(da){
+                if(da==2){
+                    alert("您已领取过此劵，无法再次领取");
+                }else  if(da==3){
+                    alert("领取成功");
+                }else if(da==11){
+                    alert("请先登录");
+                }
+            }
+        })
     }
 
     //查询    数据展示
@@ -297,7 +324,7 @@
                     }
                 },
                 // {field : 'shangpinid', title : '优惠商品编号', width : 300,},
-                { field : 'shuoming', title : '',width : 500,
+                { field : 'shuoming', title : '<h4><font color="#e9967a" >CLUB尊享劵</font></h4>',width : 500,
                     formatter:function(value,row,index){
                         var a="<h4><font color='red'>￥"+row.jian+"</font></h4>";
                         a+=  "<font color='red'>满"+row.man+"元减"+row.jian+"</font> <br>";
@@ -312,12 +339,31 @@
 
                 { field : 'x', title : '', width : 100,
                     formatter:function(value,row,index){
-                        var  a="<a href='javascript:xiangqing()' > 立<br>即<br>领<br>取 </a>";
+                        var  a="<a href='javascript:lingqu2("+row.yhid+")' > 立<br>即<br>领<br>取 </a>";
                         return  a;
                     }
                 }
             ]
         });
     })
+
+    lingqu2=function(hyid){
+        $.ajax({
+            url:"../xu1/LingQuYouHiuJuan2",
+            data:{hyid:hyid},
+            type:"post",
+            success:function(da){
+                if(da==1){
+                    alert("此劵为会员专属劵，您还不是会员，请先加入会员！");
+                }else if(da==2){
+                    alert("您已领取过此劵，无法再次领取");
+                }else  if(da==3){
+                    alert("领取成功");
+                }else if(da==11){
+                    alert("请先登录");
+                }
+            }
+        })
+    }
 </script>
 </html>

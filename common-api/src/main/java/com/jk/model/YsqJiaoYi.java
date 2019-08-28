@@ -7,29 +7,10 @@ import java.util.Date;
 
 public class YsqJiaoYi implements Serializable {
     private Integer id;
-    private String productid;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductid() {
-        return productid;
-    }
-
-    public void setProductid(String productid) {
-        this.productid = productid;
-    }
 
     private String ordernumber;
 
     private String productname;
-
-    private String img;
 
     private Integer unitprice;
 
@@ -47,14 +28,6 @@ public class YsqJiaoYi implements Serializable {
 
     private Integer xu_userid;
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
     public Integer getXu_userid() {
         return xu_userid;
     }
@@ -71,6 +44,13 @@ public class YsqJiaoYi implements Serializable {
         this.beizhu = beizhu;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getOrdernumber() {
         return ordernumber;

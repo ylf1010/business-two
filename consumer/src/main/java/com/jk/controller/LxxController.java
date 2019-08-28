@@ -259,6 +259,10 @@ public class LxxController {
     @RequestMapping("loginUser")
     @ResponseBody
     public String loginUser(User_xu user, HttpServletRequest request, String code) {
+      /*  User_xu loginUser=new User_xu();
+        loginUser.setKeid(1);
+        request.getSession().setAttribute("user_xu", loginUser);
+      */
         User_xu loginUser = lxxService.loginUser(user);
 
         String readCode = request.getSession().getAttribute("checkcode").toString();
@@ -275,6 +279,8 @@ public class LxxController {
         request.getSession().setAttribute("user_xu", loginUser);
 
         return "success";
+
+
     }
 
     //获取图片验证码

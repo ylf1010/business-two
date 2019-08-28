@@ -1,9 +1,7 @@
 package com.jk.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jk.model.Shopping_xu;
-import com.jk.model.User_xu;
-import com.jk.model.Youhiu_xu;
+import com.jk.model.*;
 import com.jk.service.Xu1Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -37,11 +35,11 @@ public class Xu1Controller {
     @ResponseBody
     public  String  addshopping(Shopping_xu sho, HttpServletRequest request){
         User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
-         if(us == null){
-             return  "1";  //判断 跳登录页
-         }else{
-              xu1.addshopping(sho,us.getKeid());
-         }
+        if(us == null){
+            return  "1";  //判断 跳登录页
+        }else{
+            xu1.addshopping(sho,us.getKeid());
+        }
 
 
          return  "2";
@@ -140,4 +138,73 @@ public class Xu1Controller {
         map.put("rows",list);
         return map;
     }
+
+    //非会员劵
+    @RequestMapping("LingQuYouHiuJuan1")
+    @ResponseBody
+    public Integer LingQuYouHiuJuan1(Integer hyid,HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+        if(us==null){
+            return 11;
+        }
+          //2已领过  3领取成功
+        Integer a=xu1.LingQuYouHiuJuan(hyid,us.getKeid());
+        return a;
+    }
+
+    //会员劵
+    @RequestMapping("LingQuYouHiuJuan2")
+    @ResponseBody
+    public Integer LingQuYouHiuJuan2(Integer hyid,HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+        if(us==null){
+            return 11;
+        }
+        if(us.getMember()==1){
+            return 1;  //非会员不可领
+        }
+        Integer a=xu1.LingQuYouHiuJuan(hyid,us.getKeid());
+        return a;
+    }
+
+
+    //跳个人优惠劵查
+    @RequestMapping("YouHiuJuanCha1")
+    public String YouHiuJuanCha1(HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+        if(us==null){
+            return "lxx/LoginLxx";
+        }
+        return "xu1/YouHiuJuanCha";
+    }
+
+    //跳个人优惠劵查
+    @RequestMapping("YouHiuJuanCha")
+    @ResponseBody
+    public Map YouHiuJuanCha(HttpServletRequest request){
+        User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+      List<Youhiu_xu> list=  xu1.YouHiuJuanCha(us.getKeid());
+      Map  map=new HashMap();
+      map.put("rows",list);
+        return map;
+    }
+
+
+
+    //跳历史页面
+    @RequestMapping("history1")
+    public String history1(){
+        return "xu1/history";
+    }
+
+      //历史记录
+      @RequestMapping("history")
+      @ResponseBody
+      public Map history(HttpServletRequest request){
+          User_xu us= (User_xu) request.getSession().getAttribute("user_xu");
+          List<Product>  list=xu1.history(us.getKeid());
+          Map map=new HashMap();
+          map.put("rows",list);
+          return map;
+      }
 }

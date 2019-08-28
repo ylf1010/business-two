@@ -1,6 +1,7 @@
 package com.jk.util;
 
 import com.jk.model.YsqEvaluate;
+import com.jk.model.YsqEvaluate;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,8 +11,7 @@ import java.util.Map;
 
 
 public class TreeUtil2 implements Serializable {
-
-
+    
     /**
      * 获取父节点菜单
      * @param treesList 所有树菜单集合

@@ -13,8 +13,10 @@ package com.jk.service;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jk.dao.*;
-import com.jk.model.*;
+import com.jk.dao.ClassifyMapper;
+import com.jk.dao.ProductMapper;
+import com.jk.model.Classify;
+import com.jk.model.Product;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +37,6 @@ public class LyProductServiceImpl implements LyProductService{
     private ProductMapper productMapper;
     @Autowired
     private ClassifyMapper classifyMapper;
-    @Autowired
-    private ZtxShengMapper ztxShengMapper;
-    @Autowired
-    private ZtxBrandMapper  ztxBrandMapper;
-    @Autowired
-    private ZtxShiMapper ztxShiMapper;
-
     @Override
     public PageUtil querylyProduct(ParameUtil parame) {
         PageHelper.startPage(parame.getPageNumber(), parame.getPageSize());
@@ -74,15 +69,7 @@ public class LyProductServiceImpl implements LyProductService{
     @Override
     public void addProduct(Product product) {
         product.setProductsxj(1);
-        product.setWinepromotion(1);
-        if (product.getProductzxl()>30000){
-            product.setWinehotsale(1);
-        }
-           /* productkucun    winepromotion*/
-            /*if (product.getProductkucun()<10000){
-                product.setWinepromotion(1);
-        }*/
-
+        product.setProductpid(2);
         productMapper.addProduct(product);
     }
     @Override
@@ -97,33 +84,6 @@ public class LyProductServiceImpl implements LyProductService{
     @Override
     public void updateProduct(Product product){
         productMapper.updateByPrimaryKey(product);
-    }
-
-    @Override
-    public List<ZtxSheng> queryOrigns() {
-
-        return ztxShengMapper.queryOrigns();
-    }
-
-    @Override
-    public List<ZtxBrand> queryBrand() {
-        return ztxBrandMapper.queryBrand();
-    }
-
-    @Override
-    public List<ZtxShi> queryShi() {
-
-        return ztxShiMapper.queryShi();
-    }
-
-    @Override
-    public Product queryMiaosha(Integer productid) {
-        return productMapper.queryMiaosha(productid);
-    }
-
-    @Override
-    public List<Product> querymiaosha() {
-        return productMapper.querymiaosha();
     }
 
 }

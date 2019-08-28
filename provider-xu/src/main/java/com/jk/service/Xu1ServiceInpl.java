@@ -2,6 +2,8 @@ package com.jk.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.jk.dao.Xu1Dao;
+import com.jk.model.History;
+import com.jk.model.Product;
 import com.jk.model.Shopping_xu;
 import com.jk.model.Youhiu_xu;
 import com.mongodb.client.result.UpdateResult;
@@ -19,6 +21,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Service
+
 
 public class Xu1ServiceInpl implements Xu1Service{
               //客户端
@@ -99,7 +102,7 @@ public class Xu1ServiceInpl implements Xu1Service{
          //存redis
           String  key="shopping"+uid;
         redisTemplate.opsForList().rightPush(key,sho);
-        redisTemplate.expire(key,60, TimeUnit.MINUTES);
+        redisTemplate.expire(key,600, TimeUnit.MINUTES);
          //删mogo
         Criteria c=new Criteria();   //设置条件
         c.and("productid").is(sho.getProductid());  //删除数组里in包含的所有( is 等于)
@@ -131,6 +134,59 @@ public class Xu1ServiceInpl implements Xu1Service{
     public List<Youhiu_xu> listyouhiujuan2() {
         return xu1.listyouhiujuan2();
     }
+
+    //优惠劵领取
+    @Override
+    public Integer LingQuYouHiuJuan(Integer yhid,Integer keid) {
+        Criteria c=new  Criteria();    //设置条件
+        c.and("yhid").is(yhid);
+        Query query =new  Query();   //使条件生效
+        query.addCriteria( c );
+        //查询  是否领取过劵
+        Youhiu_xu one = mongoTemplate.findOne(query, Youhiu_xu.class, "juan" + keid);
+        if(one != null){
+            return 2;
+        }else{
+            //没领过
+            Youhiu_xu  y=new Youhiu_xu();
+            y.setYhid(yhid);
+            mongoTemplate.insert(y,"juan"+keid);
+            //领取劵 减数量
+            xu1.LingQuYouHiuJuan(yhid);
+        }
+
+        return 3;
+    }
+
+    //个人优惠劵查
+    @Override
+    public List<Youhiu_xu> YouHiuJuanCha(Integer keid) {
+        List<Youhiu_xu> list1 = mongoTemplate.findAll(Youhiu_xu.class, "juan" + keid);
+       String   id="";
+        for (int i=0;i < list1.size();i++){
+            id +=list1.get(i).getYhid()+",";
+        }
+        String[]  ids=id.split(",");
+        List<Youhiu_xu> list = xu1.YouHiuJuanCha(ids);
+        return list;
+    }
+
+
+    //历史记录
+    @Override
+    public  List<Product> history(Integer keid) {
+        String  key="h"+keid;
+        List<History> list1 = redisTemplate.opsForList().range(key, 0, -1);
+        String  ids="";
+        for (int i=0;i < list1.size();i++){
+             ids += list1.get(i).getParame()+",";
+        }
+       String[]  ids1= ids.split(",");
+       List<Product>  list= xu1.history(ids1);
+        return list;
+    }
+
+
 
 
 }

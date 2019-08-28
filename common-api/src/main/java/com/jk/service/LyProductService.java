@@ -1,6 +1,7 @@
 package com.jk.service;
 
-import com.jk.model.*;
+import com.jk.model.Classify;
+import com.jk.model.Product;
 import com.jk.util.PageUtil;
 import com.jk.util.ParameUtil;
 
@@ -22,15 +23,4 @@ public interface LyProductService {
     void updateProduct(Product product);
 
 
-    List<ZtxSheng> queryOrigns();
-
-    List<ZtxBrand> queryBrand();
-
-    List<ZtxShi> queryShi();
-
-
-
-    Product queryMiaosha(Integer productid);
-
-    List<Product> querymiaosha();
 }

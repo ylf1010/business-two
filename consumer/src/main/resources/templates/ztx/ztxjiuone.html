@@ -202,6 +202,8 @@
             success:function(flag){
                if(flag==1){
                    location.href="../lxx/LoginUser";
+               }else{
+                   alert("已加入购物车");
                }
             }
         })
@@ -209,16 +211,14 @@
 
     function jiesuan(){
         $.ajax({
-            url:"../ysqthree/panduanuser",
+            url:"../xu1/addshopping",
             type:"post",
             data:$("#addformid").serialize(),
             success:function(flag){
-                var parse = JSON.parse(flag);
-                if(parse.productid==null){
+                if(flag==1){
+
                     location.href="../lxx/LoginUser";
-                    return;
                 }
-                location.href = "../ysqthree/tiao?"+$("#addformid").serialize();
             }
         })
     }
