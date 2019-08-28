@@ -1,5 +1,6 @@
 package com.jk.model;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -7,6 +8,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Product implements Serializable {
+
+
+    private static final long serialVersionUID = -7597108645487154778L;
     private Integer productid;       //酒品(编号ID)
 
     private String productphoto;      //酒品(展示图片)
@@ -17,15 +21,6 @@ public class Product implements Serializable {
 
     private Double productprice;   //酒品(价格)
 
-    public Integer getProductcount() {
-        return productcount;
-    }
-
-    public void setProductcount(Integer productcount) {
-        this.productcount = productcount;
-    }
-
-    private Integer productcount;   //酒品(价格)
     private Integer productkucun;   //酒品(库存)
 
     private Integer productzxl;    //酒品(总销量)
@@ -51,68 +46,14 @@ public class Product implements Serializable {
     private   Integer   winehotsale;      //酒品(热卖/火爆)
     private   String    winestore;        // 酒品(储藏条件)
 
-    private  Integer minprice;
-    private  Integer maxprice;
-    private  Integer mindushu;
-    private  Integer maxdushu;
-    private  Integer minjhl;
-    private  Integer maxjhl;
+    private  String daoqidate;  //设置到期时间
 
-    public Integer getMinprice() {
-        return minprice;
-    }
-
-    public void setMinprice(Integer minprice) {
-        this.minprice = minprice;
-    }
-
-    public Integer getMaxprice() {
-        return maxprice;
-    }
-
-    public void setMaxprice(Integer maxprice) {
-        this.maxprice = maxprice;
-    }
-
-    public Integer getMindushu() {
-        return mindushu;
-    }
-
-    public void setMindushu(Integer mindushu) {
-        this.mindushu = mindushu;
-    }
-
-    public Integer getMaxdushu() {
-        return maxdushu;
-    }
-
-    public void setMaxdushu(Integer maxdushu) {
-        this.maxdushu = maxdushu;
-    }
-
-    public Integer getMinjhl() {
-        return minjhl;
-    }
-
-    public void setMinjhl(Integer minjhl) {
-        this.minjhl = minjhl;
-    }
-
-    public Integer getMaxjhl() {
-        return maxjhl;
-    }
-
-    public void setMaxjhl(Integer maxjhl) {
-        this.maxjhl = maxjhl;
-    }
-
-    public Integer getProductsxj() {
-        return productsxj;
-    }
-
-    public void setProductsxj(Integer productsxj) {
-        this.productsxj = productsxj;
-    }
+    private Integer mindushu;
+    private Integer maxdushu;
+    private Integer minjhl;
+    private Integer maxjhl;
+    private Integer minprice;
+    private Integer maxprice;
 
     public Integer getProductid() {
         return productid;
@@ -127,7 +68,7 @@ public class Product implements Serializable {
     }
 
     public void setProductphoto(String productphoto) {
-        this.productphoto = productphoto == null ? null : productphoto.trim();
+        this.productphoto = productphoto;
     }
 
     public String getProductname() {
@@ -135,7 +76,7 @@ public class Product implements Serializable {
     }
 
     public void setProductname(String productname) {
-        this.productname = productname == null ? null : productname.trim();
+        this.productname = productname;
     }
 
     public Integer getProductpid() {
@@ -183,9 +124,16 @@ public class Product implements Serializable {
     }
 
     public void setProductdescribe(String productdescribe) {
-        this.productdescribe = productdescribe == null ? null : productdescribe.trim();
+        this.productdescribe = productdescribe;
     }
 
+    public Integer getProductsxj() {
+        return productsxj;
+    }
+
+    public void setProductsxj(Integer productsxj) {
+        this.productsxj = productsxj;
+    }
 
     public Integer getWinejhl() {
         return winejhl;
@@ -289,5 +237,61 @@ public class Product implements Serializable {
 
     public void setWinestore(String winestore) {
         this.winestore = winestore;
+    }
+
+    public String getDaoqidate() {
+        return daoqidate;
+    }
+
+    public void setDaoqidate(String daoqidate) {
+        this.daoqidate = daoqidate;
+    }
+
+    public Integer getMindushu() {
+        return mindushu;
+    }
+
+    public void setMindushu(Integer mindushu) {
+        this.mindushu = mindushu;
+    }
+
+    public Integer getMaxdushu() {
+        return maxdushu;
+    }
+
+    public void setMaxdushu(Integer maxdushu) {
+        this.maxdushu = maxdushu;
+    }
+
+    public Integer getMinjhl() {
+        return minjhl;
+    }
+
+    public void setMinjhl(Integer minjhl) {
+        this.minjhl = minjhl;
+    }
+
+    public Integer getMaxjhl() {
+        return maxjhl;
+    }
+
+    public void setMaxjhl(Integer maxjhl) {
+        this.maxjhl = maxjhl;
+    }
+
+    public Integer getMinprice() {
+        return minprice;
+    }
+
+    public void setMinprice(Integer minprice) {
+        this.minprice = minprice;
+    }
+
+    public Integer getMaxprice() {
+        return maxprice;
+    }
+
+    public void setMaxprice(Integer maxprice) {
+        this.maxprice = maxprice;
     }
 }

@@ -26,9 +26,9 @@ public interface ZtxBrandMapper {
 
 
 
-    @Select("select * from ly_product where productsxj=5 order by productzxl desc")
+    @Select("select * from ly_product where productsxj=5 order by productkucun ")
     List<Product> queryfkqg();
 
-    @Select("select * from ly_product where productsxj=5 and winepromotion=1")
+    @Select("select * from ly_product where productsxj=5 order by productzxl desc")
     List<Product> queryxsms();
 }

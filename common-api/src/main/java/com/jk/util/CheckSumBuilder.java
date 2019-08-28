@@ -2,7 +2,8 @@ package com.jk.util;
 import java.io.Serializable;
 import java.security.MessageDigest;
 public class CheckSumBuilder implements Serializable {
-	 // 计算并获取CheckSum
+
+    // 计算并获取CheckSum
     public static String getCheckSum(String appSecret, String nonce, String curTime) {
         return encode("sha1", appSecret + nonce + curTime);
     }

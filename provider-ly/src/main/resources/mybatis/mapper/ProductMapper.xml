@@ -6,26 +6,50 @@
     <result column="productphoto" property="productphoto" jdbcType="VARCHAR" />
     <result column="productname" property="productname" jdbcType="VARCHAR" />
     <result column="productpid" property="productpid" jdbcType="INTEGER" />
-    <result column="productprice" property="productprice" jdbcType="VARCHAR" />
+    <result column="productprice" property="productprice" jdbcType="DOUBLE" />
     <result column="productkucun" property="productkucun" jdbcType="INTEGER" />
     <result column="productzxl" property="productzxl" jdbcType="INTEGER" />
     <result column="productdate" property="productdate" jdbcType="DATE" />
     <result column="productdescribe" property="productdescribe" jdbcType="VARCHAR" />
     <result column="productsxj" property="productsxj" jdbcType="INTEGER" />
+    <result column="winejhl" property="winejhl" jdbcType="INTEGER" />
+    <result column="wineyieldlyid" property="wineyieldlyid" jdbcType="INTEGER" />
+    <result column="winebrandid" property="winebrandid" jdbcType="INTEGER" />
+    <result column="winexjsj" property="winexjsj" jdbcType="VARCHAR" />
+    <result column="winemouthfeel" property="winemouthfeel" jdbcType="VARCHAR" />
+    <result column="winefragrant" property="winefragrant" jdbcType="VARCHAR" />
+    <result column="winedpms" property="winedpms" jdbcType="VARCHAR" />
+    <result column="wineseze" property="wineseze" jdbcType="VARCHAR" />
+    <result column="winedushu" property="winedushu" jdbcType="INTEGER" />
+    <result column="winegrade" property="winegrade" jdbcType="DOUBLE" />
+    <result column="winepromotion" property="winepromotion" jdbcType="INTEGER" />
+    <result column="winehotsale" property="winehotsale" jdbcType="INTEGER" />
+    <result column="winestore" property="winestore" jdbcType="VARCHAR" />
+
+
+
   </resultMap>
   <sql id="Base_Column_List" >
     productid, productphoto, productname, productpid, productprice, productkucun, productzxl, 
-    productdate, productdescribe, productsxj
+    productdate, productdescribe, productsxj, winejhl, wineyieldlyid,  winebrandid, winexjsj, winemouthfeel, winefragrant,
+    winedpms, wineseze, winedushu, winegrade, winepromotion, winehotsale, winestore
   </sql>
   <select id="querylyProduct" resultType="HashMap">
-
-    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid
+    SELECT sp.*,fl.flname producttype ,pp.brandname ppname ,cd1.orignshiname cdname FROM ly_product sp,ly_classify fl,ly_brand pp,ly_orignshi cd1 WHERE
+    sp.productpid=fl.flid  AND sp.winebrandid= pp.brandid AND sp.wineyieldlyid= cd1.orignshiid
+    /*SELECT sp.*,fl.flname producttype ,pp.brandname ppname ,cd1.orignname cdname FROM ly_product sp,ly_classify fl,ly_brand pp,ly_orignsheng cd1 WHERE
+    sp.productpid=fl.flid  AND sp.winebrandid= pp.brandid AND sp.wineyieldlyid= cd1.orignid*/
+    /*SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid*/
    <if test="productname !=null and productname !=''">
      and sp.productname like '%${productname}%'
    </if>
-    <if test="flid !=null and flid !=-1">
+    <if test="flid !=null and flid != -1">
       and fl.flid =#{flid}
     </if>
+    <if test="brandid !=null and brandid != -1">
+      and pp.brandid =#{brandid}
+    </if>
+
 
   </select>
   <update id="updateproductzt">
@@ -44,11 +68,15 @@
   <insert id="addProduct">
     insert into ly_product (productphoto, productname,
                             productpid, productprice, productkucun,
-                            productzxl, productdate, productdescribe , productsxj
+                            productzxl, productdate, productdescribe , productsxj, winejhl, wineyieldlyid,  winebrandid, winexjsj, winemouthfeel, winefragrant,
+                            winedpms, wineseze, winedushu, winegrade, winepromotion, winehotsale, winestore
     )
     values (#{productphoto,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR},
-            #{productpid,jdbcType=INTEGER}, #{productprice,jdbcType=VARCHAR}, #{productkucun,jdbcType=INTEGER},
-            #{productzxl,jdbcType=INTEGER}, #{productdate,jdbcType=DATE}, #{productdescribe,jdbcType=VARCHAR}, #{productsxj,jdbcType=INTEGER}
+            #{productpid,jdbcType=INTEGER}, #{productprice,jdbcType=DOUBLE}, #{productkucun,jdbcType=INTEGER},
+            #{productzxl,jdbcType=INTEGER}, #{productdate,jdbcType=DATE}, #{productdescribe,jdbcType=VARCHAR}, #{productsxj,jdbcType=INTEGER},
+            #{winejhl,jdbcType=INTEGER},#{wineyieldlyid,jdbcType=INTEGER},#{winebrandid,jdbcType=INTEGER},#{winexjsj,jdbcType=VARCHAR},#{winemouthfeel,jdbcType=VARCHAR},
+            #{winefragrant,jdbcType=VARCHAR},#{winedpms,jdbcType=VARCHAR},#{wineseze,jdbcType=VARCHAR},#{winedushu,jdbcType=INTEGER},#{winegrade,jdbcType=DOUBLE},
+            #{winepromotion,jdbcType=INTEGER},#{winehotsale,jdbcType=INTEGER},#{winestore,jdbcType=VARCHAR}
            )
 
   </insert>
@@ -56,6 +84,9 @@
         delete from  ly_product where productid in (${dids})
     </delete>
   <select id="queryProductPage" resultMap="BaseResultMap">
+    select  * from  ly_product  where  productid=#{productid}
+  </select>
+  <select id="queryMiaosha" resultMap="BaseResultMap">
     select  * from  ly_product  where  productid=#{productid}
   </select>
 
@@ -78,7 +109,7 @@
       productzxl, productdate, productdescribe ,productsxj
       )
     values (#{productid,jdbcType=INTEGER}, #{productphoto,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, 
-      #{productpid,jdbcType=INTEGER}, #{productprice,jdbcType=VARCHAR}, #{productkucun,jdbcType=INTEGER}, 
+      #{productpid,jdbcType=INTEGER}, #{productprice,jdbcType=DOUBLE}, #{productkucun,jdbcType=INTEGER},
       #{productzxl,jdbcType=INTEGER}, #{productdate,jdbcType=DATE}, #{productdescribe,jdbcType=VARCHAR},
       #{productsxj,jdbcType=INTEGER}
       )
@@ -131,7 +162,7 @@
         #{productpid,jdbcType=INTEGER},
       </if>
       <if test="productprice != null" >
-        #{productprice,jdbcType=VARCHAR},
+        #{productprice,jdbcType=DOUBLE},
       </if>
       <if test="productkucun != null" >
         #{productkucun,jdbcType=INTEGER},
@@ -163,7 +194,7 @@
         productpid = #{productpid,jdbcType=INTEGER},
       </if>
       <if test="productprice != null" >
-        productprice = #{productprice,jdbcType=VARCHAR},
+        productprice = #{productprice,jdbcType=DOUBLE},
       </if>
       <if test="productkucun != null" >
         productkucun = #{productkucun,jdbcType=INTEGER},
@@ -188,12 +219,27 @@
     set productphoto = #{productphoto,jdbcType=VARCHAR},
       productname = #{productname,jdbcType=VARCHAR},
       productpid = #{productpid,jdbcType=INTEGER},
-      productprice = #{productprice,jdbcType=VARCHAR},
+      productprice = #{productprice,jdbcType=DOUBLE},
       productkucun = #{productkucun,jdbcType=INTEGER},
       productzxl = #{productzxl,jdbcType=INTEGER},
       productdate = #{productdate,jdbcType=DATE},
       productdescribe = #{productdescribe,jdbcType=VARCHAR},
-      productsxj = #{productsxj,jdbcType=INTEGER}
+      productsxj = #{productsxj,jdbcType=INTEGER},
+      winejhl = #{winejhl,jdbcType=INTEGER},
+      wineyieldlyid = #{wineyieldlyid,jdbcType=INTEGER},
+      winebrandid =  #{winebrandid,jdbcType=INTEGER},
+      winexjsj =   #{winexjsj,jdbcType=VARCHAR},
+      winemouthfeel =   #{winemouthfeel,jdbcType=VARCHAR},
+      winefragrant =  #{winefragrant,jdbcType=VARCHAR},
+      winedpms =  #{winedpms,jdbcType=VARCHAR},
+      wineseze =  #{wineseze,jdbcType=VARCHAR},
+      winedushu =  #{winedushu,jdbcType=INTEGER},
+      winegrade =   #{winegrade,jdbcType=DOUBLE},
+      winepromotion = #{winepromotion,jdbcType=INTEGER},
+      winehotsale  =  #{winehotsale,jdbcType=INTEGER},
+      winestore =  #{winestore,jdbcType=VARCHAR}
+
     where productid = #{productid,jdbcType=INTEGER}
+
   </update>
 </mapper>

@@ -77,7 +77,7 @@ var header1200 = ""; var header1000 = "";
 <ul>
 <li class="hd-n1 dropTitle">
 <div class="myJiuxian"><a href="http://member.jiuxian.com/index.htm" target="_blank" rel="nofollow">我的酒仙</a><s class="publicIcon"></s></div>
-<div class="myJiuxianBox dropTitleBox clearfix"><a href="http://member.jiuxian.com/trademanage/my_order-9.htm" target="_blank" rel="nofollow">我的订单</a>
+<div class="myJiuxianBox dropTitleBox clearfix"><a href="../lxx/aa" target="_blank" rel="nofollow">我的订单</a>
 <a href="http://member.jiuxian.com/trademanage/my_order-9.htm" target="_blank" rel="nofollow">物流跟踪</a><a href="http://member.jiuxian.com/purse/my_coupon-11.htm" target="_blank" rel="nofollow">我的优惠券</a></div>
 </li>
 <li class="hd-n2"><a href="http://sale.jiuxian.com/feedback.htm" target="_blank" rel="nofollow">CEO邮箱</a></li>
@@ -1100,13 +1100,13 @@ var header1200 = ""; var header1000 = "";
                         '\t\t\t\t<a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t   <img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'">\n' +
                         '\t\t\t\t</a>\n' +
-                        '\t\t\t\t<p>\n' +
-                        '\t\t\t\t<span></span>\n' +
-                        '\t\t\t\t</p>\n' +
+                        '<p class="Tag Tag_b">' +
+                        '<span>抢购</span>' +
+                        '</p>' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabTit">\n' +
                         '\t\t\t\t<a href="../ztx/queryone?'+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
-                        '\t\t\t\t\t<i class="zhenxuan"></i>'+data[i].productname+'' +
+                        '\t\t\t\t\t'+data[i].productname+' 剩'+data[i].productkucun+'件' +
                         '\t\t\t\t</a>\n' +
                         '\t\t\t</div>\n' +
                         '\t\t\t<div class="indexTabPrice homegoodPrice">\n' +
@@ -1119,15 +1119,68 @@ var header1200 = ""; var header1000 = "";
         })
     }
 
-    function showxsms() {
+    function showbkrm() {
         $.ajax({
             type: "post",
             url: "../ztx/queryxsms",
             success: function (data) {
                 var a1 = '';
-                for (var i = 0; i < 6; i++) {
+                for (var i = 0; i < 10; i++) {
+                    a1 += '<li product-box="49255">\n' +
+                        '\t\t\t<div class="indexTabPic">\n' +
+                        '\t\t\t\t<a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t   <img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'">\n' +
+                        '\t\t\t\t</a>\n' +
+                        '<p class="Tag Tag_b">\n' +
+                        '\t\t<span>热卖</span>\n' +
+                        '\t\t</p>' +
+                        '\t\t\t</div>\n' +
+                        '\t\t\t<div class="indexTabTit">\n' +
+                        '\t\t\t\t<a href="../ztx/queryone?'+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
+                        '\t\t\t\t\t'+data[i].productname+' 已售'+data[i].productzxl+'件' +
+                        '\t\t\t\t</a>\n' +
+                        '\t\t\t</div>\n' +
+                        '\t\t\t<div class="indexTabPrice homegoodPrice">\n' +
+                        '\t\t\t<strong goodid="49255" class="jxIndex_nowPrice_49255">￥'+data[i].productprice+'</strong><span><em clubgoodid="49255"></em><i class="clubIcon"></i></span>\n' +
+                        '\t\t\t</div>\n' +
+                        '\t\t</li>'
+                }
+                $("#bkrmid").html(a1)
+            }
+        })
+    }
+
+
+    var d=0;
+    var h=0;
+    var m=0;
+    var s=0;
+    function showxsms() {
+        $.ajax({
+            type: "post",
+            url: "../lyproduct/querymiaosha",
+            success: function (data) {
+                var a1 = '';
+                for (var i = 0; i < data.length; i++) {
+                    var endTime = new Date(data[i].daoqidate); // 最终时间
+                    setInterval(clock(),1000); // 开启定时器
+                    function clock(){
+                        var nowTime = new Date(); // 一定是要获取最新的时间
+                        var second = parseInt((endTime.getTime() - nowTime.getTime()) / 1000);
+                        d = parseInt(second / 3600 / 24); //天数
+                        h = parseInt(second / 3600 % 24) // 小时
+                        m = parseInt(second / 60 %60);
+                        s = parseInt(second %60 ); // 当前的秒
+                        console.log(s);
+                         d<10 ? d="0"+d : d;
+                         h<10 ? h="0"+h : h;
+                         m<10 ? m="0"+m : m;
+                         s<10 ? s="0"+s : s;
+                        /* a2="距结束还剩: "+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒";
+                        $('[name="djsid"]').html(a2)*/
+                    }
                     a1 += '<li product-box="32517">\n' +
-                        '\t\t\t\t\t\t<p><span></span></p>\n' +
+                        '\t\t\t\t\t\t<div name="djsid">'+"距结束还剩: "+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒"+'</div>\n' +
                         '\t\t\t\t\t\t<div class="raceListPic"><a href="../ztx/queryone?productid='+data[i].productid+'" target="_blank" title="'+data[i].productname+'">\n' +
                         '\t\t\t\t\t\t\t<img src="'+data[i].productphoto+'" width="160" height="160" alt="'+data[i].productname+'"></a></div>\n' +
                         '\t\t\t\t\t\t<div class="raceListTit">\n' +
@@ -1146,7 +1199,7 @@ $(function(){
     showimg();
     showfkqg();
     showxsms();
-
+    showbkrm();
 
 
 
@@ -1399,24 +1452,21 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 			</li>
 		</ul>
 	</div>
+
 <div class="indexTabConWrap"><div name="__home_daohang_tab1" class="indexTabCon">
 	<ul class="clearfix" id="fkqgid">
 	</ul>
 </div>
 
 <div name="__home_daohang_tab2" class="indexTabCon" style="display:none;">
-	<ul class="clearfix">
-<li product-box="3113"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-3113.html?source=61" target="_blank" title="茅台集团 53°银质习酒500ml"><img src="../ztxjiuxian/loading.gif" data-original="http://img07.jiuxian.com/2014/0430/b55452ae8f4348e2adfb19d6b6cc85452.jpg" width="160" height="160" alt="茅台集团 53°银质习酒500ml">
-	</a>
-	<p class="Tag Tag_b">
-	<span>实惠<br>好喝</span>
-</p></div>
-<div class="indexTabTit"><a href="http://www.jiuxian.com/goods-3113.html?source=61" target="_blank" title="茅台集团 53°银质习酒500ml">
-		茅台集团 53°银质习酒500ml</a></div>
-<div class="indexTabPrice homegoodPrice">
-<strong goodid="3113" class="jxIndex_nowPrice_3113">￥98.00</strong><span><em clubgoodid="3113"></em><i class="clubIcon"></i></span>
-</div>
-</li>
+	<ul class="clearfix" id="bkrmid">
+
+
+
+
+
+
+
 <li product-box="53008"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-53008.html?source=62" target="_blank" title="52°白水杜康一坛老酒1000ml（双坛装）"><img src="../ztxjiuxian/loading.gif" data-original="http://img07.jiuxian.com/2018/1225/fc979c1278c5468a95150ec47723a1b22.jpg" width="160" height="160" alt="52°白水杜康一坛老酒1000ml（双坛装）">
 	</a>
 	<p class="Tag Tag_b">
@@ -1429,6 +1479,7 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 <strong goodid="53008" class="jxIndex_nowPrice_53008">￥99.00</strong><span><em clubgoodid="53008"></em><i class="clubIcon"></i></span>
 </div>
 </li>
+
 <li product-box="90962"><div class="indexTabPic"><a href="http://www.jiuxian.com/goods-90962.html?source=63" target="_blank" title="53°贵州茅台酒飞天茅台500ml（2018年）"><img src="../ztxjiuxian/loading.gif" data-original="http://img07.jiuxian.com/2019/0627/84c0a9346e47457c8a0baa451b61c11c2.jpg" width="160" height="160" alt="53°贵州茅台酒飞天茅台500ml（2018年）">
 	</a>
 	<p class="Tag size Tag_a">
@@ -1899,219 +1950,44 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 </span></div></div></div></div>
 <!--疯狂抢购end--><div class="loadFirst on" style="height:1159px; overflow:hidden;">
 		<div id="indexLayer1">
-<!--广告位start-->
-			<div class="indexAdBox mt30 floorBanner1" style="background: url(&#39;http://img08.jiuxian.com/bill/2018/1204/9b19420219414ce08737eb0b327a7afd.jpg&#39;) no-repeat top center scroll;">
-								<p>
-			<a name="__home_tong1" href="http://shop.jiuxian.com/index-20.htm?source=23" target="_blank" rel="nofollow"><img src="../ztxjiuxian/d99c097fde7b4575b21f68bef24f3841.png"></a>
-		</p>
-								<p>
-			<a name="__home_tong2" href="http://shop.jiuxian.com/brand-402/activity-3723.htm" target="_blank" rel="nofollow"><img src="../ztxjiuxian/3fa454a4454d47fab24574cf3092e85d.png"></a>
-		</p>
-								<p>
-			<a name="__home_tong3" href="http://shop.jiuxian.com/index-1171/activity-3788.htm" target="_blank" rel="nofollow"><img src="../ztxjiuxian/deaf399cdb1f457083b69b5c91b15ee5.png"></a>
-		</p>
-							</div>
-		<!--广告位end--><!--限时秒杀start-->
+<!--限时秒杀start-->
 <div class="Lay_4 mt10 clearfix" id="countDownPanel">
 <div name="__home_youhui" class="raceBox"><div class="titlebox"><div class="title_2"><i class="newIndexIcon"></i><span>限时秒杀</span></div><div class="rightNavBox">
 <span class="on">4</span>
 <span></span>
 <span></span>
-</div></div>
+</div>
+</div>
 	<div class="raceListWrap">
 		<i class="newIndexIcon raceArrow raceLeft"></i>
 		<i class="newIndexIcon raceArrow raceRight"></i>
 		<div class="receBoxs" style="margin-left: 0px;">
 			<div class="raceList" waitpro="0">
 				<ul class="clearfix" id="xsmsid">
+                </ul>
 
-					<!--<li product-box="32517">
-						<p><span></span></p>
-						<div class="raceListPic"><a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="45°古井大曲250ml（6瓶装）">
-							<img src="../ztxjiuxian/38cf9dfd1f3a4b3bb95a19f3f72a1b002.jpg" width="160" height="160" alt="45°古井大曲250ml（6瓶装）"></a></div>
-						<div class="raceListTit">
-							<a href="http://www.jiuxian.com/goods-32517.html?src=6103&amp;source=113" target="_blank" title="45°古井大曲250ml（6瓶装）">45°古井大曲250ml（6瓶装）</a>
-						</div>
-						<div class="raceListPrice"><strong goodid="32517" class="jxIndex_nowPrice_32517">￥36.00</strong></div>
-						<div class="raceListTime" id="jxIndex_timeAct_32517" time="0" style="display: none;">
-						</div>
-					</li>-->
-<li product-box="55984">
-	<p>
-	<span></span>
-</p>
-<div class="raceListPic"><a href="http://www.jiuxian.com/goods-55984.html?src=6104&amp;source=114" target="_blank" title="52°泸州老窖御酒金色岁月500ml"><img src="../ztxjiuxian/2324ab3efe9e4e53aa12129551cd956c2.jpg" width="160" height="160" alt="52°泸州老窖御酒金色岁月500ml"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-55984.html?src=6104&amp;source=114" target="_blank" title="52°泸州老窖御酒金色岁月500ml">
-				52°泸州老窖御酒金色岁月500ml
-	</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="raceListPrice"><strong goodid="55984" class="jxIndex_nowPrice_55984">￥49.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_55984" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="84537">
-	<p>
-	<span></span>
-</p>
-<div class="raceListPic"><a href="http://www.jiuxian.com/goods-84537.html?src=6105&amp;source=115" target="_blank" title="52度西凤酒 窖酒壹号 浓香型白酒送礼 婚宴酒 整箱500ml（6瓶）"><img src="../ztxjiuxian/7e594598bdbf41bf8af41be32cd5d5772.jpg" width="160" height="160" alt="52度西凤酒 窖酒壹号 浓香型白酒送礼 婚宴酒 整箱500ml（6瓶）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-84537.html?src=6105&amp;source=115" target="_blank" title="52度西凤酒 窖酒壹号 浓香型白酒送礼 婚宴酒 整箱500ml（6瓶）">
-				52度西凤酒 窖酒壹号 浓香型白酒送礼 婚宴酒 整箱500ml（6瓶）
-	</a>
 </div>
-<div class="raceListPrice"><strong goodid="84537" class="jxIndex_nowPrice_84537">￥358.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_84537" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="22167">
-	<p>
-	<span></span>
-</p>
-<div class="raceListPic"><a href="http://www.jiuxian.com/goods-22167.html?src=6106&amp;source=116" target="_blank" title="54°宝丰荣耀1000ml（献礼版）"><img src="../ztxjiuxian/03cf638405bb4ae495f968ad8c6e1c462.jpg" width="160" height="160" alt="54°宝丰荣耀1000ml（献礼版）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-22167.html?src=6106&amp;source=116" target="_blank" title="54°宝丰荣耀1000ml（献礼版）">
-				54°宝丰荣耀1000ml（献礼版）
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="22167" class="jxIndex_nowPrice_22167">￥69.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_22167" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="84997">
-	<p>
-	<span></span>
-</p>
-<div class="raceListPic"><a href="http://www.jiuxian.com/goods-84997.html?src=6107&amp;source=117" target="_blank" title="【酒仙甄选】53°郑酒师 纯坤沙 酱香型白酒 固态纯粮 白酒整箱500ml*4"><img src="../ztxjiuxian/31d6933ebd914b178e19c770d168a8dc2.jpg" width="160" height="160" alt="【酒仙甄选】53°郑酒师 纯坤沙 酱香型白酒 固态纯粮 白酒整箱500ml*4"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-84997.html?src=6107&amp;source=117" target="_blank" title="【酒仙甄选】53°郑酒师 纯坤沙 酱香型白酒 固态纯粮 白酒整箱500ml*4">
-				【酒仙甄选】53°郑酒师 纯坤沙 酱香型白酒 固态纯粮 白酒整箱500ml*4
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="84997" class="jxIndex_nowPrice_84997">￥432.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_84997" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="44020">
-	<p>
-	<span></span>
-</p>
-<div class="raceListPic"><a href="http://www.jiuxian.com/goods-44020.html?src=6108&amp;source=118" target="_blank" title="西班牙拉伊尔半甜白葡萄酒750ml (6瓶装)"><img src="../ztxjiuxian/5d66014377b549a585718cf1a6d3a8712.jpg" width="160" height="160" alt="西班牙拉伊尔半甜白葡萄酒750ml (6瓶装)"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-44020.html?src=6108&amp;source=118" target="_blank" title="西班牙拉伊尔半甜白葡萄酒750ml (6瓶装)">
-				西班牙拉伊尔半甜白葡萄酒750ml (6瓶装)
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="44020" class="jxIndex_nowPrice_44020">￥149.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_44020" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-</ul></div>
-<div class="raceList" waitpro="1"><ul class=" clearfix">
-<li product-box="85258">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-85258.html?src=6109&amp;source=119" target="_blank" title="52°五粮液（股份）友酒•友义500ml  浓香型白酒"><img src="../ztxjiuxian/5c047427aed54c2aa04461e258c597342.jpg" width="160" height="160" alt="52°五粮液（股份）友酒•友义500ml  浓香型白酒"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-85258.html?src=6109&amp;source=119" target="_blank" title="52°五粮液（股份）友酒•友义500ml  浓香型白酒">
-				52°五粮液（股份）友酒•友义500ml  浓香型白酒
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="85258" class="jxIndex_nowPrice_85258">￥168.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_85258" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="79985">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-79985.html?src=6110&amp;source=120" target="_blank" title="【官网专属】52°白水杜康己亥猪年纪念酒1000ml(金装版）（2坛装）"><img src="../ztxjiuxian/7e607559ffb14a1fb843a96faee15e932.jpg" width="160" height="160" alt="【官网专属】52°白水杜康己亥猪年纪念酒1000ml(金装版）（2坛装）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-79985.html?src=6110&amp;source=120" target="_blank" title="【官网专属】52°白水杜康己亥猪年纪念酒1000ml(金装版）（2坛装）">
-				【官网专属】52°白水杜康己亥猪年纪念酒1000ml(金装版）（2坛装）
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="79985" class="jxIndex_nowPrice_79985">￥129.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_79985" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="46209">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-46209.html?src=6111&amp;source=121" target="_blank" title="52°酒鬼酒珍藏特酿500ml（6瓶装）"><img src="../ztxjiuxian/f0921a84c757452f80ece8ed65c5429a2.jpg" width="160" height="160" alt="52°酒鬼酒珍藏特酿500ml（6瓶装）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-46209.html?src=6111&amp;source=121" target="_blank" title="52°酒鬼酒珍藏特酿500ml（6瓶装）">
-				52°酒鬼酒珍藏特酿500ml（6瓶装）
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="46209" class="jxIndex_nowPrice_46209">￥1554.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_46209" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="71585">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-71585.html?src=6112&amp;source=122" target="_blank" title="42°枝江珍品窖500ml（6瓶装）"><img src="../ztxjiuxian/a3922b1b988843b3b1a306ca39ce433d2.jpg" width="160" height="160" alt="42°枝江珍品窖500ml（6瓶装）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-71585.html?src=6112&amp;source=122" target="_blank" title="42°枝江珍品窖500ml（6瓶装）">
-				42°枝江珍品窖500ml（6瓶装）
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="71585" class="jxIndex_nowPrice_71585">￥99.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_71585" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="49602">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-49602.html?src=6113&amp;source=123" target="_blank" title="【礼盒】澳洲丁戈树赤霞珠干红葡萄酒豪华双支皮盒套装"><img src="../ztxjiuxian/03c52361be1a495a8353a07fce0aa37b2.jpg" width="160" height="160" alt="【礼盒】澳洲丁戈树赤霞珠干红葡萄酒豪华双支皮盒套装"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-49602.html?src=6113&amp;source=123" target="_blank" title="【礼盒】澳洲丁戈树赤霞珠干红葡萄酒豪华双支皮盒套装">
-		            <i class="zhenxuan"></i>
-				【礼盒】澳洲丁戈树赤霞珠干红葡萄酒豪华双支皮盒套装
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="49602" class="jxIndex_nowPrice_49602">￥298.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_49602" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="83968">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-83968.html?src=6114&amp;source=124" target="_blank" title="整箱红酒张裕玫瑰红甜红葡萄酒750ml（6瓶装）"><img src="../ztxjiuxian/567f3d3b9e9c40b885b9cf83ac3d021c2.jpg" width="160" height="160" alt="整箱红酒张裕玫瑰红甜红葡萄酒750ml（6瓶装）"></a></div>
-<div class="raceListTit">
-	<a href="http://www.jiuxian.com/goods-83968.html?src=6114&amp;source=124" target="_blank" title="整箱红酒张裕玫瑰红甜红葡萄酒750ml（6瓶装）">
-				整箱红酒张裕玫瑰红甜红葡萄酒750ml（6瓶装）
-	</a>
-</div>
-<div class="raceListPrice"><strong goodid="83968" class="jxIndex_nowPrice_83968">￥188.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_83968" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-</ul></div>
-<div class="raceList" waitpro="2"><ul class="clearfix">
-<li product-box="78253">
-	<p class="Tag Tag_b">
-	<span>买一<br>赠一</span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-78253.html?src=6115&amp;source=125" target="_blank" title="52°泸州老窖特曲500ml+52°泸州老酒坊迎天喜500ml"><img src="../ztxjiuxian/0f3f0b8bab7a4a6aa885d2a1678ccd962.jpg" width="160" height="160" alt="52°泸州老窖特曲500ml+52°泸州老酒坊迎天喜500ml"></a></div>
-<div class="raceListTit"><a href="http://www.jiuxian.com/goods-78253.html?src=6115&amp;source=125" target="_blank" title="52°泸州老窖特曲500ml+52°泸州老酒坊迎天喜500ml">52°泸州老窖特曲500ml+52°泸州老酒坊迎天喜500ml</a></div>
-<div class="raceListPrice"><strong goodid="78253" class="jxIndex_nowPrice_78253">￥258.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_78253" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="74745">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-74745.html?src=6116&amp;source=126" target="_blank" title="53°国台·品鉴15 500ml*2"><img src="../ztxjiuxian/89a0f183e531468080b7c20c34ad8aaa2.jpg" width="160" height="160" alt="53°国台·品鉴15 500ml*2"></a></div>
-<div class="raceListTit"><a href="http://www.jiuxian.com/goods-74745.html?src=6116&amp;source=126" target="_blank" title="53°国台·品鉴15 500ml*2">53°国台·品鉴15 500ml*2</a></div>
-<div class="raceListPrice"><strong goodid="74745" class="jxIndex_nowPrice_74745">￥796.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_74745" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="85758">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-85758.html?src=6117&amp;source=127" target="_blank" title="50°杜康绵柔五星460ml双瓶装"><img src="../ztxjiuxian/33e98a2c22a243bca63f08a5a8624dd22.jpg" width="160" height="160" alt="50°杜康绵柔五星460ml双瓶装"></a></div>
-<div class="raceListTit"><a href="http://www.jiuxian.com/goods-85758.html?src=6117&amp;source=127" target="_blank" title="50°杜康绵柔五星460ml双瓶装">50°杜康绵柔五星460ml双瓶装</a></div>
-<div class="raceListPrice"><strong goodid="85758" class="jxIndex_nowPrice_85758">￥89.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_85758" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="121">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-121.html?src=6118&amp;source=128" target="_blank" title="53°黄盖玻瓶汾酒475ml"><img src="../ztxjiuxian/6531ff35cdef4070a1e6af4e4246e19c2.jpg" width="160" height="160" alt="53°黄盖玻瓶汾酒475ml"></a></div>
-<div class="raceListTit"><a href="http://www.jiuxian.com/goods-121.html?src=6118&amp;source=128" target="_blank" title="53°黄盖玻瓶汾酒475ml">53°黄盖玻瓶汾酒475ml</a></div>
-<div class="raceListPrice"><strong goodid="121" class="jxIndex_nowPrice_121">￥43.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_121" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="25907">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-25907.html?src=6119&amp;source=129" target="_blank" title="澳大利亚红酒小海龟西拉红葡萄酒750ml"><img src="../ztxjiuxian/d4abc45efae144eaa805d824fb58e8c12.jpg" width="160" height="160" alt="澳大利亚红酒小海龟西拉红葡萄酒750ml"></a></div>
-<div class="raceListTit"><a href="http://www.jiuxian.com/goods-25907.html?src=6119&amp;source=129" target="_blank" title="澳大利亚红酒小海龟西拉红葡萄酒750ml">澳大利亚红酒小海龟西拉红葡萄酒750ml</a></div>
-<div class="raceListPrice"><strong goodid="25907" class="jxIndex_nowPrice_25907">￥89.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_25907" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-<li product-box="92892">
-	<p>
-	<span></span>
-</p><div class="raceListPic"><a href="http://www.jiuxian.com/goods-92892.html?src=6120&amp;source=130" target="_blank" title="澳洲红酒澳大利亚丁戈树赤霞珠干红葡萄酒750ml +精美酒杯+酒刀"><img src="../ztxjiuxian/941d61f2a9dd47a781440e0f6f09eab42.jpg" width="160" height="160" alt="澳洲红酒澳大利亚丁戈树赤霞珠干红葡萄酒750ml +精美酒杯+酒刀"></a></div>
-<div class="raceListTit"><a href="http://www.jiuxian.com/goods-92892.html?src=6120&amp;source=130" target="_blank" title="澳洲红酒澳大利亚丁戈树赤霞珠干红葡萄酒750ml +精美酒杯+酒刀">澳洲红酒澳大利亚丁戈树赤霞珠干红葡萄酒750ml +精美酒杯+酒刀</a></div>
-<div class="raceListPrice"><strong goodid="92892" class="jxIndex_nowPrice_92892">￥139.00</strong></div>
-<div class="raceListTime" id="jxIndex_timeAct_92892" time="0" style="display: none;"><span>剩余:</span><i class="hours">23</i><span>小时</span><i class="minutes">04</i><span>分钟</span><i class="seconds">42</i><span>秒</span></div></li>
-</ul></div>
-</div></div></div></div>
-<!--限时秒杀end--><!--白酒馆start-->
+<!--限时秒杀end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!--白酒馆start-->
 <div class="Lay_5 mt10 whiteWine" lay5="lay5"><div class="titlebox"><div class="comTitle"><i class="comIcon1 newIndexIcon">1F</i><span>白酒馆</span></div><!-- 白酒馆顶部文字广告Start -->
 <div class="rightMenu" name="__home_baireci">
 <a href="http://list.jiuxian.com/1-0-0-9500-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="贵州">贵州</a>
@@ -2121,9 +1997,22 @@ $(this).parents(".menuCon-list").find("p").hide().eq(index).show();
 |<a href="http://list.jiuxian.com/1-0-0-9479-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="江苏">江苏</a>
 |<a href="http://list.jiuxian.com/1-0-0-9478-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="山东">山东</a>
 |<a href="http://list.jiuxian.com/1-0-0-9487-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0.htm" target="_blank" title="安徽">安徽</a>
-<!-- 白酒馆顶部文字广告End --><a name="home_bairukou" href="http://list.jiuxian.com/1-0-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank" class="goBlank" title="去白酒馆" rel="nofollow">白酒馆<span>&gt;</span></a></div></div>
-<div class="spiritWrap"><div class="bannerSlier sliderBox"><div name="__home_bailunxin" class="imgBox"><ul class="clearfix bigUl" style="margin-left: -210px;">
-<li><a href="http://shop.jiuxian.com/brand-382/activity-3770.htm" title="白水杜康" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/f63e17c4af3f43f3ba4450f163715797.jpg" alt=""></a></li>
+<!-- 白酒馆顶部文字广告End -->
+	<a name="home_bairukou" href="http://list.jiuxian.com/1-0-0-0-0-0-0-0-0-0-0-0.htm#v2" target="_blank" class="goBlank" title="去白酒馆" rel="nofollow">白酒馆
+		<span>&gt;</span>
+	</a>
+</div>
+</div>
+
+<div class="spiritWrap">
+	<div class="bannerSlier sliderBox">
+		<div name="__home_bailunxin" class="imgBox">
+			<ul class="clearfix bigUl" style="margin-left: -210px;">
+<li>
+	<a href="http://shop.jiuxian.com/brand-382/activity-3770.htm" title="白水杜康" target="_blank" rel="nofollow">
+		<img height="485" width="210" _src="" src="../ztxjiuxian/f63e17c4af3f43f3ba4450f163715797.jpg" alt="">
+	</a>
+</li>
 <li><a href="http://shop.jiuxian.com/index-1286.htm" title="品质酒窖" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/f27f4651489b43d9ac22be2b2dd689cb.jpg" alt=""></a></li>
 <li><a href="http://shop.jiuxian.com/index-1310.htm" title="五粮液" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/7da11c7506d9480283bab377affc014c.jpg" alt=""></a></li>
 <li><a href="http://shop.jiuxian.com/brand-41/activity-3399.htm?source=23" title="酒鬼酒" target="_blank" rel="nofollow"><img height="485" width="210" _src="" src="../ztxjiuxian/3b50e158f5bd4e18bc9a6327ea22f843.jpg" alt=""></a></li>
